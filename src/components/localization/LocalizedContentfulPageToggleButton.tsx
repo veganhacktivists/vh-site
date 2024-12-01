@@ -12,6 +12,7 @@ import Spinner from 'components/decoration/spinner';
 import { useDynamicTranslationStore } from 'lib/stores/dynamicTranslationStore';
 import { usePathnameLocale } from 'lib/translation/usePathnameLocale';
 
+/** @deprecated use new implementation in app router */
 const LocalizedContentfulPageToggleButton = ({
   className,
 }: {

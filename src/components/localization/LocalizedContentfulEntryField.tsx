@@ -8,6 +8,7 @@ import { api } from 'trpc/react';
 import { useDynamicTranslationStore } from 'lib/stores/dynamicTranslationStore';
 import { usePathnameLocale } from 'lib/translation/usePathnameLocale';
 
+/** @deprecated use new implementation in app router */
 export const useLocalizedContentfulEntryField = ({
   contentfulId,
   fieldId,
@@ -50,6 +51,7 @@ export const useLocalizedContentfulEntryField = ({
   return localizedHTML.data ?? '';
 };
 
+/** @deprecated use new implementation in app router */
 const LocalizedContentfulEntryField: FC<{
   contentfulId: string;
   fieldId: string;
