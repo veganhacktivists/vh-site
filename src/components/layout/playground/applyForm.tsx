@@ -476,7 +476,9 @@ const MainForm: React.FC<RequestProps> = ({ request }) => {
           placeholder='yourwebsite.com'
         >
           <span className='hidden lg:inline'>Personal website or p</span>
-          <span className='inline lg:hidden'>P</span>ortfolio link
+          <span className='inline lg:hidden'>
+            P
+          </span>ortfolio link
         </TextInput>
         <TextInput
           className='md:col-span-2'

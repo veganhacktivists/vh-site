@@ -1,3 +1,5 @@
+'use server';
+
 const PrivacyPolicy = () => {
   return (
     <div className='m-auto px-2 py-16 w-full md:w-[760px] text-left'>

@@ -11,7 +11,7 @@
     "dev": "pnpm translation:compile && NODE_OPTIONS='--inspect' next dev",
     "build": "pnpm translation:compile && next build",
     "start": "next start",
-    "lint": "next lint --dir . --report-unused-disable-directives warn",
+    "lint": "next lint --dir .",
     "test": "jest --watch",
     "typecheck": "tsc --noEmit",
     "format": "prettier -w .",
