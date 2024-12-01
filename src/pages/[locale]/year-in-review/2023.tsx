@@ -2,11 +2,9 @@ import { NextSeo } from 'next-seo';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import Hero from '../../components/decoration/hero';
-import { YearInReviewHeader } from '../../components/layout/yearInReview/layout';
-import Intro from '../../components/layout/yearInReview/2023/intro';
-import heroBackground from '../../../public/images/yearInReview/2023/2023-hero.jpg';
-import heroTagline from '../../../public/images/yearInReview/2023/2023-type.png';
+import Hero from '../../../components/decoration/hero';
+import { YearInReviewHeader } from '../../../components/layout/yearInReview/layout';
+import Intro from '../../../components/layout/yearInReview/2023/intro';
 
 import VioletStudios from 'components/layout/yearInReview/2023/violetStudios';
 import Granti from 'components/layout/yearInReview/2023/granti';
@@ -21,6 +19,9 @@ import TheoryOfChange from 'components/layout/yearInReview/2023/theoryOfChange';
 import BigImpact from 'components/layout/yearInReview/2023/bigImpact';
 import MovingForward from 'components/layout/yearInReview/2023/movingForward';
 import ByTheNumbers from 'components/layout/yearInReview/2023/byTheNumbers';
+
+import heroTagline from '~images/yearInReview/2023/2023-type.png';
+import heroBackground from '~images/yearInReview/2023/2023-hero.jpg';
 
 const YearInReview2023: React.FC = ({}) => {
   const intl = useIntl();
