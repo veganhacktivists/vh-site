@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
-import smHeart from '../../../../public/images/VH_Pixel_Heart_Small.png';
-import mdHeart from '../../../../public/images/VH_Pixel_Heart_Medium.png';
-import lgHeart from '../../../../public/images/VH_Pixel_Heart_Large.png';
-
 import cssAnimations from './animations.module.css';
 
 import CustomImage from 'components/decoration/customImage';
 
 import type { SpringValue } from '@react-spring/web';
+
+import smHeart from '~images/VH_Pixel_Heart_Small.png';
+import mdHeart from '~images/VH_Pixel_Heart_Medium.png';
+import lgHeart from '~images/VH_Pixel_Heart_Large.png';
 
 interface FloatingHeartProps {
   float?: boolean;
@@ -40,6 +40,7 @@ const FloatingHeart: React.FC<FloatingHeartProps> = ({
         setLeft(parseFloat(position.get()));
       }, delay);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [float, delay, position]);
 
   return (
