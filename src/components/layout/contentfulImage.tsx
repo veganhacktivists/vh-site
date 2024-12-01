@@ -10,6 +10,7 @@ interface ContentfulImageProps
   ratio?: number;
   downloadwidth?: number;
   thumbnail?: boolean;
+  useNextImage?: boolean;
 }
 
 const ContentfulImage: React.FC<ContentfulImageProps> = ({

@@ -1,4 +1,4 @@
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { LightButton } from '../../../decoration/buttons';
 import SectionContainer from '../sectionContainer';
@@ -8,6 +8,7 @@ import { pixelPig } from '../../../../images/separators';
 import CustomImage from 'components/decoration/customImage';
 
 const MovingForward: React.FC = () => {
+  const intl = useIntl();
   return (
     <>
       <SquareField
@@ -40,7 +41,10 @@ const MovingForward: React.FC = () => {
             }}
           />
           <div className='w-min mx-auto pt-10 pb-10'>
-            <LightButton href='/support' className='w-min px-5'>
+            <LightButton
+              href={`/${intl.locale}/support`}
+              className='w-min px-5'
+            >
               <FormattedMessage
                 id='page.year-in-review.2021.section.moving-forward.btn.cta'
                 defaultMessage='Support our work'

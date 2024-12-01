@@ -65,7 +65,9 @@ const Intro: React.FC = () => {
             values={{
               b: (chunks) => <b>{chunks}</b>,
               link: (chunks) => (
-                <CustomLink href='/people/advisors'>{chunks}</CustomLink>
+                <CustomLink href={`/${intl.locale}/people/advisors`}>
+                  {chunks}
+                </CustomLink>
               ),
             }}
           />

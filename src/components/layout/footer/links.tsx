@@ -16,28 +16,28 @@ const getLinks: (intl: IntlShape) => ILinks[] = (intl) => [
       id: 'layout.footer.navigation-item.about.label',
       defaultMessage: 'About',
     }),
-    href: '/about',
+    href: `/${intl.locale}/about`,
     links: [
       {
         label: intl.formatMessage({
           id: 'layout.footer.navigation-item.about.our-story.label',
           defaultMessage: 'Our Story',
         }),
-        href: '/about/our-story',
+        href: `/${intl.locale}/about/our-story`,
       },
       {
         label: intl.formatMessage({
           id: 'layout.footer.navigation-item.about.our-values.label',
           defaultMessage: 'Our Values',
         }),
-        href: '/about/our-values',
+        href: `/${intl.locale}/about/our-values`,
       },
       {
         label: intl.formatMessage({
           id: 'layout.footer.navigation-item.about.our-mission.label',
           defaultMessage: 'Our Mission',
         }),
-        href: '/about/our-mission',
+        href: `/${intl.locale}/about/our-mission`,
       },
     ],
   },
@@ -46,35 +46,35 @@ const getLinks: (intl: IntlShape) => ILinks[] = (intl) => [
       id: 'layout.footer.navigation-item.services.label',
       defaultMessage: 'Services',
     }),
-    href: '/services',
+    href: `/${intl.locale}/services`,
   },
   {
     label: intl.formatMessage({
       id: 'layout.footer.navigation-item.work.label',
       defaultMessage: 'Our Work',
     }),
-    href: '/work',
+    href: `/${intl.locale}/work`,
   },
   {
     label: intl.formatMessage({
       id: 'layout.footer.navigation-item.people.label',
       defaultMessage: 'People',
     }),
-    href: '/people',
+    href: `/${intl.locale}/people`,
     links: [
       {
         label: intl.formatMessage({
           id: 'layout.footer.navigation-item.people.team.label',
           defaultMessage: 'Our Team',
         }),
-        href: '/people/team',
+        href: `/${intl.locale}/people/team`,
       },
       {
         label: intl.formatMessage({
           id: 'layout.footer.navigation-item.people.advisors.label',
           defaultMessage: 'Advisors',
         }),
-        href: '/people/advisors',
+        href: `/${intl.locale}/people/advisors`,
       },
     ],
   },
@@ -83,28 +83,28 @@ const getLinks: (intl: IntlShape) => ILinks[] = (intl) => [
       id: 'layout.footer.navigation-item.blog.label',
       defaultMessage: 'Blog',
     }),
-    href: '/blog',
+    href: `/${intl.locale}/blog`,
   },
   {
     label: intl.formatMessage({
       id: 'layout.footer.navigation-item.contact.label',
       defaultMessage: 'Contact Us',
     }),
-    href: '/contact',
+    href: `/${intl.locale}/contact`,
   },
   {
     label: intl.formatMessage({
       id: 'layout.footer.navigation-item.join.label',
       defaultMessage: 'Join Us',
     }),
-    href: '/join',
+    href: `/${intl.locale}/join`,
   },
   {
     label: intl.formatMessage({
       id: 'layout.footer.navigation-item.privacy-policy.label',
       defaultMessage: 'Privacy Policy',
     }),
-    href: '/privacy-policy',
+    href: `/${intl.locale}/privacy-policy`,
   },
 ];
 

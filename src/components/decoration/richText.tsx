@@ -1,6 +1,5 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
-import Link from 'next/link';
 import React from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
@@ -61,7 +60,7 @@ const defaultRichTextOptions: Options = {
       const { title, description } = imageData?.fields;
       return (
         <figure>
-          <ContentfulImage image={imageData} alt={title} />
+          <ContentfulImage image={imageData} alt={title} useNextImage={false} />
           {description && (
             <figcaption className='text-base italic text-gray-dark'>
               {description}
@@ -94,14 +93,17 @@ const defaultRichTextOptions: Options = {
       </div>
     ),
     [BLOCKS.HR]: () => <hr className='mt-5' />,
-    [INLINES.HYPERLINK]: (node, children) => (
-      <Link
-        href={(node as Hyperlink).data.uri}
-        className='font-semibold underline hover:text-grey visited:text-grey'
-      >
-        {children}
-      </Link>
-    ),
+    [INLINES.HYPERLINK]: (node, children) => {
+      // The Link component can't be used to render rich text to a string.
+      return (
+        <a
+          href={(node as Hyperlink).data.uri}
+          className='font-semibold underline hover:text-grey visited:text-grey'
+        >
+          {children}
+        </a>
+      );
+    },
     [BLOCKS.PARAGRAPH]: (node, children) => (
       <p className='mt-5 first:mt-0'>{children}</p>
     ),

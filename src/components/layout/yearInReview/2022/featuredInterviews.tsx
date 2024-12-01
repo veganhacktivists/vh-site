@@ -5,10 +5,10 @@ import SectionContainer from '../sectionContainer';
 import { SectionHeader } from '../../../decoration/textBlocks';
 
 import SubtleBorder from 'components/decoration/subtleBorder';
-import BlogEntrySummary from 'components/layout/blog/blogEntrySummary';
-import { trpc } from 'lib/client/trpc';
+import { api } from 'trpc/react';
 import { DarkButton } from 'components/decoration/buttons';
 import Spinner from 'components/decoration/spinner';
+import BlogEntrySummaryPages from 'components/layout/blog/blogEntrySummary_pages';
 
 interface FeaturedInterviewsProps {
   interviews: string[];
@@ -21,11 +21,10 @@ const FeaturedInterviews: React.FC<FeaturedInterviewsProps> = ({
 
   const {
     data: blogs,
-    isLoading,
+    isPending: isLoading,
     isError,
-  } = trpc.blog.getBlogsBySlugs.useQuery(interviews, {
-    keepPreviousData: true,
-  });
+  } = api.blog.getBlogsBySlugs.useQuery(interviews);
+
   return (
     <>
       <SectionContainer
@@ -65,13 +64,13 @@ const FeaturedInterviews: React.FC<FeaturedInterviewsProps> = ({
                   key={blog.fields.slug}
                   className='col-span-full md:col-span-1'
                 >
-                  <BlogEntrySummary blog={blog} />
+                  <BlogEntrySummaryPages blog={blog} locale={intl.locale} />
                 </SubtleBorder>
               );
             })}
         </div>
         <div className='flex justify-center pb-20'>
-          <DarkButton className='mb-0' href={'/blog'}>
+          <DarkButton className='mb-0' href={`/${intl.locale}/blog`}>
             <FormattedMessage
               id='page.year-in-review.2022.section.featured-interviews.btn.cta'
               defaultMessage='Read More on the Blog'

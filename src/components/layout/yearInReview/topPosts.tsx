@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import type { IBlogEntryFields } from '../../../types/generated/contentful';
 
@@ -8,6 +8,7 @@ interface TopPostsProps {
 }
 
 const TopPosts: React.FC<TopPostsProps> = ({ topPosts }) => {
+  const intl = useIntl();
   return (
     <>
       <h2 className='text-3xl font-mono font-bold text-white mb-8'>
@@ -20,7 +21,7 @@ const TopPosts: React.FC<TopPostsProps> = ({ topPosts }) => {
         {topPosts.map(({ title, slug }) => (
           <Link
             key={slug}
-            href={`/blog/${slug}`}
+            href={`/${intl.locale}/blog/${slug}`}
             className='text-white text-2xl underline active:opacity-50 cursor-pointer truncate'
           >
             {title}

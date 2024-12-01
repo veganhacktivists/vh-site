@@ -1,3 +1,5 @@
+'use client';
+
 import classNames from 'classnames';
 import axios from 'axios';
 import React, { useCallback } from 'react';

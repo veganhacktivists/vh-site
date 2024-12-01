@@ -648,7 +648,7 @@
     "message": "我们的通讯"
   },
   "page.not-found.error-message": {
-    "message": "您请求的页面 (<no-localization>{path}</no-localization>) 不存在"
+    "message": "您请求的页面不存在"
   },
   "page.not-found.next-seo.title": {
     "message": "页面未找到"
@@ -2040,7 +2040,7 @@
     "message": "了解我们的影响"
   },
   "section.grants-cta.visit-year-review.heading": {
-    "message": "参见我们的 2022 年影响审查"
+    "message": "参见我们的 2023 年影响审查"
   },
   "section.grants-cta.visit-year-review.paragraph": {
     "message": "阅读我们的年度影响力回顾，了解我们去年取得的成就。"

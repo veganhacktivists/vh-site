@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import PlaygroundImage from '../../../../../public/images/yearInReview/2022/playground.png';
 import PlaygroundLogo from '../../../../../public/images/playground/VH_Playground_Logo_Full.png';
@@ -9,6 +9,7 @@ import SquareField from 'components/decoration/squares';
 import { LightButton } from 'components/decoration/buttons';
 
 const Playground: React.FC = () => {
+  const intl = useIntl();
   return (
     <>
       <SquareField
@@ -58,7 +59,7 @@ const Playground: React.FC = () => {
                   />
                 </span>
                 <div className='flex mt-10 pb-20'>
-                  <LightButton href={'/playground'}>
+                  <LightButton href={`/${intl.locale}/playground`}>
                     <FormattedMessage
                       id='page.year-in-review.2022.section.playground.btn.cta'
                       defaultMessage='Get support'

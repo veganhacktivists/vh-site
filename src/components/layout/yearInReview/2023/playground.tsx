@@ -7,7 +7,6 @@ import SquareField from 'components/decoration/squares';
 import { LightButton } from 'components/decoration/buttons';
 import { SectionHeader } from 'components/decoration/textBlocks';
 import CustomImage from 'components/decoration/customImage';
-import Sprite, { duck } from 'components/decoration/sprite';
 
 const TOP_DECORATION_SQUARES = [
   { color: 'grey-lighter', size: 16, left: 0, bottom: 0 },

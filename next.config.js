@@ -26,68 +26,27 @@ const nextConfig = {
       exclude: ['error', 'info', 'warn'],
     },
   },
-  i18n: {
-    locales: ['en' /**, 'de', 'zh', 'dev' */],
-    defaultLocale: 'en',
+  experimental: {
+    serverComponentsExternalPackages: [
+      // remove when the wrapper is removed
+      'wrap-react-dom-server',
 
-    // disable localeDetection to avoid automatic redirects until the translation feature is fully integrated
-    localeDetection: false,
+      'mjml',
+      'snoowrap',
+      'discord.js',
+      'mailgun.js',
+    ],
   },
-  redirects() {
-    return [
-      {
-        source: '/research',
-        destination: '/resources/tech-and-data-in-the-movement.pdf',
-        permanent: false,
-      },
-      {
-        source: '/tech-and-data-in-the-movement.pdf',
-        destination: '/resources/tech-and-data-in-the-movement.pdf',
-        permanent: true,
-      },
-      {
-        source: '/about',
-        destination: '/about/our-mission',
-        permanent: true,
-      },
-      {
-        source: '/challenge',
-        destination:
-          'https://gist.github.com/GRardB/7e2990bbea8c2e50e2b501b712d8c169',
-        permanent: false,
-      },
-      {
-        source: '/people',
-        destination: '/people/team',
-        permanent: true,
-      },
-      {
-        source: '/team',
-        destination: '/people/team',
-        permanent: true,
-      },
-      {
-        source: '/year-in-review',
-        destination: '/year-in-review/2023',
-        permanent: false,
-      },
-      {
-        source: '/joinplayground',
-        destination: 'https://discord.gg/vhplayground',
-        permanent: false,
-      },
-      {
-        source: '/apply',
-        destination: '/join',
-        permanent: true,
-      },
-      {
-        source: '/projects',
-        destination: '/work',
-        permanent: true,
-      },
-    ];
-  },
+  redirects: async () => [
+    {
+      // this redirect is also configured in the redirects configuration.
+      // this was required because nextjs didn't include the file in the
+      //  build if the redirect is not configured here.
+      source: '/research',
+      destination: '/tech-and-data-in-the-movement.pdf',
+      permanent: false,
+    },
+  ],
 };
 
 module.exports = withPWA(nextConfig);

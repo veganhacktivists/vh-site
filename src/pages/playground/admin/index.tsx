@@ -3,6 +3,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { RequestStatus } from '@prisma/client';
 import { useCallback, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useIntl } from 'react-intl';
 
 import {
   DenyButton,
@@ -13,7 +14,7 @@ import {
   OutlineButton,
   BlueButton,
 } from 'components/decoration/buttons';
-import { trpc } from 'lib/client/trpc';
+import { api } from 'trpc/react';
 import PlaygroundRequestCard from 'components/layout/playground/requests/requestCard';
 import Spinner from 'components/decoration/spinner';
 import useOnce from 'hooks/useOnce';
@@ -24,7 +25,8 @@ import type { NextPage } from 'next';
 const STATES_TO_HIDE: RequestStatus[] = [RequestStatus.Rejected];
 
 const AdminPage: NextPage = () => {
-  const utils = trpc.useContext();
+  const intl = useIntl();
+  const utils = api.useUtils();
   const router = useRouter();
   const [statusFilter, setStatusFilter] = useState<RequestStatus>(
     RequestStatus.Pending,
@@ -62,26 +64,26 @@ const AdminPage: NextPage = () => {
   );
 
   const { data, isSuccess, isLoading } =
-    trpc.playground.admin.getRequests.useQuery({
+    api.playground.admin.getRequests.useQuery({
       status: statusFilter,
     });
 
-  const { mutate, isLoading: isMutationLoading } =
-    trpc.playground.admin.setRequestStatus.useMutation({
+  const { mutate, isPending: isMutationLoading } =
+    api.playground.admin.setRequestStatus.useMutation({
       onSuccess: async () => {
         await invalidateQuery();
       },
     });
 
-  const { mutate: mutateDelete, isLoading: isDeletionLoading } =
-    trpc.playground.admin.deleteRequest.useMutation({
+  const { mutate: mutateDelete, isPending: isDeletionLoading } =
+    api.playground.admin.deleteRequest.useMutation({
       onSuccess: async () => {
         await invalidateQuery();
       },
     });
 
-  const { mutate: mutateRepost, isLoading: isRepostLoading } =
-    trpc.playground.admin.repostRequest.useMutation({
+  const { mutate: mutateRepost, isPending: isRepostLoading } =
+    api.playground.admin.repostRequest.useMutation({
       onSuccess: async () => {
         await invalidateQuery();
       },
@@ -133,7 +135,10 @@ const AdminPage: NextPage = () => {
           >
             See applications
           </OutlineButton>
-          <LogoutButton href='/auth/signout' className='mx-5 w-fit'>
+          <LogoutButton
+            href={`/${intl.locale}/auth/signout`}
+            className='mx-5 w-fit'
+          >
             Logout
           </LogoutButton>
         </div>

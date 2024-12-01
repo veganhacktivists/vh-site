@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import {
   ExternalLinkButton,
@@ -9,6 +9,8 @@ import {
 } from '../../decoration/buttons';
 
 const Social: React.FC = () => {
+  const locale = useIntl().locale;
+
   return (
     <div className='pt-10 text-left'>
       <div className='text-4xl font-semibold uppercase mb-1'>
@@ -26,7 +28,7 @@ const Social: React.FC = () => {
         />
       </div>
       <div className='font-bold pt-5 text-lg'>
-        <Link href='/contact'>hello@veganhacktivists.org</Link>
+        <Link href={`/${locale}/contact`}>hello@veganhacktivists.org</Link>
       </div>
       <div className='flex gap-x-2 pt-5'>
         <InstagramButton href='https://www.instagram.com/veganhacktivists/' />

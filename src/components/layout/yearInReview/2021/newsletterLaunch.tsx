@@ -32,7 +32,7 @@ const NewsletterLaunch: React.FC = () => {
             </div>
             <DarkButton
               className='mx-auto font-mono font-semibold w-min md:mb-10 md:mx-0'
-              href='/newsletter'
+              href={`/${intl.locale}/newsletter`}
               newTab
             >
               <FormattedMessage

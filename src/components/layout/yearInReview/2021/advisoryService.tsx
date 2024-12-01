@@ -37,7 +37,7 @@ const AdvisoryService: React.FC = () => {
 
             <div className='pb-10 pt-5'>
               <DarkButton
-                href='/services'
+                href={`/${intl.locale}/services`}
                 className='font-semibold font-mono w-min mx-auto md:mx-0 mt-5'
               >
                 <FormattedMessage

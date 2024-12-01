@@ -126,6 +126,8 @@ const CryptoWallet: React.FC<CryptoWalletProps> = ({
 };
 
 const Crypto: React.FC = () => {
+  const intl = useIntl();
+
   return (
     <div className='px-8 md:mx-0 py-5 mx-auto space-y-5 text-xl bg-grey-background'>
       <h3 className='pt-5 font-mono text-3xl font-bold'>
@@ -160,7 +162,10 @@ const Crypto: React.FC = () => {
           defaultMessage='Want to send something else? <contact-link>Contact us!</contact-link>'
           values={{
             'contact-link': (chunks) => (
-              <CustomLink className='font-bold' href='/contact'>
+              <CustomLink
+                className='font-bold'
+                href={`/${intl.locale}/contact`}
+              >
                 {chunks}
               </CustomLink>
             ),

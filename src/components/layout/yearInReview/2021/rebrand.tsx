@@ -40,7 +40,7 @@ const Rebrand: React.FC<RebrandProps> = ({ kate }) => {
                 link: (
                   <Link
                     href={{
-                      pathname: '/blog/[slug]',
+                      pathname: `/${intl.locale}/blog/[slug]`,
                       query: { slug: kate.blogEntry.fields.slug },
                     }}
                     scroll

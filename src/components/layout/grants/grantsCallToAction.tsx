@@ -1,5 +1,6 @@
+'use server';
+
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
 
 import impactReviewImage from '../../../../public/images/grants/impact-header.png';
 import beeImage from '../../../../public/images/grants/bee-header.png';
@@ -9,6 +10,7 @@ import getThemeColor from '../../../lib/helpers/theme';
 import { pixelFlower } from '../../../images/separators';
 
 import CustomImage from 'components/decoration/customImage';
+import getServerIntl from 'app/intl';
 
 import type { StaticImageData } from 'next/image';
 
@@ -62,8 +64,8 @@ const Info: React.FC<InfoProps> = ({
   );
 };
 
-const GrantsCallToAction: React.FC = () => {
-  const intl = useIntl();
+const GrantsCallToAction: React.FC<{ locale: string }> = ({ locale }) => {
+  const intl = getServerIntl(locale);
   return (
     <div className='pb-10 bg-gray-background pt-14'>
       <div className='grid grid-cols-1 gap-0 mx-auto mb-20 md:grid md:grid-cols-2 md:w-2/3 auto-rows-fr'>
@@ -76,19 +78,18 @@ const GrantsCallToAction: React.FC = () => {
             defaultMessage: 'Apply for a seed grant',
           })}
           button={{
-            content: (
-              <FormattedMessage
-                id='section.grants-cta.apply.cta'
-                defaultMessage='Apply Now'
-              />
-            ),
-            href: '/grants',
+            content: intl.formatMessage({
+              id: 'section.grants-cta.apply.cta',
+              defaultMessage: 'Apply Now',
+            }),
+            href: `/${locale}/grants`,
           }}
         >
-          <FormattedMessage
-            id='section.grants-cta.apply.paragraph'
-            defaultMessage='We connect you with funders for impactful work in animal advocacy and activism.'
-          />
+          {intl.formatMessage({
+            id: 'section.grants-cta.apply.paragraph',
+            defaultMessage:
+              'We connect you with funders for impactful work in animal advocacy and activism.',
+          })}
         </Info>
         <Info
           image={impactReviewImage}
@@ -99,19 +100,18 @@ const GrantsCallToAction: React.FC = () => {
           })}
           backgroundColor='grey-over-background'
           button={{
-            content: (
-              <FormattedMessage
-                id='section.grants-cta.visit-year-review.cta'
-                defaultMessage='See our impact'
-              />
-            ),
-            href: '/year-in-review/2023',
+            content: intl.formatMessage({
+              id: 'section.grants-cta.visit-year-review.cta',
+              defaultMessage: 'See our impact',
+            }),
+            href: `/${locale}/year-in-review/2023`,
           }}
         >
-          <FormattedMessage
-            id='section.grants-cta.visit-year-review.paragraph'
-            defaultMessage="Read our annual impact review and see what we've accomplished last year."
-          />
+          {intl.formatMessage({
+            id: 'section.grants-cta.visit-year-review.paragraph',
+            defaultMessage:
+              "Read our annual impact review and see what we've accomplished last year.",
+          })}
         </Info>
       </div>
     </div>

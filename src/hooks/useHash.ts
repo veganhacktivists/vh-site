@@ -1,19 +1,14 @@
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
 const hashToString: (hash: string) => string = (hash) => {
   return decodeURI(hash.substring(1));
 };
 
-interface UseHashProps {
-  shallow?: boolean;
-}
-
-export const useHash: (
-  props?: UseHashProps,
-) => readonly [string, (newHash?: string | null) => void] = (
-  { shallow } = { shallow: true },
-) => {
+export const useHash: () => readonly [
+  string,
+  (newHash?: string | null) => void,
+] = () => {
   const [hash, setHash] = useState<string>('');
   const router = useRouter();
   const onHashChange = useCallback(() => {
@@ -23,25 +18,25 @@ export const useHash: (
   useEffect(() => {
     setHash(hashToString(window.location.hash));
 
-    router.events.on('hashChangeComplete', onHashChange);
+    window.addEventListener('hashchange', onHashChange);
     return () => {
-      router.events.off('hashChangeComplete', onHashChange);
       window.removeEventListener('hashchange', onHashChange);
     };
-  }, [onHashChange, router.events]);
+  }, [onHashChange]);
 
   const _setHash = useCallback(
     (newHash?: string | null) => {
-      if (!newHash) {
-        void router.push({ hash: '' }, undefined, { shallow, scroll: false });
-      } else if (newHash !== hash) {
-        void router.push({ hash: newHash }, undefined, {
-          shallow,
-          scroll: false,
-        });
+      newHash ??= '';
+
+      if (newHash !== hash) {
+        const newUrl = new URL(window.location.href);
+
+        newUrl.hash = newHash;
+
+        void router.push(newUrl.toString());
       }
     },
-    [hash, shallow, router],
+    [hash, router],
   );
 
   return [hash, _setHash] as const;

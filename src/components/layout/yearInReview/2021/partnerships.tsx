@@ -73,7 +73,7 @@ const Partnerships: React.FC = () => {
                 defaultMessage="We were very happy to <link>announce a partnership</link> in where we're able to offer up to $1000 USD in seed funding grants for outstanding, and effective, animal rights activism! Specifically we're looking for individual or grassroots groups whose primary purpose is to help reduce suffering for non-human farmed animals."
                 values={{
                   link: (chunks) => (
-                    <CustomLink href='https://veganhacktivists.org/people/advisors'>
+                    <CustomLink href={`/${intl.locale}/people/advisors`}>
                       {chunks}
                     </CustomLink>
                   ),

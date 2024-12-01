@@ -34,12 +34,11 @@ async function main() {
 function getNamedImportReferences(importName: string) {
   const formatMessageNamedImport = project
     .getSourceFiles()
-    .map(
-      (file) =>
-        file
-          .getImportDeclaration('react-intl')
-          ?.getNamedImports()
-          .find((namedImport) => namedImport.getName().includes(importName)),
+    .map((file) =>
+      file
+        .getImportDeclaration('react-intl')
+        ?.getNamedImports()
+        .find((namedImport) => namedImport.getName().includes(importName)),
     )
     .find(isDefined);
 
@@ -55,8 +54,8 @@ function updateFormattedMessageComponent(
 ) {
   const references = getNamedImportReferences('FormattedMessage');
 
-  const formatMessageNodes = references?.filter(
-    (x) => x.getParent()?.getKindName().includes('Jsx'),
+  const formatMessageNodes = references?.filter((x) =>
+    x.getParent()?.getKindName().includes('Jsx'),
   );
 
   const attributesNode = formatMessageNodes

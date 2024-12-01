@@ -29,7 +29,7 @@ module.exports = {
     ],
 
     // misc
-    'no-console': ['warn'],
+    'no-console': ['off'],
     'prefer-arrow-callback': ['warn'],
     quotes: ['error', 'single', { avoidEscape: true }],
 

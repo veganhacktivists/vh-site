@@ -5,6 +5,12 @@
   "component.button.share.label": {
     "message": "Share"
   },
+  "component.translatable-contentful-entry-field.translate-button.label": {
+    "message": "Show automatically translated content"
+  },
+  "component.translatable-contentful-entry-field.translate-button.show-original": {
+    "message": "Show content in original language"
+  },
   "dialog.share.headline": {
     "message": "<b>Share</b> this project"
   },
@@ -212,6 +218,9 @@
   "page.blog.next-seo.title": {
     "message": "Blog"
   },
+  "page.blog.section.blog-page-content.author": {
+    "message": "Written by <no-localization>{name}</no-localization>"
+  },
   "page.blog.section.blog-page.btn.read-more": {
     "message": "Read more"
   },
@@ -226,6 +235,9 @@
   },
   "page.blog.section.header.categories": {
     "message": "Categories"
+  },
+  "page.blog.section.header.categories.default-category": {
+    "message": "Other"
   },
   "page.blog.section.header.intro": {
     "message": "Welcome to our official blog. We regularly post news, annnouncements, project updates, interviews, editorials, and more. Stay tuned!"
@@ -283,6 +295,9 @@
   },
   "page.contact.section.get-in-contact.headline": {
     "message": "Get in <b>contact</b>"
+  },
+  "page.error.next-seo.title": {
+    "message": "Whoops!"
   },
   "page.grants.content": {
     "message": "We connect you with funders providing up to <b>$1,000 USD in seed funding</b> for animal rights activism! We seek individual and grassroots groups whose primary purpose is to help reduce suffering for farmed animals."
@@ -650,8 +665,17 @@
   "page.newsletter.next-seo.title": {
     "message": "Our Newsletter"
   },
+  "page.not-found.contact.contact-page-error.cta-email": {
+    "message": "Please contact us at"
+  },
+  "page.not-found.contact.cta-button.label": {
+    "message": "Let us know!"
+  },
+  "page.not-found.contact.cta-label": {
+    "message": "If you believe this is a mistake"
+  },
   "page.not-found.error-message": {
-    "message": "The page you requested (<no-localization>{path}</no-localization>) does not exist"
+    "message": "The page you requested does not exist"
   },
   "page.not-found.next-seo.title": {
     "message": "Page not found"
@@ -795,7 +819,7 @@
     "message": "Volunteer"
   },
   "page.our-work.section.proveg-incubator.content": {
-    "message": "Vegan Hacktivists and Violet Studios is collaborating with ProVeg’s Kickstarting for Good incubator to leverage Artificial Intelligence (AI) for transforming our food system. Together, we are looking for the most impactful approaches and best talent in this area! {break}{break}Join us if you’re ready to bring to life ideas that can significantly enhance the global food ecosystem. Applications for our 2024 cohort are now open until May 26th!"
+    "message": "Vegan Hacktivists and Violet Studios is collaborating with ProVeg’s Kickstarting for Good incubator to leverage Artificial Intelligence (AI) for transforming our food system. Together, we are looking for the most impactful approaches and best talent in this area! <no-localization>{break}{break}</no-localization> Join us if you’re ready to bring to life ideas that can significantly enhance the global food ecosystem. Applications for our 2024 cohort are now open until May 26th!"
   },
   "page.our-work.section.proveg-incubator.cta": {
     "message": "Apply now"

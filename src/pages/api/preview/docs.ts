@@ -1,3 +1,5 @@
+import { defaultLocale } from '../../../../translation/defaultLocale';
+
 import type { NextApiHandler } from 'next';
 import type { IDocsCategoryFields } from '../../../types/generated/contentful';
 
@@ -12,7 +14,7 @@ const handler: NextApiHandler<IDocsCategoryFields> = (req, res) => {
 
   res.setPreviewData({});
 
-  let url = `/handbook/${category}`;
+  let url = `/${defaultLocale}/handbook/${category}`;
 
   if (section) {
     url += `/${section}`;

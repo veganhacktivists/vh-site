@@ -55,7 +55,7 @@ const FeaturedBlogPosts: React.FC<FeaturedBlogPostsProps> = ({
             return (
               <Link
                 href={{
-                  pathname: '/blog/[slug]',
+                  pathname: `/${intl.locale}/blog/[slug]`,
                   query: { slug: blogEntry.fields.slug },
                 }}
                 key={blogEntry.fields.slug}

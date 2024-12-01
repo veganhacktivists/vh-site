@@ -1,37 +1,39 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import { NavButton } from '../decoration/buttons';
 import Hero from '../decoration/hero';
 import SquareField from '../decoration/squares';
-import heroBackground from '../../../public/images/VH-pigs-hero.jpg';
-import heroTagline from '../../../public/images/about/hero-tagline.png';
 import Sprite, { goat } from '../decoration/sprite';
 
-import { GrantsCallToAction } from './grants';
+import GrantsCallToAction from './grants/grantsCallToAction_pages';
 
 import type { Layout } from '../../types/persistentLayout';
 
+import heroTagline from '~images/about/hero-tagline.png';
+import heroBackground from '~images/VH-pigs-hero.jpg';
+
 const AboutButtons: React.FC = () => {
+  const intl = useIntl();
   return (
     <div className='flex flex-wrap justify-center mt-10 mb-5'>
-      <NavButton href='/about/our-mission'>
-        <FormattedMessage
-          id='page.about.section.navigation.button.label.mission'
-          defaultMessage='OUR MISSION'
-        />
+      <NavButton href={`/${intl.locale}/about/our-mission`}>
+        {intl.formatMessage({
+          id: 'page.about.section.navigation.button.label.mission',
+          defaultMessage: 'OUR MISSION',
+        })}
       </NavButton>
-      <NavButton href='/about/our-story'>
-        <FormattedMessage
-          id='page.about.section.navigation.button.label.story'
-          defaultMessage='OUR STORY'
-        />
+      <NavButton href={`/${intl.locale}/about/our-story`}>
+        {intl.formatMessage({
+          id: 'page.about.section.navigation.button.label.story',
+          defaultMessage: 'OUR STORY',
+        })}
       </NavButton>
-      <NavButton href='/about/our-values'>
-        <FormattedMessage
-          id='page.about.section.navigation.button.label.values'
-          defaultMessage='OUR VALUES'
-        />
+      <NavButton href={`/${intl.locale}/about/our-values`}>
+        {intl.formatMessage({
+          id: 'page.about.section.navigation.button.label.values',
+          defaultMessage: 'OUR VALUES',
+        })}
       </NavButton>
     </div>
   );

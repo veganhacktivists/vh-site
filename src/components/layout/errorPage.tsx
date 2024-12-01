@@ -1,12 +1,11 @@
+'use client';
+
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { NextSeo } from 'next-seo';
 import { StatusCodes } from 'http-status-codes';
 import { useEffect } from 'react';
+import { useIntl } from 'react-intl';
 
 import { DarkButton } from '../decoration/buttons';
-import useErrorStore from '../../lib/stores/errorStore';
-import errorTypeImage from '../../../public/images/VH-error-type.png';
 import {
   avocado,
   mango,
@@ -16,40 +15,72 @@ import {
 } from '../../images/teams';
 
 import CustomImage from 'components/decoration/customImage';
+import { usePathnameWithoutLocale } from 'lib/translation/usePathnameWithoutLocale';
 
-import type { FallbackProps } from 'react-error-boundary';
 import type { NextPage } from 'next';
 
-export interface ErrorProps extends Omit<FallbackProps, 'error'> {
-  error?: FallbackProps['error'] & {
-    statusCode?: number;
-  };
+import errorTypeImage from '~images/VH-error-type.png';
+
+export interface ErrorProps {
+  error: Error & { statusCode?: number };
+  reset?: () => void;
 }
 
-const Error: NextPage<ErrorProps> = ({ error, resetErrorBoundary }) => {
-  const router = useRouter();
+const Error: NextPage<ErrorProps> = ({ error, reset }) => {
+  const intl = useIntl();
+  const pathname = usePathnameWithoutLocale();
+  const locale = intl.locale;
 
   useEffect(() => {
     return () => {
-      resetErrorBoundary?.();
+      reset?.();
     };
-  }, [resetErrorBoundary]);
+  }, [reset]);
 
-  const { setErrorData, generateErrorMessage } = useErrorStore();
+  if (pathname === null) {
+    return null;
+  }
 
   const handleContactClick = () => {
-    resetErrorBoundary?.();
-    setErrorData({ pageThatErrored: router.asPath, error });
+    reset?.();
   };
 
-  const contactPageError: string | boolean = router.asPath === '/contact';
+  const generateErrorMessage = (context: {
+    pageThatErrored?: string;
+    error: Error & { statusCode?: number };
+  }): string => {
+    const { pageThatErrored, error } = context;
+    const thenHappened = error?.statusCode
+      ? `I found a ${error?.statusCode} error`
+      : 'a client error happened';
+
+    const defaultErrorMessage = pageThatErrored
+      ? `[Please tell us what you were doing prior to the error occurring...]
+
+...then ${thenHappened} at ${pageThatErrored}${
+          error?.name ? `: ${error.name}. ${error.message}` : ''
+        }.
+
+Thanks!`
+      : '';
+    return defaultErrorMessage;
+  };
+
+  const contactPageError: string | boolean = pathname === '/contact';
 
   const message =
-    error?.statusCode === StatusCodes.NOT_FOUND ? 'Page not found.' : 'Whoops!';
+    error?.statusCode === StatusCodes.NOT_FOUND
+      ? intl.formatMessage({
+          id: 'page.not-found.next-seo.title',
+          defaultMessage: 'Page not found',
+        })
+      : intl.formatMessage({
+          id: 'page.error.next-seo.title',
+          defaultMessage: 'Whoops!',
+        });
 
   return (
     <>
-      <NextSeo noindex title={message} />
       <article className='min-h-[40rem] flex flex-col justify-center items-center p-4'>
         <div className='flex flex-col gap-4'>
           <div className='flex flex-col justify-start gap-12 md:flex-row'>
@@ -60,8 +91,14 @@ const Error: NextPage<ErrorProps> = ({ error, resetErrorBoundary }) => {
               <h1 className='w-full font-mono font-bold text-red'>{message}</h1>
               <div className='w-full font-mono'>
                 {contactPageError
-                  ? 'Please contact us at'
-                  : 'If you believe this is a mistake'}
+                  ? intl.formatMessage({
+                      id: 'page.not-found.contact.contact-page-error.cta-email',
+                      defaultMessage: 'Please contact us at',
+                    })
+                  : intl.formatMessage({
+                      id: 'page.not-found.contact.cta-label',
+                      defaultMessage: 'If you believe this is a mistake',
+                    })}
                 &hellip;
               </div>
             </div>
@@ -87,7 +124,7 @@ const Error: NextPage<ErrorProps> = ({ error, resetErrorBoundary }) => {
                       query: {
                         subject: 'Website error!',
                         body: generateErrorMessage({
-                          pageThatErrored: router.asPath,
+                          pageThatErrored: pathname,
                           error,
                         }),
                       },
@@ -101,11 +138,18 @@ const Error: NextPage<ErrorProps> = ({ error, resetErrorBoundary }) => {
                 </span>
               ) : (
                 <DarkButton
-                  className='w-52'
-                  href='/contact'
+                  href={`/${locale}/contact?message=${btoa(
+                    generateErrorMessage({
+                      pageThatErrored: pathname,
+                      error,
+                    }),
+                  )}`}
                   onClick={handleContactClick}
                 >
-                  Let us know!
+                  {intl.formatMessage({
+                    id: 'page.not-found.contact.cta-button.label',
+                    defaultMessage: 'Let us know!',
+                  })}
                 </DarkButton>
               )}
             </div>

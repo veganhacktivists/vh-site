@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useMemo } from 'react';
 import {
   faInstagram,
@@ -93,7 +95,7 @@ const BaseButton = React.forwardRef<HTMLElement, ButtonProps>(
             ref={ref as Ref<HTMLAnchorElement>}
             className={classNames(
               classes,
-              `${props.disabled ? 'bg-gray-light text-black' : ''}`,
+              props.disabled && 'bg-gray-light text-black',
             )}
             target={openInNewTab ? '_blank' : undefined}
             rel={openInNewTab ? 'noreferrer' : undefined}

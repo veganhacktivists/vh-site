@@ -1,4 +1,4 @@
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import SectionContainer from '../sectionContainer';
 import SquareField from '../../../decoration/squares';
@@ -9,6 +9,7 @@ import CustomImage from 'components/decoration/customImage';
 import { DarkButton } from 'components/decoration/buttons';
 
 const MovingForward: React.FC = () => {
+  const intl = useIntl();
   return (
     <>
       <SquareField
@@ -39,7 +40,7 @@ const MovingForward: React.FC = () => {
             />
           </p>
           <div className='w-min mx-auto pt-10 pb-10'>
-            <DarkButton href='/support' className='w-min px-5'>
+            <DarkButton href={`/${intl.locale}/support`} className='w-min px-5'>
               <FormattedMessage
                 id='page.year-in-review.2022.section.moving-forward.btn.cta'
                 defaultMessage='Support our work'

@@ -11,8 +11,12 @@ interface YearButtonProps {
 }
 
 const YearButton: React.FC<YearButtonProps> = ({ year }) => {
+  const intl = useIntl();
   return (
-    <NavButton className='w-48 font-bold' href={`/year-in-review/${year}`}>
+    <NavButton
+      className='w-48 font-bold'
+      href={`/${intl.locale}/year-in-review/${year}`}
+    >
       {year}
     </NavButton>
   );

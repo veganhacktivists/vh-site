@@ -7,15 +7,18 @@ import { DefaultSeo } from 'next-seo';
 import { useIntl } from 'react-intl';
 
 import useOnce from '../hooks/useOnce';
+import { defaultLocale } from '../../translation/defaultLocale';
 
-import Header from 'components/layout/header';
+import Header from 'components/layout/header/index_pages';
 import Footer from 'components/layout/footer';
 import PageWrapper, { MainWrapper } from 'components/layout/wrapper';
-import { trpc } from 'lib/client/trpc';
 import { TranslationProvider } from 'lib/translation/TranslationProvider';
-
 import 'tailwindcss/tailwind.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
+import { usePathnameLocale } from 'lib/translation/usePathnameLocale';
+import { messages } from 'lib/translation/messages';
+import { TRPCReactProvider } from 'trpc/react';
+
 import type { NextPage } from 'next';
 import type { DefaultSeoProps } from 'next-seo';
 import type ReactAxe from '@axe-core/react';
@@ -67,15 +70,19 @@ const AppDefaultSeo = () => <DefaultSeo {...getSeo(useIntl())} />;
 const AppWrapper: React.FC<
   React.PropsWithChildren<{ session: Session | null }>
 > = ({ children, session }) => {
+  const locale = usePathnameLocale() ?? defaultLocale;
+
   return (
-    <SessionProvider session={session}>
-      <CookiesProvider>
-        <TranslationProvider>
-          <AppDefaultSeo />
-          {children}
-        </TranslationProvider>
-      </CookiesProvider>
-    </SessionProvider>
+    <TRPCReactProvider>
+      <SessionProvider session={session}>
+        <CookiesProvider>
+          <TranslationProvider locale={locale} messages={messages[locale]}>
+            <AppDefaultSeo />
+            {children}
+          </TranslationProvider>
+        </CookiesProvider>
+      </SessionProvider>
+    </TRPCReactProvider>
   );
 };
 
@@ -84,16 +91,7 @@ const DefaultLayout: React.FC<
   React.PropsWithChildren<{
     pathname: string;
   }>
-> = ({ pathname, children }) => {
-  if (pathname === '/handbook' || pathname.startsWith('/handbook/')) {
-    return (
-      <>
-        <Header />
-        <MainWrapper>{children}</MainWrapper>
-      </>
-    );
-  }
-
+> = ({ children }) => {
   return (
     <>
       <Header />
@@ -137,4 +135,4 @@ const MyApp: React.FC<AppPropsWithLayout> = ({
   );
 };
 
-export default trpc.withTRPC(MyApp);
+export default MyApp;
