@@ -17,13 +17,13 @@ import { readableTimeDiff } from 'lib/helpers/date';
 import SquareField from 'components/decoration/squares';
 import { formatCurrency } from 'lib/helpers/format';
 
-import type { trpc } from 'lib/client/trpc';
+import type { RouterOutputs } from 'trpc/react';
 import type { HTMLAttributes } from 'react';
 
 interface PlaygroundRequestCardProps {
   request:
-    | trpc['playground']['getAllRequests']['output'][number]
-    | trpc['playground']['admin']['getRequests']['output'][number];
+    | RouterOutputs['playground']['getAllRequests'][number]
+    | RouterOutputs['playground']['admin']['getRequests'][number];
   disabled?: boolean;
 }
 
@@ -257,8 +257,7 @@ const PlaygroundRequestCard: React.FC<
         >
           <DarkButton
             href={{
-              pathname: '/playground/request/[id]',
-              query: { id },
+              pathname: `/${intl.locale}/playground/request/${id}`,
             }}
             className={`text-center text-md flex-grow ${
               canEdit ? 'w-1/2' : ''
@@ -279,8 +278,7 @@ const PlaygroundRequestCard: React.FC<
           {canEdit && (
             <GreyButton
               href={{
-                pathname: '/playground/request/edit/[id]',
-                query: { id },
+                pathname: `/${intl.locale}/playground/request/edit/${id}`,
               }}
               className='flex-grow w-1/2 text-md text-center'
               disabled={disabled}

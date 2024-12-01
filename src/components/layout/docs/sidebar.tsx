@@ -1,9 +1,12 @@
+'use client';
+
 import classNames from 'classnames';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 import useDocsStore from '../../../lib/stores/docsStore';
 import getThemeColor from '../../../lib/helpers/theme';
+import { defaultLocale } from '../../../../translation/defaultLocale';
 
 import SearchBar from './searchBar';
 
@@ -35,11 +38,7 @@ const Documentation: React.FC<DocumentationProps> = ({
   return (
     <li>
       <Link
-        href={{
-          pathname: '/handbook/[category]/[section]',
-          query: { category: categorySlug, section: sectionSlug },
-          hash: slug,
-        }}
+        href={`/${defaultLocale}/handbook/${categorySlug}/${sectionSlug}/#${slug}`}
       >
         <div
           onClick={() => {
@@ -95,12 +94,7 @@ const Section: React.FC<SectionProps> = ({
       style={{ borderColor: isSelected ? color : lightGrey }}
       ref={sectionRef}
     >
-      <Link
-        href={{
-          pathname: '/handbook/[category]/[section]',
-          query: { category: categorySlug, section: slug },
-        }}
-      >
+      <Link href={`/${defaultLocale}/handbook/${categorySlug}/${slug}`}>
         <div className='py-1 text-xl font-bold cursor-pointer'>{title}</div>
       </Link>
 

@@ -239,7 +239,7 @@ export const PlaygroundLandingLayout: Layout = ({ children }) => {
               session.user?.role === UserRole.Admin && (
                 <DarkButton
                   className='w-full uppercase'
-                  href={`/${intl.locale}/playground/admin`}
+                  href={'/playground/admin'}
                 >
                   Admin
                 </DarkButton>

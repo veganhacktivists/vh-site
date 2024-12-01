@@ -1,14 +1,17 @@
+'use client';
+
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import Circle from '../../decoration/circle';
 import roundLogo from '../../../../public/images/VH_Logo_Crest_Tagline.png';
 import getThemeColor from '../../../lib/helpers/theme';
 
 import CustomImage from 'components/decoration/customImage';
+import LocalizedContentfulEntryField from 'components/localization/LocalizedContentfulEntryField';
 
 import type { ITag, ITagFields } from '../../../types/generated/contentful';
 
@@ -29,13 +32,15 @@ const BlogsHeader: React.FC<HeaderProps> = ({
   onTagChange,
   currentTag,
 }) => {
+  const intl = useIntl();
   const greyLight = getThemeColor('grey-light');
 
-  const Tag: React.FC<{
-    name: string;
-    slug: string | null;
-    active: boolean;
-  }> = ({ name, slug, active }) => {
+  const Tag: React.FC<
+    {
+      slug: string | null;
+      active: boolean;
+    } & ({ contentfulId: string } | { name: string })
+  > = ({ slug, active, ...props }) => {
     return (
       <div
         className={classNames('pb-2 cursor-pointer select-none px-10 py-2', {
@@ -45,7 +50,15 @@ const BlogsHeader: React.FC<HeaderProps> = ({
           onTagChange(active ? undefined : slug);
         }}
       >
-        {name}
+        {'contentfulId' in props ? (
+          <LocalizedContentfulEntryField
+            contentfulId={props.contentfulId}
+            contentType='tag'
+            fieldId='name'
+          />
+        ) : (
+          props.name
+        )}
       </div>
     );
   };
@@ -59,10 +72,11 @@ const BlogsHeader: React.FC<HeaderProps> = ({
           <CustomImage src={roundLogo} alt='' />
         </div>
         <div className='text-2xl px-16 font-mono'>
-          <FormattedMessage
-            id='page.blog.section.header.intro'
-            defaultMessage='Welcome to our official blog. We regularly post news, annnouncements, project updates, interviews, editorials, and more. Stay tuned!'
-          />
+          {intl.formatMessage({
+            id: 'page.blog.section.header.intro',
+            defaultMessage:
+              'Welcome to our official blog. We regularly post news, annnouncements, project updates, interviews, editorials, and more. Stay tuned!',
+          })}
         </div>
       </div>
       <div className='bg-grey-dark mt-10'>
@@ -86,20 +100,28 @@ const BlogsHeader: React.FC<HeaderProps> = ({
         </div>
         <div className='my-5 text-left text-xl'>
           <div className='font-bold uppercase text-3xl font-mono mb-5 mt-10 px-10'>
-            <FormattedMessage
-              id='page.blog.section.header.categories'
-              defaultMessage='Categories'
-            />
+            {intl.formatMessage({
+              id: 'page.blog.section.header.categories',
+              defaultMessage: 'Categories',
+            })}
           </div>
           <div>
             {tags.map((tag) => (
               <Tag
                 key={tag.fields.slug}
+                contentfulId={tag.sys.id}
                 {...tag.fields}
                 active={tag.fields.slug === currentTag}
               />
             ))}
-            <Tag name='Other' slug='other' active={currentTag === null} />
+            <Tag
+              name={intl.formatMessage({
+                id: 'page.blog.section.header.categories.default-category',
+                defaultMessage: 'Other',
+              })}
+              slug='other'
+              active={'other' === currentTag}
+            />
           </div>
         </div>
       </div>

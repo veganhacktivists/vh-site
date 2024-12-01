@@ -4,14 +4,16 @@ import { useForm } from 'react-hook-form';
 import { DarkButton } from 'components/decoration/buttons';
 import TextInput from 'components/forms/inputs/textInput';
 import TextArea from 'components/forms/inputs/textArea';
-import { trpc } from 'lib/client/trpc';
+import { api } from 'trpc/react';
 
-type SendMessageInput = trpc['discord']['sendMessage']['input'];
+import type { RouterInputs } from 'trpc/react';
+
+type SendMessageInput = RouterInputs['discord']['sendMessage'];
 
 const AdminCallout: React.FC = () => {
   const { handleSubmit, register } = useForm<SendMessageInput>();
 
-  const { mutate } = trpc.discord.sendMessage.useMutation();
+  const { mutate } = api.discord.sendMessage.useMutation();
 
   const onSubmit = useCallback(
     (input: SendMessageInput) => {
