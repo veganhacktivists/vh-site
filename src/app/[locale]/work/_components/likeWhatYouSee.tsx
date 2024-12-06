@@ -52,7 +52,7 @@ const LikeWhatYouSee: React.FC<LikeWhatYouSeeProps> = ({
             </LightButton>
             <LightButton
               className='w-full md:w-fit'
-              href={`/${locale}/support`}
+              href={`/${locale}/playground`}
             >
               {intl.formatMessage({
                 id: 'page.our-work.section.like-what-you-see.get-support.cta-button.label',
