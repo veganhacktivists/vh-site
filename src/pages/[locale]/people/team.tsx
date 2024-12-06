@@ -13,7 +13,7 @@ import { pixelHeart } from '../../../images/separators';
 
 import CustomImage from 'components/decoration/customImage';
 import LocalizedContentfulEntryField from 'components/localization/LocalizedContentfulEntryField';
-import LocalizedContentfulPageToggleButton from 'components/localization/LocalizedContentfulPageToggleButton';
+import LocalizedContentfulPageToggleButton from 'app/_localization/LocalizedContentfulPageToggleButton';
 
 import type PageWithLayout from '../../../types/persistentLayout';
 import type { ITeamFields } from '../../../types/generated/contentful';

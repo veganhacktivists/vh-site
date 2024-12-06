@@ -4,11 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useIntl } from 'react-intl';
 import { faLanguage } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames';
+import { useMemo } from 'react';
 
 import { defaultLocale } from '../../../translation/defaultLocale';
 
 import { useDynamicTranslationStore } from 'lib/stores/dynamicTranslationStore';
 import { usePathnameLocale } from 'lib/translation/usePathnameLocale';
+import Spinner from 'components/decoration/spinner';
 
 const LocalizedContentfulPageToggleButton = ({
   className,
@@ -16,7 +18,7 @@ const LocalizedContentfulPageToggleButton = ({
   className?: string;
 }) => {
   const intl = useIntl();
-  const { showLocalizedContent, setShowLocalizedContent } =
+  const { showLocalizedContent, setShowLocalizedContent, loadingChildren } =
     useDynamicTranslationStore();
 
   const currentLocale = usePathnameLocale();
@@ -31,6 +33,13 @@ const LocalizedContentfulPageToggleButton = ({
         id: 'component.translatable-contentful-entry-field.translate-button.label',
         defaultMessage: 'Show automatically translated content',
       });
+
+  const isLoading = useMemo(
+    () =>
+      Object.entries(loadingChildren).filter(([, loading]) => loading).length >
+      0,
+    [loadingChildren],
+  );
 
   const toggleShowLocalizedContent = () =>
     setShowLocalizedContent((show) => !show);
@@ -47,6 +56,8 @@ const LocalizedContentfulPageToggleButton = ({
           <FontAwesomeIcon icon={faLanguage} fixedWidth />{' '}
           <span className='underline'>{buttonLabel}</span>
         </span>
+
+        {isLoading && <Spinner />}
       </button>
     </div>
   );
