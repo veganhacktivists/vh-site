@@ -18,13 +18,12 @@ import SquareField from 'components/decoration/squares';
 import BlogEntrySummaryClient from 'components/layout/blog/blogEntrySummaryClient';
 import LocalizedContentfulPageToggleButton from 'app/_localization/LocalizedContentfulPageToggleButton';
 
-import type { TanslatedBlogEntry } from '../page';
-import type { ITag } from 'types/generated/contentful';
+import type { TanslatedBlogEntry, TranslatedTagMap } from '../page';
 
 interface Props {
   locale: string;
   blogs: TanslatedBlogEntry[];
-  tags: ITag[];
+  tags: TranslatedTagMap;
 }
 
 export const BlogOverviewContainer: React.FC<Props> = ({

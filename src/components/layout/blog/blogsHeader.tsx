@@ -11,13 +11,13 @@ import roundLogo from '../../../../public/images/VH_Logo_Crest_Tagline.png';
 import getThemeColor from '../../../lib/helpers/theme';
 
 import CustomImage from 'components/decoration/customImage';
-import LocalizedContentfulEntryField from 'components/localization/LocalizedContentfulEntryField';
 
-import type { ITag, ITagFields } from '../../../types/generated/contentful';
+import type { TranslatedTagMap } from 'app/[locale]/blog/page';
+import type { ITagFields } from '../../../types/generated/contentful';
 
 interface HeaderProps {
   query: string;
-  tags: ITag[];
+  tags: TranslatedTagMap;
   onSearchChange: (query: string) => void;
   onLeaveInput: () => void;
   onTagChange: (tag?: ITagFields['name'] | null) => void;
@@ -33,14 +33,14 @@ const BlogsHeader: React.FC<HeaderProps> = ({
   currentTag,
 }) => {
   const intl = useIntl();
+  const locale = intl.locale;
   const greyLight = getThemeColor('grey-light');
 
-  const Tag: React.FC<
-    {
-      slug: string | null;
-      active: boolean;
-    } & ({ contentfulId: string } | { name: string })
-  > = ({ slug, active, ...props }) => {
+  const Tag: React.FC<{
+    slug: string | null;
+    active: boolean;
+    name: string;
+  }> = ({ slug, active, name }) => {
     return (
       <div
         className={classNames('pb-2 cursor-pointer select-none px-10 py-2', {
@@ -50,15 +50,7 @@ const BlogsHeader: React.FC<HeaderProps> = ({
           onTagChange(active ? undefined : slug);
         }}
       >
-        {'contentfulId' in props ? (
-          <LocalizedContentfulEntryField
-            contentfulId={props.contentfulId}
-            contentType='tag'
-            fieldId='name'
-          />
-        ) : (
-          props.name
-        )}
+        {name}
       </div>
     );
   };
@@ -106,12 +98,12 @@ const BlogsHeader: React.FC<HeaderProps> = ({
             })}
           </div>
           <div>
-            {tags.map((tag) => (
+            {Object.entries(tags).map(([slug, translatedTagName]) => (
               <Tag
-                key={tag.fields.slug}
-                contentfulId={tag.sys.id}
-                {...tag.fields}
-                active={tag.fields.slug === currentTag}
+                key={slug}
+                slug={slug}
+                name={translatedTagName[locale]}
+                active={slug === currentTag}
               />
             ))}
             <Tag

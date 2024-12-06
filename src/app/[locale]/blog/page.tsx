@@ -37,7 +37,11 @@ export type TanslatedBlogEntry = IBlogEntry & {
   excerptTranslation: Record<string, string>;
 };
 
-const getContent = unstable_cache(async () => {
+export interface TranslatedTagMap {
+  [slug: string]: Record<string, string>;
+}
+
+const getContentfulBlogAndTagEntries = unstable_cache(async () => {
   return await Promise.all([
     getBlogEntries() as Promise<IBlogEntry[]>,
     getContents<ITagFields>({
@@ -46,38 +50,74 @@ const getContent = unstable_cache(async () => {
   ]);
 });
 
-const Blog: React.FC<Props> = async ({ params: { locale } }) => {
-  const [blogs, tags] = await getContent();
+const translateBlogAndTagEntries = async (
+  blogs: IBlogEntry[],
+  tags: ITag[],
+  locale: string,
+) => {
+  const [translatedBlogEntries, translatedTags] = await Promise.all([
+    Promise.all(
+      blogs.map(async (blog) => {
+        const translatedBlog = blog as TanslatedBlogEntry;
 
-  const translatedBlogEntries = await Promise.all(
-    blogs.map(async (blog) => {
-      const translatedBlog = blog as TanslatedBlogEntry;
+        const titleTranslation = await getTranslatedEntryField(
+          {
+            contentfulId: blog.sys.id,
+            fieldId: 'title',
+            contentType: 'blogEntry',
+          },
+          locale,
+        );
 
-      const titleTranslation = await getTranslatedEntryField(
-        {
-          contentfulId: blog.sys.id,
-          fieldId: 'title',
-          contentType: 'blogEntry',
-        },
-        locale,
-      );
+        translatedBlog.titleTranslation = titleTranslation;
 
-      translatedBlog.titleTranslation = titleTranslation;
+        const excerptTranslation = await getTranslatedEntryField(
+          {
+            contentfulId: blog.sys.id,
+            fieldId: 'excerpt',
+            contentType: 'blogEntry',
+          },
+          locale,
+        );
 
-      const excerptTranslation = await getTranslatedEntryField(
-        {
-          contentfulId: blog.sys.id,
-          fieldId: 'excerpt',
-          contentType: 'blogEntry',
-        },
-        locale,
-      );
+        translatedBlog.excerptTranslation = excerptTranslation;
 
-      translatedBlog.excerptTranslation = excerptTranslation;
+        return translatedBlog;
+      }),
+    ),
+    Promise.all(
+      tags.map(async (tag) => {
+        const slug = tag.fields.slug;
 
-      return translatedBlog;
-    }),
+        const translatedTagName = await getTranslatedEntryField(
+          {
+            contentfulId: tag.sys.id,
+            fieldId: 'name',
+            contentType: 'tag',
+          },
+          locale,
+        );
+
+        return {
+          [slug]: translatedTagName,
+        };
+      }),
+    ),
+  ]);
+
+  const translatedTagMap: TranslatedTagMap = translatedTags.reduce(
+    (acc, tag) => ({ ...acc, ...tag }),
+    {},
   );
+
+  return [translatedBlogEntries, translatedTagMap] as const;
+};
+
+const Blog: React.FC<Props> = async ({ params: { locale } }) => {
+  const [blogs, tags] = await getContentfulBlogAndTagEntries();
+
+  const [translatedBlogEntries, translatedTagMap] =
+    await translateBlogAndTagEntries(blogs, tags, locale);
 
   return (
     <>
@@ -91,7 +131,7 @@ const Blog: React.FC<Props> = async ({ params: { locale } }) => {
       />
       <BlogOverviewContainer
         blogs={translatedBlogEntries}
-        tags={tags}
+        tags={translatedTagMap}
         locale={locale}
       />
       <SquareField
