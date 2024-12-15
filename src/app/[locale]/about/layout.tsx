@@ -1,35 +1,35 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
 
-import { NavButton } from '../decoration/buttons';
-import Hero from '../decoration/hero';
-import SquareField from '../decoration/squares';
-import Sprite, { goat } from '../decoration/sprite';
+import { NavButton } from 'components/decoration/buttons';
+import Hero from 'components/decoration/hero';
+import SquareField from 'components/decoration/squares';
+import Sprite, { goat } from 'components/decoration/sprite';
+import getServerIntl from 'app/intl';
+import GrantsCallToAction from 'components/layout/grants/grantsCallToAction';
 
-import GrantsCallToAction from './grants/grantsCallToAction_pages';
-
-import type { Layout } from '../../types/persistentLayout';
+import type { PropsWithChildren } from 'react';
 
 import heroTagline from '~images/about/hero-tagline.png';
 import heroBackground from '~images/VH-pigs-hero.jpg';
 
-const AboutButtons: React.FC = () => {
-  const intl = useIntl();
+const AboutButtons: React.FC<{ locale: string }> = ({ locale }) => {
+  const intl = getServerIntl(locale);
+
   return (
     <div className='flex flex-wrap justify-center mt-10 mb-5'>
-      <NavButton href={`/${intl.locale}/about/our-mission`}>
+      <NavButton href={`/${locale}/about/our-mission`}>
         {intl.formatMessage({
           id: 'page.about.section.navigation.button.label.mission',
           defaultMessage: 'OUR MISSION',
         })}
       </NavButton>
-      <NavButton href={`/${intl.locale}/about/our-story`}>
+      <NavButton href={`/${locale}/about/our-story`}>
         {intl.formatMessage({
           id: 'page.about.section.navigation.button.label.story',
           defaultMessage: 'OUR STORY',
         })}
       </NavButton>
-      <NavButton href={`/${intl.locale}/about/our-values`}>
+      <NavButton href={`/${locale}/about/our-values`}>
         {intl.formatMessage({
           id: 'page.about.section.navigation.button.label.values',
           defaultMessage: 'OUR VALUES',
@@ -48,8 +48,9 @@ const HERO_DECORATION_SQUARES = [
   { color: 'white', size: 16, right: 32, bottom: 0 },
 ];
 
-const AboutHero: React.FC = () => {
-  const intl = useIntl();
+const AboutHero: React.FC<{ locale: string }> = ({ locale }) => {
+  const intl = getServerIntl(locale);
+
   return (
     <>
       <Hero
@@ -76,11 +77,18 @@ const AboutHero: React.FC = () => {
   );
 };
 
-const AboutLayout: Layout = ({ children }) => {
+interface Props {
+  params: { locale: string };
+}
+
+const AboutLayout: React.FC<PropsWithChildren<Props>> = ({
+  children,
+  params: { locale },
+}) => {
   return (
     <>
-      <AboutHero />
-      <AboutButtons />
+      <AboutHero locale={locale} />
+      <AboutButtons locale={locale} />
       {children}
       <SquareField
         squares={[
@@ -92,7 +100,7 @@ const AboutLayout: Layout = ({ children }) => {
         ]}
         className='hidden md:block'
       />
-      <GrantsCallToAction />
+      <GrantsCallToAction locale={locale} />
       <Sprite image={goat} pixelsLeft={1} pixelsRight={0} />
     </>
   );
