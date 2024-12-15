@@ -1,58 +1,24 @@
-import { NextSeo } from 'next-seo';
 import React, { useMemo } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
-
-import PeopleLayout from '../../../components/layout/people';
-import { FirstSubSection } from '../../../components/decoration/textBlocks';
-import { getContents } from '../../../lib/cms';
-import SquareField from '../../../components/decoration/squares';
-import { getActiveTeams } from '../../../lib/cms/helpers';
-import ContentfulImage from '../../../components/layout/contentfulImage';
-import SocialLinks from '../../../components/layout/team/socialLinks';
-import { pixelHeart } from '../../../images/separators';
+import { unstable_cache } from 'next/cache';
 
 import CustomImage from 'components/decoration/customImage';
-import LocalizedContentfulEntryField from 'components/localization/LocalizedContentfulEntryField';
 import LocalizedContentfulPageToggleButton from 'app/_localization/LocalizedContentfulPageToggleButton';
+import { getActiveTeams } from 'lib/cms/helpers';
+import { getContents } from 'lib/cms';
+import ContentfulImage from 'components/layout/contentfulImage';
+import LocalizedContentfulEntryField from 'app/_localization/LocalizedContentfulEntryField';
+import SocialLinks from 'components/layout/team/socialLinks';
+import getServerIntl from 'app/intl';
+import SquareField from 'components/decoration/squares';
+import { pixelHeart } from 'images/separators';
+import { FirstSubSection } from 'components/decoration/textBlocks';
 
-import type PageWithLayout from '../../../types/persistentLayout';
-import type { ITeamFields } from '../../../types/generated/contentful';
-import type { ITeamMember } from '../../../types/generated/contentful';
-import type { ITeam } from '../../../types/generated/contentful';
-import type { GetStaticProps } from 'next';
-
-export const getStaticProps: GetStaticProps = async () => {
-  const teams = await getActiveTeams();
-  const members = await getContents<ITeamFields>({
-    contentType: 'teamMember',
-    query: {
-      isCoreMember: true,
-      type: 'team',
-      filters: {
-        exists: {
-          team: true,
-          isCoreMember: true,
-        },
-        ne: {
-          isInactive: true,
-        },
-      },
-    },
-    other: { order: 'fields.prio' },
-  });
-
-  return {
-    props: { teams, members },
-    revalidate: 480,
-  };
-};
-
-export function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: 'blocking',
-  };
-}
+import type { Metadata } from 'next';
+import type {
+  ITeam,
+  ITeamMember,
+  ITeamMemberFields,
+} from 'types/generated/contentful';
 
 const TeamMemberCardPhoto: React.FC<{
   member: ITeamMember;
@@ -90,7 +56,8 @@ const TeamMemberCardPhoto: React.FC<{
 
 const TeamMemberCardBody: React.FC<{
   member: ITeamMember;
-}> = ({ member }) => {
+  locale: string;
+}> = ({ member, locale }) => {
   const { name, team, bio, socialLinks } = member.fields;
   const { name: teamName, sprite: teamSprite } = team!.fields;
 
@@ -109,6 +76,7 @@ const TeamMemberCardBody: React.FC<{
                 contentfulId={member.sys.id}
                 fieldId='position'
                 contentType='teamMember'
+                locale={locale}
               />
             </span>
             <span className='mx-1 ml-3 hidden lg:block float-left text-lg text-grey-light relative'>
@@ -133,6 +101,7 @@ const TeamMemberCardBody: React.FC<{
               contentfulId={member.sys.id}
               fieldId='bio'
               contentType='teamMember'
+              locale={locale}
             />
           )}
         </div>
@@ -151,7 +120,8 @@ const TeamMemberCard: React.FC<{
   teamColor: string;
   showPhotoFirst: boolean;
   showDividerBelow: boolean;
-}> = ({ member, teamColor, showPhotoFirst, showDividerBelow }) => {
+  locale: string;
+}> = ({ member, teamColor, showPhotoFirst, showDividerBelow, locale }) => {
   if (showPhotoFirst) {
     return (
       <div
@@ -160,7 +130,7 @@ const TeamMemberCard: React.FC<{
         }`}
       >
         <TeamMemberCardPhoto member={member} teamColor={teamColor} />
-        <TeamMemberCardBody member={member} />
+        <TeamMemberCardBody member={member} locale={locale} />
       </div>
     );
   } else {
@@ -170,17 +140,18 @@ const TeamMemberCard: React.FC<{
           showDividerBelow ? 'border-b-2' : ''
         }`}
       >
-        <TeamMemberCardBody member={member} />
+        <TeamMemberCardBody member={member} locale={locale} />
         <TeamMemberCardPhoto member={member} teamColor={teamColor} />
       </div>
     );
   }
 };
 
-const MemberList: React.FC<{ members: ITeamMember[]; teams: ITeam[] }> = ({
-  members,
-  teams,
-}) => {
+const MemberList: React.FC<{
+  members: ITeamMember[];
+  teams: ITeam[];
+  locale: string;
+}> = ({ members, teams, locale }) => {
   const colorMap = useMemo(() => {
     if (!teams) return {};
     return teams.reduce(
@@ -203,6 +174,7 @@ const MemberList: React.FC<{ members: ITeamMember[]; teams: ITeam[] }> = ({
             teamColor={colorMap[m.fields.team!.fields.name]}
             showPhotoFirst={!(index % 2)}
             showDividerBelow={index + 1 < members.length}
+            locale={locale}
           />
         </div>
       ))}
@@ -217,26 +189,59 @@ const TEAM_SQUARES = [
   { color: 'white', size: 16, right: 0, top: 0 },
 ];
 
-interface TeamProps {
-  teams: ITeam[];
-  members: ITeamMember[];
+export function generateMetadata({ params: { locale } }: TeamProps): Metadata {
+  const intl = getServerIntl(locale);
+
+  return {
+    title: intl.formatMessage({
+      id: 'page.people.section.team.next-seo.title',
+      defaultMessage: 'Our Team',
+    }),
+  };
 }
 
-const Team: PageWithLayout<TeamProps> = ({ teams, members }) => {
-  const intl = useIntl();
+interface TeamProps {
+  params: { locale: string };
+}
+
+const getTeamsAndMembersCached = unstable_cache(async () => {
+  const teams = (await getActiveTeams()) as ITeam[];
+  const members = (await getContents<ITeamMemberFields>({
+    contentType: 'teamMember',
+    query: {
+      isCoreMember: true,
+      type: 'team',
+      filters: {
+        exists: {
+          team: true,
+          isCoreMember: true,
+        },
+        ne: {
+          isInactive: true,
+        },
+      },
+    },
+    other: { order: 'fields.prio' },
+  })) as ITeamMember[];
+
+  return {
+    teams,
+    members,
+  };
+});
+
+const Team: React.FC<TeamProps> = async ({ params: { locale } }) => {
+  const intl = getServerIntl(locale);
+
+  const { teams, members } = await getTeamsAndMembersCached();
+
   return (
     <>
-      <NextSeo
-        title={intl.formatMessage({
-          id: 'page.people.section.team.next-seo.title',
-          defaultMessage: 'Our Team',
-        })}
-      />
       <div className='md:mx-auto md:w-4/6 pb-10'>
         <LocalizedContentfulPageToggleButton className='mx-12 w-fit' />
       </div>
       <div className='m-10'>
-        <MemberList members={members} teams={teams} />
+        <MemberList members={members} teams={teams} locale={locale} />
       </div>
       <SquareField squares={TEAM_SQUARES} className='hidden md:block' />
       <div className='px-10 pt-16 pb-10 bg-gray-background'>
@@ -255,16 +260,15 @@ const Team: PageWithLayout<TeamProps> = ({ teams, members }) => {
             defaultMessage: 'Our <b>community</b>',
           })}
         >
-          <FormattedMessage
-            id='page.people.section.team.community.paragraph'
-            defaultMessage='We are more than a group of volunteers; we are a community tethered by shared values and invested in a vision of a better world for animals. We believe in a community-first approach: one that is supportive, growth-oriented, and accountable to each other. If this resonates with you, scroll down to learn more.'
-          />
+          {intl.formatMessage({
+            id: 'page.people.section.team.community.paragraph',
+            defaultMessage:
+              'We are more than a group of volunteers; we are a community tethered by shared values and invested in a vision of a better world for animals. We believe in a community-first approach: one that is supportive, growth-oriented, and accountable to each other. If this resonates with you, scroll down to learn more.',
+          })}
         </FirstSubSection>
       </div>
     </>
   );
 };
-
-Team.Layout = PeopleLayout;
 
 export default Team;

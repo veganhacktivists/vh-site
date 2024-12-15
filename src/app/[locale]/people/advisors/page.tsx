@@ -1,20 +1,21 @@
 import React from 'react';
-import { NextSeo } from 'next-seo';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { unstable_cache } from 'next/cache';
 
-import SquareField from '../../../components/decoration/squares';
-import PeopleLayout from '../../../components/layout/people';
-import { FirstSubSection } from '../../../components/decoration/textBlocks';
-import { getContents } from '../../../lib/cms';
-import ContentfulImage from '../../../components/layout/contentfulImage';
-import SocialLinks from '../../../components/layout/team/socialLinks';
-import { pixelHeart } from '../../../images/separators';
+import SquareField from '../../../../components/decoration/squares';
+import { FirstSubSection } from '../../../../components/decoration/textBlocks';
+import { getContents } from '../../../../lib/cms';
+import ContentfulImage from '../../../../components/layout/contentfulImage';
+import SocialLinks from '../../../../components/layout/team/socialLinks';
+import { pixelHeart } from '../../../../images/separators';
 
 import CustomImage from 'components/decoration/customImage';
+import getServerIntl from 'app/intl';
 
-import type PageWithLayout from '../../../types/persistentLayout';
-import type { ITeamMember } from '../../../types/generated/contentful';
-import type { GetStaticProps } from 'next';
+import type { Metadata } from 'next';
+import type {
+  ITeamMember,
+  ITeamMemberFields,
+} from '../../../../types/generated/contentful';
 
 const TEAM_SQUARES = [
   { color: 'grey-light', size: 16, left: 0, bottom: 0 },
@@ -22,27 +23,6 @@ const TEAM_SQUARES = [
   { color: 'grey-light', size: 16, right: 0, bottom: 0 },
   { color: 'white', size: 16, right: 0, top: 0 },
 ];
-
-export const getStaticProps: GetStaticProps = async () => {
-  const advisors = await getContents<ITeamMember>({
-    contentType: 'teamMember',
-    query: {
-      type: 'advisor',
-    },
-  });
-
-  return {
-    props: { advisors },
-    revalidate: 480,
-  };
-};
-
-export function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: 'blocking',
-  };
-}
 
 const AdvisorCard: React.FC<{ advisor: ITeamMember }> = ({ advisor }) => {
   const { name, image, socialLinks, position } = advisor.fields;
@@ -67,30 +47,51 @@ const AdvisorCard: React.FC<{ advisor: ITeamMember }> = ({ advisor }) => {
     </div>
   );
 };
-interface AdvisorsProps {
-  advisors: ITeamMember[];
+
+interface Props {
+  params: {
+    locale: string;
+  };
 }
 
-const Advisors: PageWithLayout<AdvisorsProps> = ({ advisors }) => {
-  const intl = useIntl();
+export function generateMetadata({ params }: Props): Metadata {
+  const intl = getServerIntl(params.locale);
+
+  return {
+    title: intl.formatMessage({
+      id: 'page.people.section.advisors.next-seo.title',
+      defaultMessage: 'Our Advisors',
+    }),
+  };
+}
+
+const getAdvisorsCached = unstable_cache(async () => {
+  return (await getContents<ITeamMemberFields>({
+    contentType: 'teamMember',
+    query: {
+      type: 'advisor',
+    },
+  })) as ITeamMember[];
+});
+
+const Advisors: React.FC<Props> = async ({ params: { locale } }) => {
+  const intl = getServerIntl(locale);
+
+  const advisors = await getAdvisorsCached();
+
   return (
     <>
-      <NextSeo
-        title={intl.formatMessage({
-          id: 'page.people.section.advisors.next-seo.title',
-          defaultMessage: 'Our Advisors',
-        })}
-      />
       <FirstSubSection
         header={intl.formatMessage({
           id: 'page.people.section.advisors.intro.heading',
           defaultMessage: 'Our <b>advisors</b>',
         })}
       >
-        <FormattedMessage
-          id='page.people.section.advisors.intro.paragraph'
-          defaultMessage='We are incredibly thankful for our team of experienced advisors who provide guidance and direction to the organization, its strategy, and projects.'
-        />
+        {intl.formatMessage({
+          id: 'page.people.section.advisors.intro.paragraph',
+          defaultMessage:
+            'We are incredibly thankful for our team of experienced advisors who provide guidance and direction to the organization, its strategy, and projects.',
+        })}
       </FirstSubSection>
       <div className='mx-auto my-10 lg:w-2/3'>
         <div className='grid justify-center md:grid-cols-3 '>
@@ -118,16 +119,15 @@ const Advisors: PageWithLayout<AdvisorsProps> = ({ advisors }) => {
             defaultMessage: 'Our <b>community</b>',
           })}
         >
-          <FormattedMessage
-            id='page.people.section.advisors.community.paragraph'
-            defaultMessage='We are more than a group of volunteers; we are a community tethered by shared values and invested in a vision of a better world for animals. We believe in a community-first approach: one that is supportive, growth-oriented, and accountable to each other. If this resonates with you, scroll down to learn more.'
-          />
+          {intl.formatMessage({
+            id: 'page.people.section.advisors.community.paragraph',
+            defaultMessage:
+              'We are more than a group of volunteers; we are a community tethered by shared values and invested in a vision of a better world for animals. We believe in a community-first approach: one that is supportive, growth-oriented, and accountable to each other. If this resonates with you, scroll down to learn more.',
+          })}
         </FirstSubSection>
       </div>
     </>
   );
 };
-
-Advisors.Layout = PeopleLayout;
 
 export default Advisors;
