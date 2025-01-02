@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import classNames from 'classnames';
 import { FormattedMessage, useIntl } from 'react-intl';

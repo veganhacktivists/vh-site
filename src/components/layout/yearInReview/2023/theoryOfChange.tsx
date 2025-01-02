@@ -1,10 +1,9 @@
-import { useIntl } from 'react-intl';
-
-import TheoryOfChangeImg from '../../../../../public/images/yearInReview/2023/theory-of-change.jpg';
-
 import SquareField from 'components/decoration/squares';
 import { DarkButton } from 'components/decoration/buttons';
 import CustomImage from 'components/decoration/customImage';
+import getServerIntl from 'app/intl';
+
+import TheoryOfChangeImg from '~images/yearInReview/2023/theory-of-change.jpg';
 
 const TOP_DECORATION_SQUARES = [
   { color: 'grey-lighter', size: 16, right: 0, top: 0 },
@@ -12,8 +11,12 @@ const TOP_DECORATION_SQUARES = [
   { color: 'white', size: 16, right: 0, bottom: 0 },
 ];
 
-const TheoryOfChange: React.FC = () => {
-  const intl = useIntl();
+interface Props {
+  locale: string;
+}
+
+const TheoryOfChange: React.FC<Props> = ({ locale }) => {
+  const intl = getServerIntl(locale);
 
   const buttonLabel = intl.formatMessage({
     id: 'page.year-in-review.2023.section.theory-of-change.label',

@@ -1,14 +1,18 @@
-import { useIntl } from 'react-intl';
-
 import SquareField from '../../../decoration/squares';
 import { pixelPig } from '../../../../images/separators';
 import Sprite, { goat } from '../../../decoration/sprite';
 
 import CustomImage from 'components/decoration/customImage';
 import { DarkButton } from 'components/decoration/buttons';
+import getServerIntl from 'app/intl';
 
-const MovingForward: React.FC = () => {
-  const intl = useIntl();
+interface Props {
+  locale: string;
+}
+
+const MovingForward: React.FC<Props> = ({ locale }) => {
+  const intl = getServerIntl(locale);
+
   return (
     <>
       <SquareField

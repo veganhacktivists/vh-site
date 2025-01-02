@@ -1,18 +1,25 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
 
 import SquareField from '../../../decoration/squares';
 import { SectionHeader } from '../../../decoration/textBlocks';
-import Apple from '../../../../../public/images/yearInReview/2023/fruit-and-vegetables/apple.png';
-import Avocado from '../../../../../public/images/yearInReview/2023/fruit-and-vegetables/avocado.png';
-import Banana from '../../../../../public/images/yearInReview/2023/fruit-and-vegetables/banana.png';
-import Blueberry from '../../../../../public/images/yearInReview/2023/fruit-and-vegetables/blueberry.png';
-import Brocolli from '../../../../../public/images/yearInReview/2023/fruit-and-vegetables/brocolli.png';
-import Peach from '../../../../../public/images/yearInReview/2023/fruit-and-vegetables/peach.png';
 import TeamBlock from '../teamBlock';
 
-const BigImpact: React.FC = () => {
-  const intl = useIntl();
+import getServerIntl from 'app/intl';
+
+import Apple from '~images/yearInReview/2023/fruit-and-vegetables/apple.png';
+import Avocado from '~images/yearInReview/2023/fruit-and-vegetables/avocado.png';
+import Banana from '~images/yearInReview/2023/fruit-and-vegetables/banana.png';
+import Blueberry from '~images/yearInReview/2023/fruit-and-vegetables/blueberry.png';
+import Brocolli from '~images/yearInReview/2023/fruit-and-vegetables/brocolli.png';
+import Peach from '~images/yearInReview/2023/fruit-and-vegetables/peach.png';
+
+interface Props {
+  locale: string;
+}
+
+const BigImpact: React.FC<Props> = ({ locale }) => {
+  const intl = getServerIntl(locale);
+
   return (
     <>
       <SquareField

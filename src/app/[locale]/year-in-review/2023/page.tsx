@@ -1,11 +1,8 @@
-import { NextSeo } from 'next-seo';
 import React from 'react';
-import { useIntl } from 'react-intl';
 
-import Hero from '../../../components/decoration/hero';
-import { YearInReviewHeader } from '../../../components/layout/yearInReview/layout';
-import Intro from '../../../components/layout/yearInReview/2023/intro';
-
+import Hero from 'components/decoration/hero';
+import { YearInReviewHeader } from 'components/layout/yearInReview/layout';
+import Intro from 'components/layout/yearInReview/2023/intro';
 import VioletStudios from 'components/layout/yearInReview/2023/violetStudios';
 import Granti from 'components/layout/yearInReview/2023/granti';
 import TodayForAnimals from 'components/layout/yearInReview/2023/today-for-animals';
@@ -19,20 +16,35 @@ import TheoryOfChange from 'components/layout/yearInReview/2023/theoryOfChange';
 import BigImpact from 'components/layout/yearInReview/2023/bigImpact';
 import MovingForward from 'components/layout/yearInReview/2023/movingForward';
 import ByTheNumbers from 'components/layout/yearInReview/2023/byTheNumbers';
+import getServerIntl from 'app/intl';
+
+import type { Metadata } from 'next';
 
 import heroTagline from '~images/yearInReview/2023/2023-type.png';
 import heroBackground from '~images/yearInReview/2023/2023-hero.jpg';
 
-const YearInReview2023: React.FC = ({}) => {
-  const intl = useIntl();
+interface Props {
+  params: {
+    locale: string;
+  };
+}
+
+export function generateMetadata({ params: { locale } }: Props): Metadata {
+  const intl = getServerIntl(locale);
+
+  return {
+    title: intl.formatMessage({
+      id: 'page.year-in-review.2023.next-seo.title',
+      defaultMessage: '2023 in Review',
+    }),
+  };
+}
+
+const YearInReview2023: React.FC<Props> = ({ params: { locale } }) => {
+  const intl = getServerIntl(locale);
+
   return (
     <>
-      <NextSeo
-        title={intl.formatMessage({
-          id: 'page.year-in-review.2023.next-seo.title',
-          defaultMessage: '2023 in Review',
-        })}
-      />
       <div className='text-2xl'>
         <YearInReviewHeader
           year={2023}
@@ -72,20 +84,20 @@ const YearInReview2023: React.FC = ({}) => {
             </div>
           }
         />
-        <Intro />
-        <VioletStudios />
-        <Granti />
-        <TodayForAnimals />
-        <Playground />
-        <Leadership />
-        <Partnerships />
-        <Collaborations />
-        <Knowledge />
-        <TechAndData />
-        <TheoryOfChange />
-        <BigImpact />
-        <ByTheNumbers />
-        <MovingForward />
+        <Intro locale={locale} />
+        <VioletStudios locale={locale} />
+        <Granti locale={locale} />
+        <TodayForAnimals locale={locale} />
+        <Playground locale={locale} />
+        <Leadership locale={locale} />
+        <Partnerships locale={locale} />
+        <Collaborations locale={locale} />
+        <Knowledge locale={locale} />
+        <TechAndData locale={locale} />
+        <TheoryOfChange locale={locale} />
+        <BigImpact locale={locale} />
+        <ByTheNumbers locale={locale} />
+        <MovingForward locale={locale} />
       </div>
     </>
   );
