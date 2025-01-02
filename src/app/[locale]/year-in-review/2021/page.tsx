@@ -160,6 +160,7 @@ const YearInReview2021: React.FC<Props> = async ({ params: { locale } }) => {
     <>
       <div className='text-2xl'>
         <YearInReviewHeader
+          locale={locale}
           year={2021}
           hero={
             <Hero

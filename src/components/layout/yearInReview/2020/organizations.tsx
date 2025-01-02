@@ -1,15 +1,17 @@
+'use client';
+
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { firstLetterUppercase } from '../../../lib/helpers/strings';
-import { DarkButton } from '../../decoration/buttons';
-import { FirstSubSection } from '../../decoration/textBlocks';
-import saveMovementImage from '../../../../public/images/yearInReview/2020/savemovement.webp';
-import animalRebellionImage from '../../../../public/images/yearInReview/2020/animalrebellion.webp';
-import lebaneseVegansImage from '../../../../public/images/yearInReview/2020/lebanesevegans.webp';
-import theExcelsior4Image from '../../../../public/images/yearInReview/2020/theexcelsior4.webp';
+import { firstLetterUppercase } from '../../../../lib/helpers/strings';
+import { DarkButton } from '../../../decoration/buttons';
+import { FirstSubSection } from '../../../decoration/textBlocks';
+import { ContentButton } from '../contentButton';
 
-import { ContentButton } from './contentButton';
+import saveMovementImage from '~images/yearInReview/2020/savemovement.webp';
+import animalRebellionImage from '~images/yearInReview/2020/animalrebellion.webp';
+import lebaneseVegansImage from '~images/yearInReview/2020/lebanesevegans.webp';
+import theExcelsior4Image from '~images/yearInReview/2020/theexcelsior4.webp';
 
 export const Organizations: React.FC = () => {
   const [currentOrgIndex, setcurrentOrgIndex] = useState(0);

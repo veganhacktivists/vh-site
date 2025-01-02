@@ -47,6 +47,7 @@ const YearInReview2023: React.FC<Props> = ({ params: { locale } }) => {
     <>
       <div className='text-2xl'>
         <YearInReviewHeader
+          locale={locale}
           year={2023}
           hero={
             <Hero

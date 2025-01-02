@@ -1262,6 +1262,9 @@
   "page.work.next-seo.title": {
     "message": "Our Work"
   },
+  "page.year-in-review.2020.next-seo.title": {
+    "message": "2020 in Review"
+  },
   "page.year-in-review.2020.section.big-impact-changes.apple.paragraph": {
     "message": "We enabled bot notifications for community events & actions."
   },
@@ -1409,8 +1412,14 @@
   "page.year-in-review.2020.section.we-grew.advisory-team.content": {
     "message": "We're incredibly thankful to now have a team of experienced vegan advisors to lean on such as <no-localization>Seb Alex</no-localization>, <no-localization>Ryuji Chua</no-localization>, <no-localization>Leah Doellinger</no-localization> and <no-localization>Michael Dearborn</no-localization>. Browse more of our advisors, <link>click here!</link>"
   },
+  "page.year-in-review.2020.section.we-grew.advisory-team.header": {
+    "message": "WE NOW HAVE AN <b>ADVISORY TEAM</b> OF VEGAN EXPERTS"
+  },
   "page.year-in-review.2020.section.we-grew.expanded.content": {
     "message": "We expanded from just 3 teams of 28 volunteers to 7 teams of 80 volunteers! We were able to open up more positions including content creators, animators, social, marketing, and advertising!"
+  },
+  "page.year-in-review.2020.section.we-grew.expanded.header": {
+    "message": "WE EXPANDED OUR TEAM FROM <b>28 TO 80 VOLUNTEERS</b>"
   },
   "page.year-in-review.2020.section.we-grew.heading": {
     "message": "We grew a lot as a community"
@@ -1420,6 +1429,9 @@
   },
   "page.year-in-review.2020.section.we-grew.launched.content": {
     "message": "Four of which were unique project ideas of our own! We were also lucky enough to work on projects with <no-localization>Animal Rebellion</no-localization>, <no-localization>Animal Save Movement</no-localization>, <no-localization>Lebanese Vegans</no-localization>, and the <no-localization>Excelsior 4</no-localization>!"
+  },
+  "page.year-in-review.2020.section.we-grew.launched.header": {
+    "message": "WE LAUNCHED <b>EIGHT PROJECTS</b> FOR THE MOVEMENT"
   },
   "page.year-in-review.2020.section.working-with-organizations.animal-rebellion.heading": {
     "message": "<no-localization>Animal Rebellion</no-localization>"

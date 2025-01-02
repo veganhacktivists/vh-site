@@ -1,47 +1,42 @@
-import { NextSeo } from 'next-seo';
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
 
-import Hero from '../../../components/decoration/hero';
-import heroBackground from '../../../../public/images/yearInReview/2020/VH-Hero-review.jpg';
-import heroTagline from '../../../../public/images/yearInReview/2020/VH-Hero-text-review.png';
-import SquareField from '../../../components/decoration/squares';
-import Strawberry from '../../../../public/images/yearInReview/2020/icon-strawberry-outline.png';
-import Blueberry from '../../../../public/images/yearInReview/2020/icon-blueberry-outline.png';
-import petaLogo from '../../../../public/images/yearInReview/2020/peta.webp';
-import beyondLogo from '../../../../public/images/yearInReview/2020/beyondanimal.webp';
-import counterglowLogo from '../../../../public/images/yearInReview/2020/counterglow.webp';
-import {
-  FirstSubSection,
-  SubSection,
-} from '../../../components/decoration/textBlocks';
-import { HighlightBlock } from '../../../components/layout/yearInReview/highlightBlock';
-import { HighlightedProjects } from '../../../components/layout/yearInReview/highlightedProjects';
-import { Organizations } from '../../../components/layout/yearInReview/organizations';
-import { DarkButton } from '../../../components/decoration/buttons';
-import Sprite, { cow } from '../../../components/decoration/sprite';
-import TopPosts from '../../../components/layout/yearInReview/topPosts';
-import { getContents } from '../../../lib/cms';
-import YearInReviewHeader from '../../../components/layout/yearInReview/layout';
-import CustomLink from '../../../components/decoration/link';
-import AnimatedNumber from '../../../components/decoration/animatedNumber';
-import { sortByArray } from '../../../lib/helpers/array';
 import {
   pixelFlower,
   pixelHeart,
   pixelPig,
   pixelStar,
-} from '../../../images/separators';
+} from '../../../../images/separators';
 
+import Hero from 'components/decoration/hero';
+import SquareField from 'components/decoration/squares';
+import { FirstSubSection, SubSection } from 'components/decoration/textBlocks';
+import { HighlightBlock } from 'components/layout/yearInReview/highlightBlock';
+import { HighlightedProjects } from 'components/layout/yearInReview/highlightedProjects';
+import { Organizations } from 'components/layout/yearInReview/2020/organizations';
+import { DarkButton } from 'components/decoration/buttons';
+import Sprite, { cow } from 'components/decoration/sprite';
+import TopPosts from 'components/layout/yearInReview/2020/topPosts';
+import { getContents } from 'lib/cms';
+import YearInReviewHeader from 'components/layout/yearInReview/layout';
+import CustomLink from 'components/decoration/link';
+import AnimatedNumber from 'components/decoration/animatedNumber';
+import { sortByArray } from 'lib/helpers/array';
 import CustomImage from 'components/decoration/customImage';
+import getServerIntl from 'app/intl';
 
 import type {
-  IBlogEntry,
   IBlogEntryFields,
-  IProject,
   IProjectFields,
-} from '../../../types/generated/contentful';
-import type { GetStaticProps } from 'next';
+} from 'types/generated/contentful';
+import type { Metadata } from 'next';
+
+import counterglowLogo from '~images/yearInReview/2020/counterglow.webp';
+import beyondLogo from '~images/yearInReview/2020/beyondanimal.webp';
+import petaLogo from '~images/yearInReview/2020/peta.webp';
+import Blueberry from '~images/yearInReview/2020/icon-blueberry-outline.png';
+import Strawberry from '~images/yearInReview/2020/icon-strawberry-outline.png';
+import heroTagline from '~images/yearInReview/2020/VH-Hero-text-review.png';
+import heroBackground from '~images/yearInReview/2020/VH-Hero-review.jpg';
 
 const STRATEGY_DECORATION_SQUARES = [
   { color: 'grey-background', size: 16, left: 0, bottom: 0 },
@@ -80,7 +75,7 @@ const FINAL_SQUARES = [
   { color: 'white', size: 16, right: 16, bottom: 0 },
 ];
 
-export const getStaticProps: GetStaticProps = async () => {
+async function loadContent() {
   const slugs = [
     'covid-19-self-isolating-try-vegan',
     'why-a-global-pandemic-is-closely-tied-to-animal-agriculture',
@@ -128,34 +123,37 @@ export const getStaticProps: GetStaticProps = async () => {
   });
 
   return {
-    props: {
-      topBlogs: orderedBlogEntries,
-      projects: sortByArray(
-        projects,
-        projectNames,
-        (project) => project.fields.name,
-      ),
-    },
+    topBlogs: orderedBlogEntries,
+    projects: sortByArray(
+      projects,
+      projectNames,
+      (project) => project.fields.name,
+    ),
   };
-};
+}
 
-export function getStaticPaths() {
+export function generateMetadata({ params: { locale } }: Props): Metadata {
+  const intl = getServerIntl(locale);
+
   return {
-    paths: [],
-    fallback: 'blocking',
+    title: intl.formatMessage({
+      id: 'page.year-in-review.2020.next-seo.title',
+      defaultMessage: '2020 in Review',
+    }),
   };
 }
 
-interface YearInReviewProps {
-  topBlogs: IBlogEntry[];
-  projects: IProject[];
+interface Props {
+  params: {
+    locale: string;
+  };
 }
 
-const YearInReview2020: React.FC<YearInReviewProps> = ({
-  topBlogs,
-  projects,
-}) => {
-  const intl = useIntl();
+const YearInReview2020: React.FC<Props> = async ({ params: { locale } }) => {
+  const intl = getServerIntl(locale);
+
+  const { topBlogs, projects } = await loadContent();
+
   const PROJECTS_DESCRIPTION: Record<string, React.ReactNode> = {
     'Vegan Bootcamp': intl.formatMessage({
       id: 'page.year-in-review.2020.section.highlighted-projects.vegan-bootcamp.paragraph',
@@ -178,10 +176,11 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
         '<no-localization>Dr. Greger</no-localization>, founder of <no-localization>NutritionFacts.org</no-localization>, created an app called <no-localization>"Daily Dozen"</no-localization> that allows you to track your diet and make sure you get the best nutrition possible - and details the healthiest foods and how many servings of each we should try to check off every day. We wanted to expand on this concept and create a web-based version of his app with some additional features. Use My <no-localization>Daily Dozen</no-localization> to keep daily track of the foods recommended by <no-localization>Dr. Greger</no-localization> in his <no-localization>New York Times</no-localization> Bestselling book, <no-localization>How Not to Die</no-localization>. We hope that this project will give non-vegans the opportunity for an easier path to veganism by adopting a plant-based lifestyle.',
     }),
   };
+
   return (
     <>
-      <NextSeo title='2020 in Review' />
       <YearInReviewHeader
+        locale={locale}
         year={2020}
         hero={
           <Hero
@@ -215,45 +214,62 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
         headerSize='3xl'
         contentSize='2xl'
       >
-        <FormattedMessage
-          id='page.year-in-review.2020.section.we-grew.intro'
-          defaultMessage="This year, we worked with some amazing vegan organizations, helped a lot of people with their advocacy, and had a blast building interesting projects for the movement. Our team almost grew three fold and there were a lot of new challenges that came with that growth, but we're really happy with what we accomplished and we can't wait to see what 2021 brings for us!"
-        />
+        {intl.formatMessage({
+          id: 'page.year-in-review.2020.section.we-grew.intro',
+          defaultMessage:
+            "This year, we worked with some amazing vegan organizations, helped a lot of people with their advocacy, and had a blast building interesting projects for the movement. Our team almost grew three fold and there were a lot of new challenges that came with that growth, but we're really happy with what we accomplished and we can't wait to see what 2021 brings for us!",
+        })}
       </SubSection>
       <div className='h-12' />
       <HighlightBlock
         borderColor='magenta'
-        header='WE LAUNCHED <b>EIGHT PROJECTS</b> FOR THE MOVEMENT'
+        header={intl.formatMessage({
+          id: 'page.year-in-review.2020.section.we-grew.launched.header',
+          defaultMessage: 'WE LAUNCHED <b>EIGHT PROJECTS</b> FOR THE MOVEMENT',
+        })}
       >
-        <FormattedMessage
-          id='page.year-in-review.2020.section.we-grew.launched.content'
-          defaultMessage='Four of which were unique project ideas of our own! We were also lucky enough to work on projects with <no-localization>Animal Rebellion</no-localization>, <no-localization>Animal Save Movement</no-localization>, <no-localization>Lebanese Vegans</no-localization>, and the <no-localization>Excelsior 4</no-localization>!'
-        />
+        {intl.formatMessage({
+          id: 'page.year-in-review.2020.section.we-grew.launched.content',
+          defaultMessage:
+            'Four of which were unique project ideas of our own! We were also lucky enough to work on projects with <no-localization>Animal Rebellion</no-localization>, <no-localization>Animal Save Movement</no-localization>, <no-localization>Lebanese Vegans</no-localization>, and the <no-localization>Excelsior 4</no-localization>!',
+        })}
       </HighlightBlock>
       <HighlightBlock
         borderColor='yellow'
-        header='WE EXPANDED OUR TEAM FROM <b>28 TO 80 VOLUNTEERS</b>'
+        header={intl.formatMessage({
+          id: 'page.year-in-review.2020.section.we-grew.expanded.header',
+          defaultMessage:
+            'WE EXPANDED OUR TEAM FROM <b>28 TO 80 VOLUNTEERS</b>',
+        })}
       >
-        <FormattedMessage
-          id='page.year-in-review.2020.section.we-grew.expanded.content'
-          defaultMessage='We expanded from just 3 teams of 28 volunteers to 7 teams of 80 volunteers! We were able to open up more positions including content creators, animators, social, marketing, and advertising!'
-        />
+        {intl.formatMessage({
+          id: 'page.year-in-review.2020.section.we-grew.expanded.content',
+          defaultMessage:
+            'We expanded from just 3 teams of 28 volunteers to 7 teams of 80 volunteers! We were able to open up more positions including content creators, animators, social, marketing, and advertising!',
+        })}
       </HighlightBlock>
       <HighlightBlock
         borderColor='green'
-        header='WE NOW HAVE AN <b>ADVISORY TEAM</b> OF VEGAN EXPERTS'
+        header={intl.formatMessage({
+          id: 'page.year-in-review.2020.section.we-grew.advisory-team.header',
+          defaultMessage:
+            'WE NOW HAVE AN <b>ADVISORY TEAM</b> OF VEGAN EXPERTS',
+        })}
       >
-        <FormattedMessage
-          id='page.year-in-review.2020.section.we-grew.advisory-team.content'
-          defaultMessage="We're incredibly thankful to now have a team of experienced vegan advisors to lean on such as <no-localization>Seb Alex</no-localization>, <no-localization>Ryuji Chua</no-localization>, <no-localization>Leah Doellinger</no-localization> and <no-localization>Michael Dearborn</no-localization>. Browse more of our advisors, <link>click here!</link>"
-          values={{
+        {intl.formatMessage(
+          {
+            id: 'page.year-in-review.2020.section.we-grew.advisory-team.content',
+            defaultMessage:
+              "We're incredibly thankful to now have a team of experienced vegan advisors to lean on such as <no-localization>Seb Alex</no-localization>, <no-localization>Ryuji Chua</no-localization>, <no-localization>Leah Doellinger</no-localization> and <no-localization>Michael Dearborn</no-localization>. Browse more of our advisors, <link>click here!</link>",
+          },
+          {
             link: (chunks) => (
-              <CustomLink href={`/${intl.locale}/people/advisors`}>
+              <CustomLink href={`/${locale}/people/advisors`}>
                 {chunks}
               </CustomLink>
             ),
-          }}
-        />
+          },
+        )}
       </HighlightBlock>
       <div className='h-16' />
       <SquareField
@@ -276,16 +292,18 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
           contentSize='2xl'
           spacing={4}
         >
-          <FormattedMessage
-            id='page.year-in-review.2020.section.strategy-and-experimentation.paragraph.0'
-            defaultMessage='Like 2019, we focused on building projects with little data on whether those projects would succeed. We consider this a high-risk strategy as we use hundreds of hours volunteer time on these experimental projects.'
-          />
+          {intl.formatMessage({
+            id: 'page.year-in-review.2020.section.strategy-and-experimentation.paragraph.0',
+            defaultMessage:
+              'Like 2019, we focused on building projects with little data on whether those projects would succeed. We consider this a high-risk strategy as we use hundreds of hours volunteer time on these experimental projects.',
+          })}
         </SubSection>
         <SubSection contentSize='2xl'>
-          <FormattedMessage
-            id='page.year-in-review.2020.section.strategy-and-experimentation.paragraph.1'
-            defaultMessage="We're thankful this worked last year as 3 of the 6 projects we built met our standards of success, so we continued with this methodology. We firmly believe it's important for any movement to innovate, try new tactics, build experimental tools, and strategize alternatively."
-          />
+          {intl.formatMessage({
+            id: 'page.year-in-review.2020.section.strategy-and-experimentation.paragraph.1',
+            defaultMessage:
+              "We're thankful this worked last year as 3 of the 6 projects we built met our standards of success, so we continued with this methodology. We firmly believe it's important for any movement to innovate, try new tactics, build experimental tools, and strategize alternatively.",
+          })}
         </SubSection>
       </div>
       <SquareField
@@ -294,10 +312,10 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
       />
       <div className='py-16 bg-grey-dark'>
         <h1 className='mx-auto mb-16 font-mono text-6xl text-white'>
-          <FormattedMessage
-            id='page.year-in-review.2020.section.community-building.heading'
-            defaultMessage='COMMUNITY BUILDING'
-          />
+          {intl.formatMessage({
+            id: 'page.year-in-review.2020.section.community-building.heading',
+            defaultMessage: 'COMMUNITY BUILDING',
+          })}
         </h1>
         <div className='w-2/3 mx-auto'>
           <div className='flex flex-col md:flex-row md:gap-x-16'>
@@ -317,10 +335,11 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
                 contentSize='2xl'
                 textColor='white'
               >
-                <FormattedMessage
-                  id='page.year-in-review.2020.section.community-building.volunteers.paragraph'
-                  defaultMessage='This year we attracted volunteers that worked for <no-localization>Trello</no-localization>, <no-localization>Microsoft</no-localization>, <no-localization>Etsy</no-localization>, <no-localization>Better Eating</no-localization>, <no-localization>Mercy for Animals</no-localization>, <no-localization>Save Movement</no-localization> and <no-localization>Paypal</no-localization>!'
-                />
+                {intl.formatMessage({
+                  id: 'page.year-in-review.2020.section.community-building.volunteers.paragraph',
+                  defaultMessage:
+                    'This year we attracted volunteers that worked for <no-localization>Trello</no-localization>, <no-localization>Microsoft</no-localization>, <no-localization>Etsy</no-localization>, <no-localization>Better Eating</no-localization>, <no-localization>Mercy for Animals</no-localization>, <no-localization>Save Movement</no-localization> and <no-localization>Paypal</no-localization>!',
+                })}
               </SubSection>
             </div>
             <div className='flex-1'>
@@ -339,10 +358,11 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
                 contentSize='2xl'
                 textColor='white'
               >
-                <FormattedMessage
-                  id='page.year-in-review.2020.section.community-building.our-values.paragraph'
-                  defaultMessage='We came together as a community and decided on what values we wanted to adopt, and to formalize what our mission and goals were.'
-                />
+                {intl.formatMessage({
+                  id: 'page.year-in-review.2020.section.community-building.our-values.paragraph',
+                  defaultMessage:
+                    'We came together as a community and decided on what values we wanted to adopt, and to formalize what our mission and goals were.',
+                })}
               </SubSection>
             </div>
           </div>
@@ -355,10 +375,11 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
             contentSize='2xl'
             textColor='white'
           >
-            <FormattedMessage
-              id='page.year-in-review.2020.section.community-building.partnerships.paragraph'
-              defaultMessage="This year we're extremely happy to have partnered with <no-localization>PETA</no-localization>, <no-localization>Beyond Animal</no-localization>, and <no-localization>Project Counterglow</no-localization>. These three partners have elevated us this year and we're so grateful to have the ability to both serve them and rely on them as our new friends."
-            />
+            {intl.formatMessage({
+              id: 'page.year-in-review.2020.section.community-building.partnerships.paragraph',
+              defaultMessage:
+                "This year we're extremely happy to have partnered with <no-localization>PETA</no-localization>, <no-localization>Beyond Animal</no-localization>, and <no-localization>Project Counterglow</no-localization>. These three partners have elevated us this year and we're so grateful to have the ability to both serve them and rely on them as our new friends.",
+            })}
           </SubSection>
           <div className='grid justify-center grid-cols-1 md:grid-cols-3'>
             <CustomImage src={petaLogo} alt='peta logo' />
@@ -379,42 +400,50 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
             />
           </div>
           <div className='px-5 mb-5'>
-            <FormattedMessage
-              id='page.year-in-review.2020.section.new-teams.strawberry.heading'
-              defaultMessage='<span>Data Analytics</span> | Team Strawberry'
-              values={{
+            {intl.formatMessage(
+              {
+                id: 'page.year-in-review.2020.section.new-teams.strawberry.heading',
+                defaultMessage: '<span>Data Analytics</span> | Team Strawberry',
+              },
+              {
                 span: (chunks) => <span className='font-bold'>{chunks}</span>,
-              }}
-            />
+              },
+            )}
           </div>
         </h2>
         <SubSection headerSize='3xl' contentSize='2xl' spacing={4}>
-          <FormattedMessage
-            id='page.year-in-review.2020.section.new-teams.strawberry.paragraph.0'
-            defaultMessage="We've <link>started up a new team</link> dedicated to collecting and analyzing data not only on the projects that we build, but <no-localization>Vegan Hacktivists</no-localization> as an organization. This team marks our commitment to data, a commitment to making sure that everything we do makes a big impact, and that we're able to learn from our work in the past, as well as shaping the work we do in the future."
-            values={{
+          {intl.formatMessage(
+            {
+              id: 'page.year-in-review.2020.section.new-teams.strawberry.paragraph.0',
+              defaultMessage:
+                "We've <link>started up a new team</link> dedicated to collecting and analyzing data not only on the projects that we build, but <no-localization>Vegan Hacktivists</no-localization> as an organization. This team marks our commitment to data, a commitment to making sure that everything we do makes a big impact, and that we're able to learn from our work in the past, as well as shaping the work we do in the future.",
+            },
+            {
               link: (chunks) => (
                 <CustomLink
-                  href={`/${intl.locale}/blog/were-assembling-a-data-and-analytics-team`}
+                  href={`/${locale}/blog/were-assembling-a-data-and-analytics-team`}
                 >
                   {chunks}
                 </CustomLink>
               ),
-            }}
-          />
+            },
+          )}
         </SubSection>
         <SubSection headerSize='3xl' contentSize='2xl' spacing={4}>
-          <FormattedMessage
-            id='page.year-in-review.2020.section.new-teams.strawberry.paragraph.1'
-            defaultMessage="<no-localization>Suan Chin</no-localization> is leading this team with 7 other data scientists. See the entire team by visiting the <link>team page here</link>. We're excited to see how this team will shape the future of the work we do!"
-            values={{
+          {intl.formatMessage(
+            {
+              id: 'page.year-in-review.2020.section.new-teams.strawberry.paragraph.1',
+              defaultMessage:
+                "<no-localization>Suan Chin</no-localization> is leading this team with 7 other data scientists. See the entire team by visiting the <link>team page here</link>. We're excited to see how this team will shape the future of the work we do!",
+            },
+            {
               link: (chunks) => (
-                <CustomLink href={`/${intl.locale}/people/team`}>
+                <CustomLink href={`/${locale}/people/team`}>
                   {chunks}
                 </CustomLink>
               ),
-            }}
-          />
+            },
+          )}
         </SubSection>
         <h2 className='flex flex-col justify-center mx-auto text-3xl'>
           <div className='mx-auto w-36'>
@@ -426,20 +455,23 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
             />
           </div>
           <div className='px-5 mb-5'>
-            <FormattedMessage
-              id='page.year-in-review.2020.section.new-teams.blueberry.heading'
-              defaultMessage='<span>Specialists</span> | Team Blueberry'
-              values={{
+            {intl.formatMessage(
+              {
+                id: 'page.year-in-review.2020.section.new-teams.blueberry.heading',
+                defaultMessage: '<span>Specialists</span> | Team Blueberry',
+              },
+              {
                 span: (chunks) => <span className='font-bold'>{chunks}</span>,
-              }}
-            />
+              },
+            )}
           </div>
         </h2>
         <SubSection headerSize='3xl' contentSize='2xl'>
-          <FormattedMessage
-            id='page.year-in-review.2020.section.new-teams.blueberry.paragraph'
-            defaultMessage='We recently introduced the Specialists team! 9 new activists have joined the team and each one currently fulfilling the roles of: Release, DevOps, Security, <no-localization>SEO</no-localization>, <no-localization>CSS</no-localization>, Art, Maps, Video, and Audio. This filled a gap where our team members could specifically get issues addressed on their projects through Team Blueberry.'
-          />
+          {intl.formatMessage({
+            id: 'page.year-in-review.2020.section.new-teams.blueberry.paragraph',
+            defaultMessage:
+              'We recently introduced the Specialists team! 9 new activists have joined the team and each one currently fulfilling the roles of: Release, DevOps, Security, <no-localization>SEO</no-localization>, <no-localization>CSS</no-localization>, Art, Maps, Video, and Audio. This filled a gap where our team members could specifically get issues addressed on their projects through Team Blueberry.',
+          })}
         </SubSection>
       </div>
       <SquareField
@@ -457,75 +489,67 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
           {[
             {
               icon: <>&#127815;</>,
-              description: (
-                <FormattedMessage
-                  id='page.year-in-review.2020.section.big-impact-changes.grape.paragraph'
-                  defaultMessage='We integrated <no-localization>Google Analytics</no-localization> into all of our projects.'
-                />
-              ),
+              description: intl.formatMessage({
+                id: 'page.year-in-review.2020.section.big-impact-changes.grape.paragraph',
+                defaultMessage:
+                  'We integrated <no-localization>Google Analytics</no-localization> into all of our projects.',
+              }),
             },
             {
               icon: <>&#127817;</>,
-              description: (
-                <FormattedMessage
-                  id='page.year-in-review.2020.section.big-impact-changes.watermelon.paragraph'
-                  defaultMessage='We started accepting applications from <no-localization>Python</no-localization> developers.'
-                />
-              ),
+              description: intl.formatMessage({
+                id: 'page.year-in-review.2020.section.big-impact-changes.watermelon.paragraph',
+                defaultMessage:
+                  'We started accepting applications from <no-localization>Python</no-localization> developers.',
+              }),
             },
             {
               icon: <>&#127818;</>,
-              description: (
-                <FormattedMessage
-                  id='page.year-in-review.2020.section.big-impact-changes.orange.paragraph'
-                  defaultMessage='We published our anonymous volunteer feedback form.'
-                />
-              ),
+              description: intl.formatMessage({
+                id: 'page.year-in-review.2020.section.big-impact-changes.orange.paragraph',
+                defaultMessage:
+                  'We published our anonymous volunteer feedback form.',
+              }),
             },
             {
               icon: <> &#127820;</>,
-              description: (
-                <FormattedMessage
-                  id='page.year-in-review.2020.section.big-impact-changes.banana.paragraph'
-                  defaultMessage='We launched our <no-localization>LinkedIn</no-localization> page for our volunteers.'
-                />
-              ),
+              description: intl.formatMessage({
+                id: 'page.year-in-review.2020.section.big-impact-changes.banana.paragraph',
+                defaultMessage:
+                  'We launched our <no-localization>LinkedIn</no-localization> page for our volunteers.',
+              }),
             },
             {
               icon: <>&#127822;</>,
-              description: (
-                <FormattedMessage
-                  id='page.year-in-review.2020.section.big-impact-changes.apple.paragraph'
-                  defaultMessage='We enabled bot notifications for community events & actions.'
-                />
-              ),
+              description: intl.formatMessage({
+                id: 'page.year-in-review.2020.section.big-impact-changes.apple.paragraph',
+                defaultMessage:
+                  'We enabled bot notifications for community events & actions.',
+              }),
             },
             {
               icon: <>&#129373;</>,
-              description: (
-                <FormattedMessage
-                  id='page.year-in-review.2020.section.big-impact-changes.kiwi.paragraph'
-                  defaultMessage='We released and open-sourced several of our past projects.'
-                />
-              ),
+              description: intl.formatMessage({
+                id: 'page.year-in-review.2020.section.big-impact-changes.kiwi.paragraph',
+                defaultMessage:
+                  'We released and open-sourced several of our past projects.',
+              }),
             },
             {
               icon: <>&#129365;</>,
-              description: (
-                <FormattedMessage
-                  id='page.year-in-review.2020.section.big-impact-changes.carrot.paragraph'
-                  defaultMessage='We improved our on-boarding process and developer guides.'
-                />
-              ),
+              description: intl.formatMessage({
+                id: 'page.year-in-review.2020.section.big-impact-changes.carrot.paragraph',
+                defaultMessage:
+                  'We improved our on-boarding process and developer guides.',
+              }),
             },
             {
               icon: <>&#127827;</>,
-              description: (
-                <FormattedMessage
-                  id='page.year-in-review.2020.section.big-impact-changes.strawberry.paragraph'
-                  defaultMessage='We installed advanced server monitoring software.'
-                />
-              ),
+              description: intl.formatMessage({
+                id: 'page.year-in-review.2020.section.big-impact-changes.strawberry.paragraph',
+                defaultMessage:
+                  'We installed advanced server monitoring software.',
+              }),
             },
           ].map(({ icon, description }, i) => (
             <div
@@ -546,16 +570,16 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
       <div className='py-24 uppercase bg-black'>
         <div className='w-5/6 mx-auto space-y-8 md:w-2/3'>
           <h1 className='font-mono text-6xl text-white'>
-            <FormattedMessage
-              id='page.year-in-review.2020.section.by-the-numbers.heading'
-              defaultMessage='By the numbers'
-            />
+            {intl.formatMessage({
+              id: 'page.year-in-review.2020.section.by-the-numbers.heading',
+              defaultMessage: 'By the numbers',
+            })}
           </h1>
           <h2 className='p-6 font-mono text-4xl font-bold text-left text-white bg-grey-dark'>
-            <FormattedMessage
-              id='page.year-in-review.2020.section.by-the-numbers.2020-traffic.heading'
-              defaultMessage='OUR 2020 TRAFFIC'
-            />
+            {intl.formatMessage({
+              id: 'page.year-in-review.2020.section.by-the-numbers.2020-traffic.heading',
+              defaultMessage: 'OUR 2020 TRAFFIC',
+            })}
           </h2>
           <div className='flex flex-col md:flex-row gap-x-5'>
             <div className='flex-1 text-left'>
@@ -563,10 +587,10 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
                 <AnimatedNumber number={318000} approx />
               </h1>
               <p className='w-2/3 font-mono text-3xl font-bold text-white'>
-                <FormattedMessage
-                  id='page.year-in-review.2020.section.by-the-numbers.2020-traffic.unique-visitors'
-                  defaultMessage='UNIQUE VISITORS'
-                />
+                {intl.formatMessage({
+                  id: 'page.year-in-review.2020.section.by-the-numbers.2020-traffic.unique-visitors',
+                  defaultMessage: 'UNIQUE VISITORS',
+                })}
               </p>
             </div>
             <div className='flex-1 text-left'>
@@ -574,18 +598,18 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
                 <AnimatedNumber number={1710000} approx />
               </h1>
               <p className='w-2/3 font-mono text-3xl font-bold text-white'>
-                <FormattedMessage
-                  id='page.year-in-review.2020.section.by-the-numbers.2020-traffic.unique-page-views'
-                  defaultMessage='UNIQUE PAGE VIEWS'
-                />
+                {intl.formatMessage({
+                  id: 'page.year-in-review.2020.section.by-the-numbers.2020-traffic.unique-page-views',
+                  defaultMessage: 'UNIQUE PAGE VIEWS',
+                })}
               </p>
             </div>
           </div>
           <h2 className='p-6 font-mono text-4xl font-bold text-left text-white bg-grey-dark'>
-            <FormattedMessage
-              id='page.year-in-review.2020.section.by-the-numbers.project-statistics.heading'
-              defaultMessage='PROJECT STATISTICS'
-            />
+            {intl.formatMessage({
+              id: 'page.year-in-review.2020.section.by-the-numbers.project-statistics.heading',
+              defaultMessage: 'PROJECT STATISTICS',
+            })}
           </h2>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-x-16'>
             <div className='flex-1 text-left'>
@@ -593,15 +617,18 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
                 <AnimatedNumber number={734} approx />
               </h1>
               <p className='w-2/3 mb-10 font-mono text-3xl text-white'>
-                <FormattedMessage
-                  id='page.year-in-review.2020.section.by-the-numbers.project-statistics.courses-done'
-                  defaultMessage='COURSES DONE ON <span><no-localization>VEGANBOOTCAMP.ORG</no-localization></span> IN UNDER 60 DAYS'
-                  values={{
+                {intl.formatMessage(
+                  {
+                    id: 'page.year-in-review.2020.section.by-the-numbers.project-statistics.courses-done',
+                    defaultMessage:
+                      'COURSES DONE ON <span><no-localization>VEGANBOOTCAMP.ORG</no-localization></span> IN UNDER 60 DAYS',
+                  },
+                  {
                     span: (chunks) => (
                       <span className='font-bold'>{chunks}</span>
                     ),
-                  }}
-                />
+                  },
+                )}
               </p>
             </div>
             <div className='flex-1 text-left'>
@@ -609,15 +636,18 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
                 <AnimatedNumber number={8854} approx />
               </h1>
               <p className='w-2/3 mb-10 font-mono text-3xl text-white'>
-                <FormattedMessage
-                  id='page.year-in-review.2020.section.by-the-numbers.project-statistics.tweets'
-                  defaultMessage='TWEETS BY OUR <span><no-localization>5 MINUTES 5 VEGANS</no-localization></span> SUPPORT BOT'
-                  values={{
+                {intl.formatMessage(
+                  {
+                    id: 'page.year-in-review.2020.section.by-the-numbers.project-statistics.tweets',
+                    defaultMessage:
+                      'TWEETS BY OUR <span><no-localization>5 MINUTES 5 VEGANS</no-localization></span> SUPPORT BOT',
+                  },
+                  {
                     span: (chunks) => (
                       <span className='font-bold'>{chunks}</span>
                     ),
-                  }}
-                />
+                  },
+                )}
               </p>
             </div>
             <div className='flex-1 text-left'>
@@ -625,15 +655,18 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
                 <AnimatedNumber number={2528} approx />
               </h1>
               <p className='w-2/3 font-mono text-3xl text-white'>
-                <FormattedMessage
-                  id='page.year-in-review.2020.section.by-the-numbers.project-statistics.groups-added'
-                  defaultMessage='ANIMAL RIGHTS GROUPS ADDED TO <span><no-localization>ANIMALRIGHTSMAP.ORG</no-localization></span>'
-                  values={{
+                {intl.formatMessage(
+                  {
+                    id: 'page.year-in-review.2020.section.by-the-numbers.project-statistics.groups-added',
+                    defaultMessage:
+                      'ANIMAL RIGHTS GROUPS ADDED TO <span><no-localization>ANIMALRIGHTSMAP.ORG</no-localization></span>',
+                  },
+                  {
                     span: (chunks) => (
                       <span className='font-bold'>{chunks}</span>
                     ),
-                  }}
-                />
+                  },
+                )}
               </p>
             </div>
             <div className='flex-1 text-left'>
@@ -641,23 +674,26 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
                 <AnimatedNumber number={46562} approx />
               </h1>
               <p className='w-2/3 font-mono text-3xl text-white'>
-                <FormattedMessage
-                  id='page.year-in-review.2020.section.by-the-numbers.project-statistics.clicks'
-                  defaultMessage='CLICKS DIRECTING ACTIVISTS TO ORGS <span><no-localization>VEGANACTIVISM.ORG</no-localization></span>'
-                  values={{
+                {intl.formatMessage(
+                  {
+                    id: 'page.year-in-review.2020.section.by-the-numbers.project-statistics.clicks',
+                    defaultMessage:
+                      'CLICKS DIRECTING ACTIVISTS TO ORGS <span><no-localization>VEGANACTIVISM.ORG</no-localization></span>',
+                  },
+                  {
                     span: (chunks) => (
                       <span className='font-bold'>{chunks}</span>
                     ),
-                  }}
-                />
+                  },
+                )}
               </p>
             </div>
           </div>
           <h2 className='p-6 font-mono text-4xl font-bold text-left text-white bg-grey-dark'>
-            <FormattedMessage
-              id='page.year-in-review.2020.section.by-the-numbers.on-the-blog.heading'
-              defaultMessage='ON THE BLOG'
-            />
+            {intl.formatMessage({
+              id: 'page.year-in-review.2020.section.by-the-numbers.on-the-blog.heading',
+              defaultMessage: 'ON THE BLOG',
+            })}
           </h2>
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-y-8 md:gap-y-0'>
             <div className='flex flex-col flex-1'>
@@ -666,13 +702,15 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
                   <AnimatedNumber number={24} />
                 </h1>
                 <p className='w-2/3 mb-10 font-mono text-3xl text-white'>
-                  <FormattedMessage
-                    id='page.year-in-review.2020.section.by-the-numbers.on-the-blog.new-posts'
-                    defaultMessage='<b>NEW POSTS</b> FROM THE CONTENT TEAM'
-                    values={{
+                  {intl.formatMessage(
+                    {
+                      id: 'page.year-in-review.2020.section.by-the-numbers.on-the-blog.new-posts',
+                      defaultMessage: '<b>NEW POSTS</b> FROM THE CONTENT TEAM',
+                    },
+                    {
                       b: (chunks) => <b>{chunks}</b>,
-                    }}
-                  />
+                    },
+                  )}
                 </p>
               </div>
               <div className='flex-1 mb-8 text-left'>
@@ -680,18 +718,23 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
                   <AnimatedNumber number={13926} approx />
                 </h1>
                 <p className='w-2/3 font-mono text-3xl text-white'>
-                  <FormattedMessage
-                    id='page.year-in-review.2020.section.by-the-numbers.on-the-blog.page-views'
-                    defaultMessage='UNIQUE <b>PAGE VIEWS</b> ON THE BLOG'
-                    values={{
+                  {intl.formatMessage(
+                    {
+                      id: 'page.year-in-review.2020.section.by-the-numbers.on-the-blog.page-views',
+                      defaultMessage: 'UNIQUE <b>PAGE VIEWS</b> ON THE BLOG',
+                    },
+                    {
                       b: (chunks) => <b>{chunks}</b>,
-                    }}
-                  />
+                    },
+                  )}
                 </p>
               </div>
             </div>
             <div className='flex flex-col text-left md:flex-1'>
-              <TopPosts topPosts={topBlogs.map((entry) => entry.fields)} />
+              <TopPosts
+                locale={locale}
+                topPosts={topBlogs.map((entry) => entry.fields)}
+              />
             </div>
           </div>
         </div>
@@ -732,30 +775,33 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
         contentSize='2xl'
         spacing={4}
       >
-        <FormattedMessage
-          id='page.year-in-review.2020.section.moving-forward.paragraph.0'
-          defaultMessage="While we're happy with this years results as-well, we recognize the need to take a more data-based approach in what we build if we are to utilize our network of amazing volunteers effectively."
-        />
+        {intl.formatMessage({
+          id: 'page.year-in-review.2020.section.moving-forward.paragraph.0',
+          defaultMessage:
+            "While we're happy with this years results as-well, we recognize the need to take a more data-based approach in what we build if we are to utilize our network of amazing volunteers effectively.",
+        })}
       </SubSection>
       <SubSection contentSize='2xl' spacing={4}>
-        <FormattedMessage
-          id='page.year-in-review.2020.section.moving-forward.paragraph.1'
-          defaultMessage='We also recognize that innovation often comes in uncharted territories where data is often lacking - so for 2021 we want to find a good balance of choosing projects that align with our innovation approach, while utilizing data to pick which ones may have the greater chance of impact in our movement.'
-        />
+        {intl.formatMessage({
+          id: 'page.year-in-review.2020.section.moving-forward.paragraph.1',
+          defaultMessage:
+            'We also recognize that innovation often comes in uncharted territories where data is often lacking - so for 2021 we want to find a good balance of choosing projects that align with our innovation approach, while utilizing data to pick which ones may have the greater chance of impact in our movement.',
+        })}
       </SubSection>
 
       <SubSection contentSize='2xl' spacing={4}>
-        <FormattedMessage
-          id='page.year-in-review.2020.section.moving-forward.paragraph.2'
-          defaultMessage="We're really excited to hear your thoughts on our 2020 year in review, and if you like what we do, please consider supporting us by clicking the button below. Your donation ensures that all of our work and projects remain free and accessible to everyone, and we can't begin to thank you enough for the support!"
-        />
+        {intl.formatMessage({
+          id: 'page.year-in-review.2020.section.moving-forward.paragraph.2',
+          defaultMessage:
+            "We're really excited to hear your thoughts on our 2020 year in review, and if you like what we do, please consider supporting us by clicking the button below. Your donation ensures that all of our work and projects remain free and accessible to everyone, and we can't begin to thank you enough for the support!",
+        })}
       </SubSection>
       <div className='flex justify-center my-16 mb-36'>
-        <DarkButton href={`/${intl.locale}/support`}>
-          <FormattedMessage
-            id='page.year-in-review.2020.section.moving-forward.btn.text'
-            defaultMessage='Support our work!'
-          />
+        <DarkButton href={`/${locale}/support`}>
+          {intl.formatMessage({
+            id: 'page.year-in-review.2020.section.moving-forward.btn.text',
+            defaultMessage: 'Support our work!',
+          })}
         </DarkButton>
       </div>
       <Sprite image={cow} />
