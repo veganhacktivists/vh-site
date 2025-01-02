@@ -1,18 +1,22 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
-
-import Bee from '../../../../../public/images/yearInReview/2022/bee.png';
-import GrantApplicants from '../../../../../public/images/yearInReview/2022/grant-applicants.png';
-import GrantGranted from '../../../../../public/images/yearInReview/2022/grant-granted.png';
-import GrantFunded from '../../../../../public/images/yearInReview/2022/grant-funded.png';
 
 import CustomImage from 'components/decoration/customImage';
 import { SectionHeader } from 'components/decoration/textBlocks';
 import SquareField from 'components/decoration/squares';
 import AnimatedNumber from 'components/decoration/animatedNumber';
+import getServerIntl from 'app/intl';
 
-const GrantProgram: React.FC = () => {
-  const intl = useIntl();
+import Bee from '~images/yearInReview/2022/bee.png';
+import GrantApplicants from '~images/yearInReview/2022/grant-applicants.png';
+import GrantGranted from '~images/yearInReview/2022/grant-granted.png';
+import GrantFunded from '~images/yearInReview/2022/grant-funded.png';
+
+interface Props {
+  locale: string;
+}
+
+const GrantProgram: React.FC<Props> = ({ locale }) => {
+  const intl = getServerIntl(locale);
 
   return (
     <>
@@ -55,22 +59,28 @@ const GrantProgram: React.FC = () => {
                   className='text-left'
                 />
                 <div className='text-xl text-left pt-5 pb-10'>
-                  <FormattedMessage
-                    id='page.year-in-review.2022.section.grant-program.paragraph.0'
-                    defaultMessage="Last year, we announced a partnership with <no-localization><b>The Pollination Project</b></no-localization> to offer seed funding to individuals and burgeoning organizations. Here's what 2022 looked like for the program:"
-                    values={{
+                  {intl.formatMessage(
+                    {
+                      id: 'page.year-in-review.2022.section.grant-program.paragraph.0',
+                      defaultMessage:
+                        "Last year, we announced a partnership with <no-localization><b>The Pollination Project</b></no-localization> to offer seed funding to individuals and burgeoning organizations. Here's what 2022 looked like for the program:",
+                    },
+                    {
                       b: (chunks) => <b>{chunks}</b>,
-                    }}
-                  />
+                    },
+                  )}
                 </div>
                 <div className='text-xl text-left p-5 bg-grey-lighter'>
-                  <FormattedMessage
-                    id='page.year-in-review.2022.section.grant-program.paragraph.1'
-                    defaultMessage='Additionally, our endorsement of individuals and organizations helped secure <b>$70,000 in recommended funding</b> through other programs to those recipients.'
-                    values={{
+                  {intl.formatMessage(
+                    {
+                      id: 'page.year-in-review.2022.section.grant-program.paragraph.1',
+                      defaultMessage:
+                        'Additionally, our endorsement of individuals and organizations helped secure <b>$70,000 in recommended funding</b> through other programs to those recipients.',
+                    },
+                    {
                       b: (chunks) => <b>{chunks}</b>,
-                    }}
-                  />
+                    },
+                  )}
                 </div>
               </div>
             </div>
@@ -86,10 +96,10 @@ const GrantProgram: React.FC = () => {
                     <AnimatedNumber number={97} />
                   </span>
                   <span className='text-3xl leading-[1.25rem]'>
-                    <FormattedMessage
-                      id='page.year-in-review.2022.section.grant-program.stats.applicants'
-                      defaultMessage='Applicants'
-                    />
+                    {intl.formatMessage({
+                      id: 'page.year-in-review.2022.section.grant-program.stats.applicants',
+                      defaultMessage: 'Applicants',
+                    })}
                   </span>
                 </div>
               </div>
@@ -102,10 +112,10 @@ const GrantProgram: React.FC = () => {
                     <AnimatedNumber prefix='$' number={54386} />
                   </span>
                   <span className='text-3xl leading-[1.25rem]'>
-                    <FormattedMessage
-                      id='page.year-in-review.2022.section.grant-program.stats.granted'
-                      defaultMessage='Granted'
-                    />
+                    {intl.formatMessage({
+                      id: 'page.year-in-review.2022.section.grant-program.stats.granted',
+                      defaultMessage: 'Granted',
+                    })}
                   </span>
                 </div>
               </div>
@@ -118,10 +128,10 @@ const GrantProgram: React.FC = () => {
                     <AnimatedNumber number={36} />
                   </span>
                   <span className='text-3xl leading-[1.25rem]'>
-                    <FormattedMessage
-                      id='page.year-in-review.2022.section.grant-program.stats.funded'
-                      defaultMessage='Funded'
-                    />
+                    {intl.formatMessage({
+                      id: 'page.year-in-review.2022.section.grant-program.stats.funded',
+                      defaultMessage: 'Funded',
+                    })}
                   </span>
                 </div>
               </div>

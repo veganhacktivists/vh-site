@@ -1,8 +1,8 @@
-import { useIntl } from 'react-intl';
-
 import SquareField from '../../../decoration/squares';
 import { SectionHeader } from '../../../decoration/textBlocks';
 import SectionContainer from '../sectionContainer';
+
+import getServerIntl from 'app/intl';
 
 import type { IntlShape } from 'react-intl';
 
@@ -128,8 +128,13 @@ const getChanges = (intl: IntlShape): Change[] => {
   ];
 };
 
-const MinorChangesBigImpact: React.FC = () => {
-  const intl = useIntl();
+interface Props {
+  locale: string;
+}
+
+const MinorChangesBigImpact: React.FC<Props> = ({ locale }) => {
+  const intl = getServerIntl(locale);
+
   return (
     <>
       <SquareField

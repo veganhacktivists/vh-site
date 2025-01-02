@@ -1838,9 +1838,6 @@
   "page.year-in-review.2022.section.featured-interviews.headline": {
     "message": "Featured <b>interviews</b>"
   },
-  "page.year-in-review.2022.section.featured-interviews.loading-spinner": {
-    "message": "Loading"
-  },
   "page.year-in-review.2022.section.featured-interviews.paragraph": {
     "message": "Earlier in the year, we had the honor of sitting down with diverse leaders in animal protection. We were inspired by their origin stories, words of wisdom, and their openness and candor in sharing their experiences with us — and hope you are too."
   },
@@ -1943,6 +1940,9 @@
   "page.year-in-review.2022.section.playground.paragraph.2": {
     "message": "These volunteers are not just developers or designers, but also include data scientists, videographers, marketers, security experts, researchers, and many more roles."
   },
+  "page.year-in-review.2022.section.providing-value.building-projects.headline": {
+    "message": "Building <b>projects, research and community</b> in 2022"
+  },
   "page.year-in-review.2022.section.providing-value.building-projects.paragraph": {
     "message": "<b>Beyond building technology</b>, we work hard to find and fill gaps in our movement. This not only includes building our projects, but also launching our research study, participating in various international conferences, and investing in the growth of communities."
   },
@@ -1967,8 +1967,14 @@
   "page.year-in-review.2022.section.providing-value.numbers.total-value": {
     "message": "Total value of <span>technology built to date</span> for the animal protection movement"
   },
+  "page.year-in-review.2022.section.providing-value.we-expanded.headline": {
+    "message": "We expanded our network by over <b>1500+ volunteers</b>"
+  },
   "page.year-in-review.2022.section.providing-value.we-expanded.paragraph": {
     "message": "<b>Within our Playground community</b>, we've been able to expand our network of volunteers to 1500+ strong utilizing skills like developers, designers, writers, editors, researchers, marketers, data scientists, and many other roles."
+  },
+  "page.year-in-review.2022.section.providing-value.we-partnered.headline": {
+    "message": "We partnered with <b>10 organizations</b> for animal protection"
   },
   "page.year-in-review.2022.section.providing-value.we-partnered.paragraph": {
     "message": "<b>We are immensely thankful</b> for the opportunity to partner and collaborate with other organizations dedicated to animal protection such as <no-localization>Sentient Media</no-localization>, <no-localization>Open Sanctuary</no-localization>, <no-localization>Animal Advocacy Careers</no-localization>, and <no-localization>Animal Defense Partnerships</no-localization>, and others."
@@ -2153,11 +2159,17 @@
   "page.year-in-review.2023.section.knowledge.ava-summit.heading": {
     "message": "Recognizing Volunteers as Catalysts: <b>AVA Summit in LA</b>"
   },
+  "page.year-in-review.2023.section.knowledge.ava-summit.image.alt": {
+    "message": "VH team at the AVA Summit in LA"
+  },
   "page.year-in-review.2023.section.knowledge.erasmus.content": {
     "message": "In spring, <no-localization>James Morgan</no-localization> spoke about wild animal suffering at <no-localization>Erasmus University</no-localization> in Rotterdam, thanks to <no-localization>PISE</no-localization> Rotterdam, a student group aligned with <no-localization>Effective Altruism</no-localization>! We're incredibly grateful for the opportunity, and the insightful questions the students raised during the discussion."
   },
   "page.year-in-review.2023.section.knowledge.erasmus.heading": {
     "message": "Why Wild Animal Suffering Matters: <b>Erasmus University Rotterdam</b>"
+  },
+  "page.year-in-review.2023.section.knowledge.erasmus.image.alt": {
+    "message": "Photo of James at Erasmus"
   },
   "page.year-in-review.2023.section.knowledge.farm.content": {
     "message": "In 2023, our Executive Director <no-localization>James Morgan</no-localization> took a balanced look at using AI in advocacy work during an interview with the <no-localization>Farm Animal Rights Movement (FARM)</no-localization>. He talked about AI’s merits and pitfalls, encouraged advocates to use AI tools in daily tasks, and highlighted how AI can boost the efficiency and effectiveness of our efforts. You can watch the interview right here."
@@ -2176,6 +2188,9 @@
   },
   "page.year-in-review.2023.section.knowledge.lead-conference.heading": {
     "message": "Thriving in an Organization: <b>LEAD Conference</b>"
+  },
+  "page.year-in-review.2023.section.knowledge.lead-conference.image.alt": {
+    "message": "Photo from the LEAD conference"
   },
   "page.year-in-review.2023.section.knowledge.liberation-conference.content": {
     "message": "In Berkeley, CA, our Board Director <no-localization>Ryuji Chua</no-localization> spoke at the world's largest grassroots animal rights conference. His workshop, 'How to Talk about Animal Rights: Principles of Effective Communication for Educators & Content Creators', explored how to create engaging media, capture and retain attention, and offer an alternative perspective on the world in an engaging and memorable way."

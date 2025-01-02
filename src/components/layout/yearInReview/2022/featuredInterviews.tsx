@@ -1,29 +1,26 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
 
 import SectionContainer from '../sectionContainer';
 import { SectionHeader } from '../../../decoration/textBlocks';
 
 import SubtleBorder from 'components/decoration/subtleBorder';
-import { api } from 'trpc/react';
+import { api } from 'trpc/server';
 import { DarkButton } from 'components/decoration/buttons';
-import Spinner from 'components/decoration/spinner';
 import BlogEntrySummaryPages from 'components/layout/blog/blogEntrySummary_pages';
+import getServerIntl from 'app/intl';
 
 interface FeaturedInterviewsProps {
   interviews: string[];
+  locale: string;
 }
 
-const FeaturedInterviews: React.FC<FeaturedInterviewsProps> = ({
+const FeaturedInterviews: React.FC<FeaturedInterviewsProps> = async ({
   interviews,
+  locale,
 }) => {
-  const intl = useIntl();
+  const intl = getServerIntl(locale);
 
-  const {
-    data: blogs,
-    isPending: isLoading,
-    isError,
-  } = api.blog.getBlogsBySlugs.useQuery(interviews);
+  const blogs = await api.blog.getBlogsBySlugs(interviews);
 
   return (
     <>
@@ -38,26 +35,14 @@ const FeaturedInterviews: React.FC<FeaturedInterviewsProps> = ({
         }
       >
         <div className='text-xl md:w-2/3 mx-auto pb-16'>
-          <FormattedMessage
-            id='page.year-in-review.2022.section.featured-interviews.paragraph'
-            defaultMessage='Earlier in the year, we had the honor of sitting down with diverse leaders in animal protection. We were inspired by their origin stories, words of wisdom, and their openness and candor in sharing their experiences with us — and hope you are too.'
-          />
+          {intl.formatMessage({
+            id: 'page.year-in-review.2022.section.featured-interviews.paragraph',
+            defaultMessage:
+              'Earlier in the year, we had the honor of sitting down with diverse leaders in animal protection. We were inspired by their origin stories, words of wisdom, and their openness and candor in sharing their experiences with us — and hope you are too.',
+          })}
         </div>
-        {isLoading && !isError && (
-          <div>
-            <span className='block mb-1'>
-              <FormattedMessage
-                id='page.year-in-review.2022.section.featured-interviews.loading-spinner'
-                defaultMessage='Loading'
-              />
-            </span>
-            <Spinner />
-          </div>
-        )}
         <div className='grid md:grid-cols-3 md:gap-x-12 gap-y-10 xl:w-2/3 mx-auto auto-rows-min pb-20'>
-          {!isLoading &&
-            !isError &&
-            blogs &&
+          {blogs &&
             blogs.map((blog) => {
               return (
                 <SubtleBorder
@@ -71,10 +56,10 @@ const FeaturedInterviews: React.FC<FeaturedInterviewsProps> = ({
         </div>
         <div className='flex justify-center pb-20'>
           <DarkButton className='mb-0' href={`/${intl.locale}/blog`}>
-            <FormattedMessage
-              id='page.year-in-review.2022.section.featured-interviews.btn.cta'
-              defaultMessage='Read More on the Blog'
-            />
+            {intl.formatMessage({
+              id: 'page.year-in-review.2022.section.featured-interviews.btn.cta',
+              defaultMessage: 'Read More on the Blog',
+            })}
           </DarkButton>
         </div>
       </SectionContainer>

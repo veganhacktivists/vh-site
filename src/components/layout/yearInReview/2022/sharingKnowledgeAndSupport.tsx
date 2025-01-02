@@ -1,15 +1,15 @@
-import { FormattedMessage, useIntl } from 'react-intl';
-
-import family from '../../../../../public/images/yearInReview/2022/vh-family.jpg';
-import malina from '../../../../../public/images/yearInReview/2022/malina-tran-at-care.jpg';
-import james from '../../../../../public/images/yearInReview/2022/james-morgan-at-ava-summit.jpg';
 import { SectionHeader } from '../../../decoration/textBlocks';
 import SectionContainer from '../sectionContainer';
 import SquareField from '../../../decoration/squares';
 
 import CustomImage from 'components/decoration/customImage';
+import getServerIntl from 'app/intl';
 
 import type { StaticImageData } from 'next/image';
+
+import james from '~images/yearInReview/2022/james-morgan-at-ava-summit.jpg';
+import malina from '~images/yearInReview/2022/malina-tran-at-care.jpg';
+import family from '~images/yearInReview/2022/vh-family.jpg';
 
 interface ImageWithCaptionTypes {
   caption: string;
@@ -45,8 +45,12 @@ const ImageWithCaption: React.FC<ImageWithCaptionTypes> = ({
   );
 };
 
-const SharingKnowledgeAndSupport: React.FC = () => {
-  const intl = useIntl();
+interface Props {
+  locale: string;
+}
+
+const SharingKnowledgeAndSupport: React.FC<Props> = ({ locale }) => {
+  const intl = getServerIntl(locale);
 
   return (
     <>
@@ -61,13 +65,16 @@ const SharingKnowledgeAndSupport: React.FC = () => {
         }
       >
         <div className='text-xl md:w-2/3 xl:w-1/2 mx-auto'>
-          <FormattedMessage
-            id='page.year-in-review.2022.section.sharing-knowledge-and-support.paragraph'
-            defaultMessage='This year, we were invited to speak at <no-localization><b>CARE Conference</b></no-localization> in <no-localization>Warsaw, Poland</no-localization> and the first-ever <no-localization><b>AVA Summit</b></no-localization> in <no-localization>Washington, DC</no-localization>. We spoke about our work for the animal protection movement and how organizations and individuals could get involved with our services to get the support they need.'
-            values={{
+          {intl.formatMessage(
+            {
+              id: 'page.year-in-review.2022.section.sharing-knowledge-and-support.paragraph',
+              defaultMessage:
+                'This year, we were invited to speak at <no-localization><b>CARE Conference</b></no-localization> in <no-localization>Warsaw, Poland</no-localization> and the first-ever <no-localization><b>AVA Summit</b></no-localization> in <no-localization>Washington, DC</no-localization>. We spoke about our work for the animal protection movement and how organizations and individuals could get involved with our services to get the support they need.',
+            },
+            {
               b: (chunks) => <b>{chunks}</b>,
-            }}
-          />
+            },
+          )}
         </div>
         <div className='xl:w-2/3 mx-auto mt-20'>
           <div className='flex flex-col md:flex-row gap-5 pb-20'>
