@@ -1,11 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import { FormattedMessage, useIntl } from 'react-intl';
 
 import SquareField from '../../../decoration/squares';
 import { SectionHeader } from '../../../decoration/textBlocks';
 import ContentfulImage from '../../contentfulImage';
 import SectionContainer from '../sectionContainer';
+
+import getServerIntl from 'app/intl';
 
 import type {
   IBlogEntry,
@@ -18,12 +19,14 @@ export interface BlogPostItem {
 }
 export interface FeaturedBlogPostsProps {
   featuredBlogPosts: BlogPostItem[];
+  locale: string;
 }
 
 const FeaturedBlogPosts: React.FC<FeaturedBlogPostsProps> = ({
   featuredBlogPosts,
+  locale,
 }) => {
-  const intl = useIntl();
+  const intl = getServerIntl(locale);
 
   return (
     <>
@@ -36,10 +39,11 @@ const FeaturedBlogPosts: React.FC<FeaturedBlogPostsProps> = ({
               defaultMessage: 'Featured <b>blog posts</b>',
             })}
           >
-            <FormattedMessage
-              id='page.year-in-review.2021.section.featured-blog-posts.intro.paragraph'
-              defaultMessage="We've been having fun with our blog! We launched our “Meet The Team” series so we could feature the incredible work done by our team and spotlight the dedicated volunteers behind the scenes. We plan to deliver more amazing content in 2022. Stay tuned!"
-            />
+            {intl.formatMessage({
+              id: 'page.year-in-review.2021.section.featured-blog-posts.intro.paragraph',
+              defaultMessage:
+                "We've been having fun with our blog! We launched our “Meet The Team” series so we could feature the incredible work done by our team and spotlight the dedicated volunteers behind the scenes. We plan to deliver more amazing content in 2022. Stay tuned!",
+            })}
           </SectionHeader>
         }
       >
@@ -54,10 +58,7 @@ const FeaturedBlogPosts: React.FC<FeaturedBlogPostsProps> = ({
 
             return (
               <Link
-                href={{
-                  pathname: `/${intl.locale}/blog/[slug]`,
-                  query: { slug: blogEntry.fields.slug },
-                }}
+                href={`/${locale}/blog/${blogEntry.fields.slug}`}
                 key={blogEntry.fields.slug}
                 target='_blank'
               >
@@ -83,15 +84,16 @@ const FeaturedBlogPosts: React.FC<FeaturedBlogPostsProps> = ({
                     style={{ backgroundColor: color }}
                     className='font-bold p-5 mt-2'
                   >
-                    <FormattedMessage
-                      id='page.year-in-review.2021.section.featured-blog-posts.team-member-introduction'
-                      defaultMessage='Meet <no-localization>{name}</no-localization>'
-                      values={{
-                        name: name.includes('Suan')
-                          ? name.split(' ').slice(0, 2).join(' ')
-                          : name.split(' ')[0],
-                      }}
-                    />
+                    {intl.formatMessage(
+                      {
+                        id: 'page.year-in-review.2021.section.featured-blog-posts.team-member-introduction',
+                        defaultMessage:
+                          'Meet <no-localization>{name}</no-localization>',
+                      },
+                      {
+                        name: name.split(' ')[0],
+                      },
+                    )}
                   </div>
                 </div>
               </Link>

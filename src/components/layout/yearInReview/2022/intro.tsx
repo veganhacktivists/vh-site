@@ -167,7 +167,7 @@ const Intro: React.FC<Props> = ({ locale }) => {
         <div>
           <HighlightBlock
             borderColor='magenta'
-            text={intl.formatMessage({
+            header={intl.formatMessage({
               id: 'page.year-in-review.2022.section.providing-value.we-partnered.headline',
               defaultMessage:
                 'We partnered with <b>10 organizations</b> for animal protection',
@@ -186,7 +186,7 @@ const Intro: React.FC<Props> = ({ locale }) => {
           </HighlightBlock>
           <HighlightBlock
             borderColor='yellow'
-            text={intl.formatMessage({
+            header={intl.formatMessage({
               id: 'page.year-in-review.2022.section.providing-value.we-expanded.headline',
               defaultMessage:
                 'We expanded our network by over <b>1500+ volunteers</b>',
@@ -205,7 +205,7 @@ const Intro: React.FC<Props> = ({ locale }) => {
           </HighlightBlock>
           <HighlightBlock
             borderColor='green'
-            text={intl.formatMessage({
+            header={intl.formatMessage({
               id: 'page.year-in-review.2022.section.providing-value.building-projects.headline',
               defaultMessage:
                 'Building <b>projects, research and community</b> in 2022',

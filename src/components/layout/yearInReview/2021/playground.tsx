@@ -1,15 +1,20 @@
-import { FormattedMessage, useIntl } from 'react-intl';
-
 import { SectionHeader } from '../../../decoration/textBlocks';
 import SectionContainer from '../sectionContainer';
 import { DarkButton } from '../../../decoration/buttons';
 import SquareField from '../../../decoration/squares';
-import discord from '../../../../../public/images/yearInReview/2021/discord.png';
 
 import CustomImage from 'components/decoration/customImage';
+import getServerIntl from 'app/intl';
 
-const Playground: React.FC = () => {
-  const intl = useIntl();
+import discord from '~images/yearInReview/2021/discord.png';
+
+interface Props {
+  locale: string;
+}
+
+const Playground: React.FC<Props> = ({ locale }) => {
+  const intl = getServerIntl(locale);
+
   return (
     <>
       <SquareField
@@ -31,22 +36,25 @@ const Playground: React.FC = () => {
               })}
             />
             <div className='space-y-5'>
-              <FormattedMessage
-                id='page.year-in-review.2021.section.playground.paragraph'
-                defaultMessage="<p>We launched an open-source community available to the public called <no-localization>VH: Playground</no-localization>! <no-localization>Playground</no-localization> allows developers who don't have the time or specific skills to join the core <no-localization>Vegan Hacktivists</no-localization> team to still contribute to the movement, whether that be on our open source projects or their own!</p> <p>In short, we wanted to build and foster a community of vegan developers in order to support folks outside of our network—so far we've attracted over 400 members, and counting!</p>"
-                values={{
+              {intl.formatMessage(
+                {
+                  id: 'page.year-in-review.2021.section.playground.paragraph',
+                  defaultMessage:
+                    "<p>We launched an open-source community available to the public called <no-localization>VH: Playground</no-localization>! <no-localization>Playground</no-localization> allows developers who don't have the time or specific skills to join the core <no-localization>Vegan Hacktivists</no-localization> team to still contribute to the movement, whether that be on our open source projects or their own!</p> <p>In short, we wanted to build and foster a community of vegan developers in order to support folks outside of our network—so far we've attracted over 400 members, and counting!</p>",
+                },
+                {
                   p: (chunks) => <p>{chunks}</p>,
-                }}
-              />
+                },
+              )}
               <div className='mt-5 pt-5 w-min mx-auto md:mx-0'>
                 <DarkButton
                   href='https://discord.gg/cRqJBmUR9b'
                   className='w-min font-semibold'
                 >
-                  <FormattedMessage
-                    id='page.year-in-review.2021.section.playground.btn.cta'
-                    defaultMessage='Join the playground'
-                  />
+                  {intl.formatMessage({
+                    id: 'page.year-in-review.2021.section.playground.btn.cta',
+                    defaultMessage: 'Join the playground',
+                  })}
                 </DarkButton>
               </div>
             </div>

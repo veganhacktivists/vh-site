@@ -1457,8 +1457,11 @@
   "page.year-in-review.2021.section.advisory-service.headline": {
     "message": "Our new <b>advisory service</b>"
   },
-  "page.year-in-review.2021.section.advisory-service.paragraph": {
-    "message": "<p>We launched our newest service to connect people with our team of experts who have a wide range of experience and skills. We welcome vegan activists and organizations to count us as a resource for their tech, org structure, strategy, marketing, grant requests, and more.</p> <p>We've been very happy with this launch and we've received over 100+ requests for advice! We have been able to assist organizations such as <no-localization>Sinergia Animal, The Humane League, Vegan Tokyo, Mercy for Animals, PETA, Animal Rights Advocates</no-localization>, among many others.</p>"
+  "page.year-in-review.2021.section.advisory-service.paragraph1": {
+    "message": "We launched our newest service to connect people with our team of experts who have a wide range of experience and skills. We welcome vegan activists and organizations to count us as a resource for their tech, org structure, strategy, marketing, grant requests, and more."
+  },
+  "page.year-in-review.2021.section.advisory-service.paragraph2": {
+    "message": "We've been very happy with this launch and we've received over 100+ requests for advice! We have been able to assist organizations such as Sinergia Animal, The Humane League, Vegan Tokyo, Mercy for Animals, PETA, Animal Rights Advocates, among many others."
   },
   "page.year-in-review.2021.section.big-impact.headline": {
     "message": "Minor changes with a <b>big impact</b>"
@@ -1703,6 +1706,9 @@
   "page.year-in-review.2021.section.videos.paragraph": {
     "message": "We've partnered with <no-localization><link>Expanded Circle Collective</link></no-localization> in order to produce two animated introductory videos for <no-localization>Activist Hub</no-localization> and <no-localization>Vegan Bootcamp</no-localization>! These videos are fantastic resources for viewers to quickly get familiar with our work. We look forward to collaborating with them in the new year."
   },
+  "page.year-in-review.2021.section.we-grew.advisory-team.heading": {
+    "message": "We <b>expanded our advisory team</b> of vegan experts"
+  },
   "page.year-in-review.2021.section.we-grew.advisory-team.paragraph": {
     "message": "<b>We're so thankful to have more advisors to lean on</b> such as <no-localization>Katie</no-localization> from <no-localization>Animal Equality</no-localization>, <no-localization>Chris</no-localization> from <no-localization>APEX Advocacy</no-localization>, <no-localization>Tessa</no-localization> from the <no-localization>Pollination Project</no-localization>, and <no-localization>Casey</no-localization> from <no-localization>Faunalytics</no-localization>. To browse more of our advisors, <link>click here</link>."
   },
@@ -1712,8 +1718,14 @@
   "page.year-in-review.2021.section.we-grew.intro.paragraph": {
     "message": "This year, we refined our goals and built projects that focused primarily on filling existing gaps in our movement. We grew more meaningful partnerships and we greatly improved our branding, design team, and services offered. We're excited to show you what we've done below!"
   },
+  "page.year-in-review.2021.section.we-grew.new-teams.heading": {
+    "message": "We expanded with <b>5 new teams</b> in just 6 months"
+  },
   "page.year-in-review.2021.section.we-grew.new-teams.paragraph": {
     "message": "<b>More teams, more impact!</b> We're so happy to announce the growth of our community with five new amazing teams. Please welcome Team Avocado, Team Mango, Team Watermelon, and Team Sweet Potato."
+  },
+  "page.year-in-review.2021.section.we-grew.projects.heading": {
+    "message": "We launched <b>8 new projects</b> for the movement"
   },
   "page.year-in-review.2021.section.we-grew.projects.paragraph": {
     "message": "<b>Four of which were in-house projects.</b> We were also lucky enough to work on projects with <no-localization>Sehati Animal Sanctuary</no-localization>, <no-localization>Animal Alliance Asia</no-localization>, <no-localization>Vegan Japan Consulting</no-localization>, and many more."

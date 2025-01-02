@@ -8,15 +8,15 @@ interface HighlightBlockProps extends React.PropsWithChildren {
   /**
    * Text may contain <b> and </b> tags to mark bold text.
    */
-  text: string;
+  header: string;
 }
 
 export const HighlightBlock: React.FC<HighlightBlockProps> = ({
   borderColor,
-  text,
+  header,
   children,
 }) => {
-  const { startWithBoldFont, splitTextComponents } = parseBoldText(text);
+  const { startWithBoldFont, splitTextComponents } = parseBoldText(header);
 
   return (
     <div className='flex flex-col md:flex-row xl:w-2/3 2xl:w-2/3 mx-auto mb-8'>

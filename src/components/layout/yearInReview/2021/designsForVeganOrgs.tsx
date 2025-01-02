@@ -1,16 +1,21 @@
-import { FormattedMessage, useIntl } from 'react-intl';
-
-import vcj from '../../../../../public/images/yearInReview/2021/DesignedLogo_VCJ.png';
-import sv from '../../../../../public/images/yearInReview/2021/DesignedLogo_SV.png';
-import ivff from '../../../../../public/images/yearInReview/2021/DesignedLogo_IVFF.png';
 import { SectionHeader } from '../../../decoration/textBlocks';
 import SectionContainer from '../sectionContainer';
 import SquareField from '../../../decoration/squares';
 
 import CustomImage from 'components/decoration/customImage';
+import getServerIntl from 'app/intl';
 
-const DesignsForVeganOrgs: React.FC = () => {
-  const intl = useIntl();
+import ivff from '~images/yearInReview/2021/DesignedLogo_IVFF.png';
+import sv from '~images/yearInReview/2021/DesignedLogo_SV.png';
+import vcj from '~images/yearInReview/2021/DesignedLogo_VCJ.png';
+
+interface Props {
+  locale: string;
+}
+
+const DesignsForVeganOrgs: React.FC<Props> = ({ locale }) => {
+  const intl = getServerIntl(locale);
+
   return (
     <>
       <SectionContainer
@@ -23,10 +28,11 @@ const DesignsForVeganOrgs: React.FC = () => {
               defaultMessage: '<b>Designs</b> for <b>Vegan Orgs</b>',
             })}
           >
-            <FormattedMessage
-              id='page.year-in-review.2021.section.designs-for-vegan-orgs.paragraph'
-              defaultMessage='We had the chance to provide on-the-house design support to vegan organizations that needed to create their brand and identity, as well as stand out in the competitive digital landscape.'
-            />
+            {intl.formatMessage({
+              id: 'page.year-in-review.2021.section.designs-for-vegan-orgs.paragraph',
+              defaultMessage:
+                'We had the chance to provide on-the-house design support to vegan organizations that needed to create their brand and identity, as well as stand out in the competitive digital landscape.',
+            })}
           </SectionHeader>
         }
       >
