@@ -1,8 +1,7 @@
 import AnimatedNumber from '../../../decoration/animatedNumber';
 import { SectionHeader } from '../../../decoration/textBlocks';
 import SectionContainer from '../sectionContainer';
-
-import { HighlightBlock } from './highlightBlock';
+import { HighlightBlock } from '../highlightBlock';
 
 import SquareField from 'components/decoration/squares';
 import getServerIntl from 'app/intl';

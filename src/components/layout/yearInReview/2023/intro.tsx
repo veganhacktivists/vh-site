@@ -24,10 +24,8 @@ const Intro: React.FC<Props> = ({ locale }) => {
       <div className='p-16 md:pt-24 pb-16 px-5'>
         <div>
           <HighlightBlock
-            fullWidthOnMobile={true}
             borderColor='magenta'
-            headerStart='We ventured out to'
-            headerBold='share what we know'
+            header='We ventured out to <b>share what we know</b>'
           >
             {intl.formatMessage(
               {
@@ -41,10 +39,8 @@ const Intro: React.FC<Props> = ({ locale }) => {
             )}
           </HighlightBlock>
           <HighlightBlock
-            fullWidthOnMobile={true}
             borderColor='yellow'
-            headerStart='We built projects to'
-            headerBold='grow and expend the movement'
+            header='We built projects to <b>grow and expend the movement</b>'
           >
             {intl.formatMessage(
               {
@@ -58,11 +54,8 @@ const Intro: React.FC<Props> = ({ locale }) => {
             )}
           </HighlightBlock>
           <HighlightBlock
-            fullWidthOnMobile={true}
             borderColor='green'
-            headerStart='We commited to'
-            headerBold='major changes'
-            headerEnd='within our org'
+            header='We commited to <b>major changes</b> within our org'
           >
             {intl.formatMessage(
               {

@@ -1,7 +1,7 @@
 import CustomLink from '../../../decoration/link';
 import { SubSection } from '../../../decoration/textBlocks';
 import { pixelHeart } from '../../../../images/separators';
-import { HighlightBlock } from '../2022/highlightBlock';
+import { HighlightBlock } from '../highlightBlock';
 
 import CustomImage from 'components/decoration/customImage';
 import getServerIntl from 'app/intl';

@@ -19,7 +19,7 @@ export const HighlightBlock: React.FC<HighlightBlockProps> = ({
   const { startWithBoldFont, splitTextComponents } = parseBoldText(header);
 
   return (
-    <div className='flex flex-col md:flex-row xl:w-2/3 2xl:w-2/3 mx-auto mb-8'>
+    <div className='flex flex-col md:flex-row xl:w-2/3 2xl:w-2/3 mx-auto mb-8 w-4/5'>
       <h1
         className='md:leading-[1.3] text-left flex-1 font-mono bg-black text-white text-4xl md:text-5xl p-10 border-l-16 uppercase'
         style={{ borderColor: getThemeColor(borderColor) }}

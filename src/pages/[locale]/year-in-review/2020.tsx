@@ -223,9 +223,7 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
       <div className='h-12' />
       <HighlightBlock
         borderColor='magenta'
-        headerStart='WE LAUNCHED'
-        headerBold='EIGHT PROJECTS'
-        headerEnd='FOR THE MOVEMENT'
+        header='WE LAUNCHED <b>EIGHT PROJECTS</b> FOR THE MOVEMENT'
       >
         <FormattedMessage
           id='page.year-in-review.2020.section.we-grew.launched.content'
@@ -234,8 +232,7 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
       </HighlightBlock>
       <HighlightBlock
         borderColor='yellow'
-        headerStart='WE EXPANDED OUR TEAM FROM'
-        headerBold='28 TO 80 VOLUNTEERS'
+        header='WE EXPANDED OUR TEAM FROM <b>28 TO 80 VOLUNTEERS</b>'
       >
         <FormattedMessage
           id='page.year-in-review.2020.section.we-grew.expanded.content'
@@ -244,9 +241,7 @@ const YearInReview2020: React.FC<YearInReviewProps> = ({
       </HighlightBlock>
       <HighlightBlock
         borderColor='green'
-        headerStart='WE NOW HAVE AN'
-        headerBold='ADVISORY TEAM'
-        headerEnd='OF VEGAN EXPERTS'
+        header='WE NOW HAVE AN <b>ADVISORY TEAM</b> OF VEGAN EXPERTS'
       >
         <FormattedMessage
           id='page.year-in-review.2020.section.we-grew.advisory-team.content'
