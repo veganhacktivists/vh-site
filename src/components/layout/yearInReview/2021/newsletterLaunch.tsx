@@ -1,16 +1,21 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
 
 import { DarkButton } from '../../../decoration/buttons';
 import { SectionHeader } from '../../../decoration/textBlocks';
 import SectionContainer from '../sectionContainer';
 import SquareField from '../../../decoration/squares';
-import newsletter from '../../../../../public/images/yearInReview/2021/newsletter.png';
 
 import CustomImage from 'components/decoration/customImage';
+import getServerIntl from 'app/intl';
 
-const NewsletterLaunch: React.FC = () => {
-  const intl = useIntl();
+import newsletter from '~images/yearInReview/2021/newsletter.png';
+
+interface Props {
+  locale: string;
+}
+
+const NewsletterLaunch: React.FC<Props> = ({ locale }) => {
+  const intl = getServerIntl(locale);
 
   return (
     <>
@@ -25,20 +30,21 @@ const NewsletterLaunch: React.FC = () => {
               className='text-grey'
             />
             <div className='mt-5 mb-10'>
-              <FormattedMessage
-                id='page.year-in-review.2021.section.newsletter-launch.paragraph'
-                defaultMessage="Much has been happening in the vegan movement, and we are excited to be part of those changes. To keep you up-to-date with our progress, we have launched a monthly newsletter to showcase our projects and general happenings. We've accumulated over 15,000 emails from our community to date. Sign up for our newsletter today!"
-              />
+              {intl.formatMessage({
+                id: 'page.year-in-review.2021.section.newsletter-launch.paragraph',
+                defaultMessage:
+                  "Much has been happening in the vegan movement, and we are excited to be part of those changes. To keep you up-to-date with our progress, we have launched a monthly newsletter to showcase our projects and general happenings. We've accumulated over 15,000 emails from our community to date. Sign up for our newsletter today!",
+              })}
             </div>
             <DarkButton
               className='mx-auto font-mono font-semibold w-min md:mb-10 md:mx-0'
-              href='/newsletter'
+              href={`/${locale}/newsletter`}
               newTab
             >
-              <FormattedMessage
-                id='page.year-in-review.2021.section.newsletter-launch.btn.cta'
-                defaultMessage='Sign up for our newsletter!'
-              />
+              {intl.formatMessage({
+                id: 'page.year-in-review.2021.section.newsletter-launch.btn.cta',
+                defaultMessage: 'Sign up for our newsletter!',
+              })}
             </DarkButton>
           </div>
           <div className='relative max-w-screen-sm mb-10 h-min'>

@@ -1,3 +1,5 @@
+'use client';
+
 import {
   faLinkedinIn as linkedInIcon,
   faFacebookF as facebookIcon,

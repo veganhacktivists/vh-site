@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useMemo } from 'react';
 import {
   faInstagram,
@@ -7,10 +9,10 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { faShare } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import { FormattedMessage } from 'react-intl';
+import { usePathname } from 'next/navigation';
 
 import useDeviceDetect from '../../../hooks/useDeviceDetect';
 
@@ -93,7 +95,7 @@ const BaseButton = React.forwardRef<HTMLElement, ButtonProps>(
             ref={ref as Ref<HTMLAnchorElement>}
             className={classNames(
               classes,
-              `${props.disabled ? 'bg-gray-light text-black' : ''}`,
+              props.disabled && 'bg-gray-light text-black',
             )}
             target={openInNewTab ? '_blank' : undefined}
             rel={openInNewTab ? 'noreferrer' : undefined}
@@ -404,7 +406,7 @@ const NavButton: React.FC<ButtonProps & { href: string }> = ({
   className = '',
   children,
 }) => {
-  const { pathname } = useRouter();
+  const pathname = usePathname();
   const atLocation = pathname === href;
 
   const classes = classNames('m-5 font-mono', className);

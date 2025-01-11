@@ -1,16 +1,22 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-
-import ARABackground from '../../../../../public/images/yearInReview/2022/ara-background.png';
-import ARALogo from '../../../../../public/images/yearInReview/2022/ara-logo.png';
-import ARAAnimals from '../../../../../public/images/yearInReview/2022/ara-animals.png';
-import ARADiscord from '../../../../../public/images/yearInReview/2022/ara-discord.png';
 
 import CustomImage from 'components/decoration/customImage';
 import SquareField from 'components/decoration/squares';
 import { LightButton } from 'components/decoration/buttons';
+import getServerIntl from 'app/intl';
 
-const AnimalRightsAdvocates: React.FC = () => {
+import ARABackground from '~images/yearInReview/2022/ara-background.png';
+import ARALogo from '~images/yearInReview/2022/ara-logo.png';
+import ARAAnimals from '~images/yearInReview/2022/ara-animals.png';
+import ARADiscord from '~images/yearInReview/2022/ara-discord.png';
+
+interface Props {
+  locale: string;
+}
+
+const AnimalRightsAdvocates: React.FC<Props> = ({ locale }) => {
+  const intl = getServerIntl(locale);
+
   return (
     <>
       <SquareField
@@ -51,30 +57,31 @@ const AnimalRightsAdvocates: React.FC = () => {
         <div className='xl:w-2/3 mx-auto flex flex-row flex-wrap py-20'>
           <div className='text-white w-full md:w-2/3 text-center md:text-left md:pr-5'>
             <span className='text-6xl font-mono font-bold uppercase'>
-              <FormattedMessage
-                id='page.year-in-review.2022.section.animal-rights-advocates.heading'
-                defaultMessage='Uplifting online community'
-              />
+              {intl.formatMessage({
+                id: 'page.year-in-review.2022.section.animal-rights-advocates.heading',
+                defaultMessage: 'Uplifting online community',
+              })}
             </span>
             <div className='mt-10'>
               <span className='text-xl'>
-                <FormattedMessage
-                  id='page.year-in-review.2022.section.animal-rights-advocates.paragraph'
-                  defaultMessage='We acquired the largest animal rights online community in the world. Founded in 2019, <no-localization>Animal Rights Advocates (ARA)</no-localization> is a platform on <no-localization>Discord</no-localization> for young activists. <no-localization>ARA</no-localization> has over 22,000 members who participate daily in vegan outreach efforts across hundreds of <no-localization>Discord</no-localization> communities. In addition to outreach events and training, this community also hosts <no-localization>AMA</no-localization> events with philosophers, activists, and influencers every week. <no-localization>ARA</no-localization> is also an inclusive community that strongly believes in intersectionality, feminism, diversity, trans rights, and more – a space where everyone is welcome.'
-                />
+                {intl.formatMessage({
+                  id: 'page.year-in-review.2022.section.animal-rights-advocates.paragraph',
+                  defaultMessage:
+                    'We acquired the largest animal rights online community in the world. Founded in 2019, <no-localization>Animal Rights Advocates (ARA)</no-localization> is a platform on <no-localization>Discord</no-localization> for young activists. <no-localization>ARA</no-localization> has over 22,000 members who participate daily in vegan outreach efforts across hundreds of <no-localization>Discord</no-localization> communities. In addition to outreach events and training, this community also hosts <no-localization>AMA</no-localization> events with philosophers, activists, and influencers every week. <no-localization>ARA</no-localization> is also an inclusive community that strongly believes in intersectionality, feminism, diversity, trans rights, and more – a space where everyone is welcome.',
+                })}
               </span>
               <div className='flex flex-col sm:flex-row justify-start md:justify-left mt-12 gap-10'>
                 <LightButton href='https://discord.gg/animalrights'>
-                  <FormattedMessage
-                    id='page.year-in-review.2022.section.animal-rights-advocates.btn.community.cta'
-                    defaultMessage='Join the Community'
-                  />
+                  {intl.formatMessage({
+                    id: 'page.year-in-review.2022.section.animal-rights-advocates.btn.community.cta',
+                    defaultMessage: 'Join the Community',
+                  })}
                 </LightButton>
                 <LightButton href='https://www.aramovement.org/'>
-                  <FormattedMessage
-                    id='page.year-in-review.2022.section.animal-rights-advocates.btn.website.cta'
-                    defaultMessage='Visit Website'
-                  />
+                  {intl.formatMessage({
+                    id: 'page.year-in-review.2022.section.animal-rights-advocates.btn.website.cta',
+                    defaultMessage: 'Visit Website',
+                  })}
                 </LightButton>
               </div>
             </div>

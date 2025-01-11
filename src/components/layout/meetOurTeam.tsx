@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { LightButton } from '../decoration/buttons';
 import teamIcons from '../../../public/images/VH-team-icons.png';
@@ -7,6 +7,8 @@ import teamIcons from '../../../public/images/VH-team-icons.png';
 import CustomImage from 'components/decoration/customImage';
 
 const MeetOurTeam: React.FC = () => {
+  const locale = useIntl().locale;
+
   return (
     <div className='bg-black'>
       <div className='content-center mx-auto md:w-1/2 text-2xl pb-12'>
@@ -21,7 +23,7 @@ const MeetOurTeam: React.FC = () => {
         <CustomImage src={teamIcons} alt='Compassion, Creativity, Code' />
         <div className='flex justify-center flex-wrap'>
           <LightButton
-            href='/people/team'
+            href={`/${locale}/people/team`}
             className='font-semibold m-5 font-mono'
           >
             <FormattedMessage

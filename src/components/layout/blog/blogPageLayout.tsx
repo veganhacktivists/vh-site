@@ -1,11 +1,12 @@
-// import type { IBlogEntry } from '../../../types/generated/contentful';
+'use server';
 
 import Link from 'next/link';
-import React from 'react';
-import { FormattedMessage } from 'react-intl';
 
 import { DarkButton } from '../../decoration/buttons';
 import ContentfulImage from '../contentfulImage';
+
+import LocalizedContentfulEntryField from 'app/_localization/LocalizedContentfulEntryField';
+import getServerIntl from 'app/intl';
 
 import type { IBlogEntry } from '../../../types/generated/contentful';
 
@@ -23,11 +24,16 @@ export const Body: React.FC<React.PropsWithChildren> = ({ children }) => {
   return <>{children}</>;
 };
 
-export const Sidebar: React.FC<{ blogs: IBlogEntry[] }> = ({ blogs }) => {
+export const Sidebar: React.FC<{
+  locale: string;
+  blogs: IBlogEntry[];
+}> = ({ blogs, locale }) => {
+  const intl = getServerIntl(locale);
+
   return (
     <div className='bg-grey-background mb-10 h-full'>
       {blogs.map((blog) => {
-        const { title, slug, featuredImage } = blog.fields;
+        const { slug, featuredImage } = blog.fields;
 
         return (
           <div
@@ -36,19 +42,24 @@ export const Sidebar: React.FC<{ blogs: IBlogEntry[] }> = ({ blogs }) => {
             className='p-5 w-full lg:w-96'
           >
             <div className='mb-4'>
-              <Link href={`/blog/${slug}`}>
+              <Link href={`/${locale}/blog/${slug}`}>
                 <ContentfulImage image={featuredImage} alt='' />
                 <div className='font-bold text-xl md:text-2xl text-left line-clamp-3 mt-5'>
-                  {title}
+                  <LocalizedContentfulEntryField
+                    contentfulId={blog.sys.id}
+                    fieldId='title'
+                    contentType='blogEntry'
+                    locale={locale}
+                  />
                 </div>
               </Link>
             </div>
 
-            <DarkButton href={`/blog/${slug}`} className='w-full'>
-              <FormattedMessage
-                id='page.blog.section.blog-page.btn.read-more'
-                defaultMessage='Read more'
-              />
+            <DarkButton href={`/${locale}/blog/${slug}`} className='w-full'>
+              {intl.formatMessage({
+                id: 'page.blog.section.blog-page.btn.read-more',
+                defaultMessage: 'Read more',
+              })}
             </DarkButton>
           </div>
         );

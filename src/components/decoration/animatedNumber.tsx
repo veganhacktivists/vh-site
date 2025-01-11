@@ -1,3 +1,5 @@
+'use client';
+
 import { useSpring, animated } from '@react-spring/web';
 import classNames from 'classnames';
 import React, { useMemo, useState } from 'react';

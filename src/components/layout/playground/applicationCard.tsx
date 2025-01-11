@@ -5,10 +5,10 @@ import { TimePerWeekLabel, SourceLabel } from './applyForm';
 
 import { readableTimeDiff } from 'lib/helpers/date';
 
-import type { trpc } from 'lib/client/trpc';
+import type { RouterOutputs } from 'trpc/react';
 
 interface ApplicationCardProps {
-  application: trpc['playground']['admin']['requestsWithPendingApplications']['output'][number]['applications'][number];
+  application: RouterOutputs['playground']['admin']['requestsWithPendingApplications'][number]['applications'][number];
 }
 
 const Data: React.FC<{

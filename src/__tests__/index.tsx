@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 
 import '@testing-library/jest-dom/extend-expect';
-import Home from '../pages';
+import Home from '../app/[locale]/page';
 
 import type { IBlogEntry, IProject } from '../types/generated/contentful';
 

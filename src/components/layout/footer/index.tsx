@@ -1,3 +1,5 @@
+'use client';
+
 import Circle from '../../decoration/circle';
 import roundLogo from '../../../../public/images/VH_Logo_Crest_Tagline.png';
 import SquareField from '../../decoration/squares';

@@ -3,6 +3,7 @@ import React from 'react';
 import Highlighter from 'react-highlight-words';
 
 import useFuse from '../../../hooks/useFuse';
+import { defaultLocale } from '../../../../translation/defaultLocale';
 
 import type { DetailedHTMLProps } from 'react';
 import type {
@@ -70,7 +71,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
             >
               <Link
                 href={{
-                  pathname: '/handbook/[category]/[section]',
+                  pathname: `/${defaultLocale}/handbook/[category]/[section]`,
                   query: {
                     category: item.category.slug,
                     section: item.section.fields.slug,

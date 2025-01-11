@@ -5,6 +5,12 @@
   "component.button.share.label": {
     "message": "Teilen"
   },
+  "component.translatable-contentful-entry-field.translate-button.label": {
+    "message": "Automatisch übersetzte Inhalte anzeigen"
+  },
+  "component.translatable-contentful-entry-field.translate-button.show-original": {
+    "message": "Inhalt in der Originalsprache anzeigen"
+  },
   "dialog.share.headline": {
     "message": "Dieses Projekt <b>teilen</b> "
   },
@@ -37,6 +43,9 @@
   },
   "layout.footer.navigation-item.people.team.label": {
     "message": "Unser Team"
+  },
+  "layout.footer.navigation-item.privacy-policy.label": {
+    "message": "Datenschutzbestimmungen"
   },
   "layout.footer.navigation-item.services.label": {
     "message": "Dienstleistungen"
@@ -209,6 +218,9 @@
   "page.blog.next-seo.title": {
     "message": "Blog"
   },
+  "page.blog.section.blog-page-content.author": {
+    "message": "Geschrieben von <no-localization>{name}</no-localization>"
+  },
   "page.blog.section.blog-page.btn.read-more": {
     "message": "Mehr lesen"
   },
@@ -223,6 +235,9 @@
   },
   "page.blog.section.header.categories": {
     "message": "Kategorien"
+  },
+  "page.blog.section.header.categories.default-category": {
+    "message": "Andere"
   },
   "page.blog.section.header.intro": {
     "message": "Willkommen in unserem offiziellen Blog. Wir veröffentlichen regelmäßig Neuigkeiten, Ankündigungen, Projekt-Updates, Interviews, Leitartikel und mehr. Bleiben Sie auf dem Laufenden!"
@@ -280,6 +295,9 @@
   },
   "page.contact.section.get-in-contact.headline": {
     "message": "Nehmen Sie <b>Kontakt</b> auf"
+  },
+  "page.error.next-seo.title": {
+    "message": "Hoppla!"
   },
   "page.grants.content": {
     "message": "Wir bringen Sie mit Geldgebern zusammen, die bis zu <b> 1.000 USD als Anschubfinanzierung</b> für Tierrechtsaktivismus bereitstellen! Wir suchen Einzelpersonen und Basisgruppen, deren Hauptziel es ist, das Leiden von Nutztieren zu verringern."
@@ -647,8 +665,17 @@
   "page.newsletter.next-seo.title": {
     "message": "Unser Newsletter"
   },
+  "page.not-found.contact.contact-page-error.cta-email": {
+    "message": "Bitte kontaktieren Sie uns unter"
+  },
+  "page.not-found.contact.cta-button.label": {
+    "message": "Lassen Sie es uns wissen!"
+  },
+  "page.not-found.contact.cta-label": {
+    "message": "Wenn Sie glauben, dass dies ein Fehler ist"
+  },
   "page.not-found.error-message": {
-    "message": "Die von Ihnen angeforderte Seite (<no-localization>{path}</no-localization>) existiert nicht"
+    "message": "Die von Ihnen angeforderte Seite existiert nicht"
   },
   "page.not-found.next-seo.title": {
     "message": "Seite nicht gefunden"
@@ -791,6 +818,27 @@
   "page.our-work.section.playground.playground.cta-button.label": {
     "message": "Ehrenamtlich mitarbeiten"
   },
+  "page.our-work.section.proveg-incubator.content": {
+    "message": "Vegan Hacktivists und Violet Studios arbeiten mit dem Inkubator Kickstarting for Good von ProVeg zusammen, um Künstliche Intelligenz (KI) für die Umgestaltung unseres Lebensmittelsystems zu nutzen. Gemeinsam sind wir auf der Suche nach den wirkungsvollsten Ansätzen und den besten Talenten in diesem Bereich! <no-localization>{break}{break}</no-localization> Machen Sie mit, wenn Sie bereit sind, Ideen zum Leben zu erwecken, die das globale Lebensmittelökosystem erheblich verbessern können. Bewerbungen für unsere Kohorte 2024 sind jetzt bis zum 26. Mai möglich!"
+  },
+  "page.our-work.section.proveg-incubator.cta": {
+    "message": "Jetzt bewerben"
+  },
+  "page.our-work.section.proveg-incubator.section-header.headline": {
+    "message": "<b>BESCHLEUNIGEN SIE IHRE AI IDEE FÜR TIERE</b>"
+  },
+  "page.our-work.section.sharing-knowledge-and-support.conferences.1.caption": {
+    "message": "<no-localization>James Morgan</no-localization> unter <no-localization>Erasmus University</no-localization> in Rotterdam"
+  },
+  "page.our-work.section.sharing-knowledge-and-support.conferences.1.subcaption": {
+    "message": "Warum das Leiden der Tiere wichtig ist"
+  },
+  "page.our-work.section.sharing-knowledge-and-support.conferences.2.caption": {
+    "message": "<no-localization>James Morgan</no-localization> und <no-localization>Kate Rodman</no-localization> unter <no-localization>AVA Summit</no-localization>"
+  },
+  "page.our-work.section.sharing-knowledge-and-support.conferences.2.subcaption": {
+    "message": "Treffen zum Kapazitätsaufbau"
+  },
   "page.our-work.section.sharing-knowledge-and-support.section-header.content": {
     "message": "Wir halten jedes Jahr viele Vorträge auf Tierschutz- und <no-localization>EA</no-localization> Konferenzen auf der ganzen Welt! Halten Sie Ausschau nach unserem Stand oder unseren Rednern, wir würden uns freuen, Sie zu treffen und zu sehen, wo wir Ihre Arbeit unterstützen können. Folgen Sie uns auf <no-localization><link>Instagram</link></no-localization>, um zu sehen, wo wir als nächstes sein werden!"
   },
@@ -835,24 +883,6 @@
   },
   "page.people.section.navigation.button.label.volunteers": {
     "message": "UNSERE FREIWILLIGEN"
-  },
-  "page.people.section.partners.community.heading": {
-    "message": "Unsere <b>Community</b>"
-  },
-  "page.people.section.partners.community.image.alt-text": {
-    "message": "Unsere Community"
-  },
-  "page.people.section.partners.community.paragraph": {
-    "message": "Wir sind mehr als eine Gruppe von Freiwilligen; wir sind eine Community, die durch gemeinsame Werte verbunden ist und in eine Vision einer besseren Welt für Tiere investiert. Wir glauben an einen Ansatz, bei dem die Community an erster Stelle steht: eine Community, die unterstützend und wachstumsorientiert ist und für die wir gegenseitig verantwortlich sind. Wenn Sie sich angesprochen fühlen, lesen Sie weiter unten mehr."
-  },
-  "page.people.section.partners.intro.heading": {
-    "message": "Unsere <b>Partner</b>"
-  },
-  "page.people.section.partners.intro.paragraph": {
-    "message": "Hier finden Sie Partnerorganisationen, die wir unterstützen und von denen wir unterstützt werden. Werfen Sie einen Blick darauf und erfahren Sie mehr über die großartige Arbeit, die sie leisten!"
-  },
-  "page.people.section.partners.next-seo.title": {
-    "message": "Unsere Partner"
   },
   "page.people.section.team.community.heading": {
     "message": "Unsere <b>Community</b>"
@@ -1207,6 +1237,18 @@
   },
   "page.support.section.violet-studios.headline": {
     "message": "Zwei Organisationen auf einmal unterstützen"
+  },
+  "page.verify-login.button.verify": {
+    "message": "Überprüfen Sie"
+  },
+  "page.verify-login.error.invalid-request": {
+    "message": "Ungültige Anfrage"
+  },
+  "page.verify-login.headline": {
+    "message": "Überprüfung der Anmeldung"
+  },
+  "page.verify-login.intro": {
+    "message": "Klicken Sie auf die Schaltfläche unten, um Ihre Anmeldung zu überprüfen"
   },
   "page.verify-request.button.go-back": {
     "message": "Zurück"
@@ -1605,7 +1647,7 @@
     "message": "Bisher war es sehr schwierig, die Wirksamkeit von Straßeneinsätzen zu verfolgen. Wir freuen uns über die Partnerschaft mit <no-localization>AV</no-localization>, die es uns ermöglicht, ihnen die Werkzeuge zur Verfügung zu stellen, die sie benötigen, um die Effektivität jeder Gruppe mit <link>Activist Hub</link> zu überwachen und zu verfolgen."
   },
   "page.year-in-review.2021.section.partnerships.intro.headline": {
-    "message": "Aufbau sinnvoller <b>Partnerschaften</b>"
+    "message": "Aufbau bedeutsamer <b>Partnerschaften</b>"
   },
   "page.year-in-review.2021.section.partnerships.intro.paragraph": {
     "message": "In diesem Jahr haben wir auf unsere bisherigen Partnerschaften zurückgeblickt und gemeinsam überlegt, wie unsere künftigen Partnerschaften zu effektiveren und dauerhafteren Beziehungen führen könnten. Wir wollten, dass sich unsere Partnerschaften komplexer gestalten und sowohl für die Partner als auch für uns mehr Wirkung zeigen."
@@ -1952,6 +1994,258 @@
   "page.year-in-review.2022.section.state-of-data.paragraph": {
     "message": "In der zweiten Jahreshälfte haben wir die erste Studie über den Stand der Daten und Technologien im Tierschutz gestartet, die ihresgleichen sucht. Mit der Unterstützung und Partnerschaft von Faunalytics bei der Konzeption dieser Studie versucht unser Forscherteam zu verstehen, welche Herausforderungen und Chancen sich den Organisationen bieten, die in verschiedenen Bereichen und Branchen innerhalb unserer breiten Bewegung tätig sind. Der in Kürze erscheinende Bericht wird Empfehlungen für die Interessengruppen enthalten und dazu beitragen, unseren organisatorischen Fahrplan voranzutreiben."
   },
+  "page.year-in-review.2023.next-seo.title": {
+    "message": "2023 im Rückblick"
+  },
+  "page.year-in-review.2023.section.big-impact.501c3.content": {
+    "message": "Im Jahr 2023 haben wir einen großen Schritt gemacht und das Verfahren zur Erlangung des <no-localization>501(c)(3)</no-localization> Status in den Vereinigten Staaten eingeleitet. Diese Änderung wird unserer Organisation neue Möglichkeiten eröffnen, zu wachsen und noch mehr zu bewirken!"
+  },
+  "page.year-in-review.2023.section.big-impact.501c3.heading": {
+    "message": "Wir werden eine <no-localization>501(c)3</no-localization>!"
+  },
+  "page.year-in-review.2023.section.big-impact.all-hands-meeting.content": {
+    "message": "Im Jahr 2023 hielten wir unser erstes All-Hands-Treffen ab, auf dem wir Ziele zur Verbesserung unserer Dienstleistungen für den Kapazitätsaufbau festlegten, unsere Fortschritte reflektierten und Möglichkeiten erörterten, wie wir unsere Teams in einem nachhaltigen, auf Zusammenarbeit ausgerichteten Tempo führen können."
+  },
+  "page.year-in-review.2023.section.big-impact.all-hands-meeting.heading": {
+    "message": "Unser erstes All Hands Meeting"
+  },
+  "page.year-in-review.2023.section.big-impact.heading": {
+    "message": "Kleine Aktionen mit <b>großer Wirkung (BIG IMPACT)</b>"
+  },
+  "page.year-in-review.2023.section.big-impact.new-advisor.content": {
+    "message": "Wir haben <no-localization>Abigail Penny</no-localization>, die Geschäftsführerin von <no-localization>Animal Equality UK</no-localization>, in diesem Jahr herzlich in unserem Beirat begrüßt. Ihre Führungsqualitäten haben zu einer großen Medienaufmerksamkeit und zu bedeutenden Veränderungen für Nutztiere im Vereinigten Königreich geführt. <no-localization>Abigail's</no-localization> ist von großem Wert, da sie zusammen mit anderen Führungskräften unsere Bemühungen um eine bessere Welt für Tiere leitet."
+  },
+  "page.year-in-review.2023.section.big-impact.new-advisor.heading": {
+    "message": "Neuer Berater"
+  },
+  "page.year-in-review.2023.section.big-impact.new-comms-director.content": {
+    "message": "In diesem Jahr konnten wir auch <no-localization>Gabrielė</no-localization>, unsere neue Kommunikationsdirektorin, in unserem Team begrüßen. Mit ihrem Hintergrund in der Kommunikation und ihrer Erfahrung in der Kampagnenarbeit hat sich <no-localization>Gabrielė</no-localization> schnell in den Bereich des Kapazitätsaufbaus eingearbeitet. Sie erstellt nicht nur Inhalte für <no-localization>Vegan Hacktivists</no-localization> und <no-localization>Violet Studios</no-localization>, sondern hilft auch anderen Befürwortern, ihre Fähigkeiten in den Bereichen Kommunikation und soziale Medien zu verbessern."
+  },
+  "page.year-in-review.2023.section.big-impact.new-comms-director.heading": {
+    "message": "Neuer Direktor für Kommunikation"
+  },
+  "page.year-in-review.2023.section.big-impact.new-comms-manager.content": {
+    "message": "Im Jahr 2023 begrüßten wir <no-localization>Jess</no-localization> als unseren neuen Community Director auf <no-localization>Vegan Hacktivists</no-localization>. Mit einem Jahrzehnt Erfahrung im gemeinnützigen Bereich und einer Leidenschaft für Tierschutz hat sich <no-localization>Jess</no-localization> als perfekt geeignet erwiesen, um Playground, unsere Gemeinschaft veganer Freiwilliger, zu leiten und zu erweitern. Sie sind nicht nur schnell zu einem integralen Bestandteil der Neugestaltung von <no-localization>Playground’s</no-localization> geworden, sondern auch zu einem geschätzten Mitglied unseres Teams."
+  },
+  "page.year-in-review.2023.section.big-impact.new-comms-manager.heading": {
+    "message": "Neuer Community Manager"
+  },
+  "page.year-in-review.2023.section.big-impact.wellness-survey.content": {
+    "message": "Aktivisten sind anfällig für Burnout, deshalb haben wir eine Umfrage durchgeführt, um unser Team besser zu unterstützen. Dabei stellte sich heraus, dass viele Teammitglieder zwar Spaß an ihrer Arbeit haben und sich von ihren Vorgesetzten unterstützt fühlen, dass sie aber Arbeit und Leben anders vereinbaren. Die Umfrage zeigte Verbesserungsmöglichkeiten auf, wie z. B. bessere Arbeitsanleitungen, Möglichkeiten zur Zusammenarbeit und Zugang zu Ressourcen für die psychische Gesundheit, sowie den Bedarf an mehr Gemeinschaftsbildung und Feedback darüber, wie sich die Arbeit jedes Mitglieds auf die Organisation auswirkt."
+  },
+  "page.year-in-review.2023.section.big-impact.wellness-survey.heading": {
+    "message": "<no-localization>VH’s</no-localization> Wellness-Umfrage"
+  },
+  "page.year-in-review.2023.section.by-the-numbers.cost-saved.1": {
+    "message": "Minimum"
+  },
+  "page.year-in-review.2023.section.by-the-numbers.cost-saved.2": {
+    "message": "Im Durchschnitt"
+  },
+  "page.year-in-review.2023.section.by-the-numbers.cost-saved.3": {
+    "message": "Maximum"
+  },
+  "page.year-in-review.2023.section.by-the-numbers.cost-saved.heading": {
+    "message": "Gerettet für die Bewegung"
+  },
+  "page.year-in-review.2023.section.by-the-numbers.grant-program.1": {
+    "message": "Antragsteller"
+  },
+  "page.year-in-review.2023.section.by-the-numbers.grant-program.2": {
+    "message": "Genehmigte Anträge"
+  },
+  "page.year-in-review.2023.section.by-the-numbers.grant-program.3": {
+    "message": "In Form von Starthilfen gegeben"
+  },
+  "page.year-in-review.2023.section.by-the-numbers.grant-program.heading": {
+    "message": "<b>Zuschussprogramm</b> "
+  },
+  "page.year-in-review.2023.section.by-the-numbers.heading": {
+    "message": "<b>Die Zahlen</b>"
+  },
+  "page.year-in-review.2023.section.by-the-numbers.learn-more": {
+    "message": "Mehr erfahren"
+  },
+  "page.year-in-review.2023.section.by-the-numbers.services.1": {
+    "message": "BIPGM-geführt"
+  },
+  "page.year-in-review.2023.section.by-the-numbers.services.1.tooltip": {
+    "message": "BIPGM steht für Black, Indigenous, and People of the Global Majority."
+  },
+  "page.year-in-review.2023.section.by-the-numbers.services.2": {
+    "message": "EA-ausgerichtet"
+  },
+  "page.year-in-review.2023.section.by-the-numbers.services.2.tooltip": {
+    "message": "EA steht für Effective Altruism - Gruppen, die sich für den Tierschutz einsetzen."
+  },
+  "page.year-in-review.2023.section.by-the-numbers.services.3": {
+    "message": "Verschiedene Länder"
+  },
+  "page.year-in-review.2023.section.by-the-numbers.services.4": {
+    "message": "Erbrachte Dienstleistungen"
+  },
+  "page.year-in-review.2023.section.by-the-numbers.services.heading": {
+    "message": "Betreute Organisationen"
+  },
+  "page.year-in-review.2023.section.collaborations.1.content": {
+    "message": "In diesem Jahr haben wir uns mit <no-localization>AAC</no-localization> zusammengetan, indem wir die Aktivitäten des qualifizierten Freiwilligenausschusses beendet und diejenigen, die sich ehrenamtlich engagieren möchten oder eine Stelle suchen, an <no-localization>VH Playground</no-localization> verwiesen haben. Ebenso begann <no-localization>Playground</no-localization>, sich für <no-localization>AAC's</no-localization> Karrieremöglichkeiten innerhalb unserer Freiwilligengemeinschaft für Personen einzusetzen, die eine eher karriereorientierte Rolle anstreben."
+  },
+  "page.year-in-review.2023.section.collaborations.1.heading": {
+    "message": "Zusammenarbeit für <b>EFFEKTIVE REDIRECTION</b>"
+  },
+  "page.year-in-review.2023.section.collaborations.2.content": {
+    "message": "Wir haben uns mit <no-localization>Sentient Media’s Writers’ Collective</no-localization> zusammengetan, um neue Autoren auszubilden und zu betreuen, die sich mit Themen wie Tierschutz, pflanzliche Ernährung, soziale Gerechtigkeit und Umwelt beschäftigen. Indem wir mehr als 200 Bewerber für das Programm betreuen, tragen wir zur Bereicherung dieser wichtigen Gespräche bei."
+  },
+  "page.year-in-review.2023.section.collaborations.2.heading": {
+    "message": "Partnerschaft für <b>ADVANCED CONVERSATIONS</b>"
+  },
+  "page.year-in-review.2023.section.collaborations.3.content": {
+    "message": "Gemeinsam mit <no-localization>Stray Dog Institute</no-localization> haben wir zwei Webinare zum Thema KI veranstaltet, in denen wir Themen wie die Beschleunigung des Wandels durch KI, ihre Rolle bei der Skalierung, die Optimierung von Kampagnen und die Ergänzung unserer Lobbyarbeit insgesamt behandelt haben. Als Kapazitätsentwickler ist es uns wichtig, die Interessenvertreter mit den notwendigen Ressourcen auszustatten, um ihre Effizienz und Wirkung zu steigern. KI dient zweifelsohne als Werkzeug für diesen Zweck."
+  },
+  "page.year-in-review.2023.section.collaborations.3.heading": {
+    "message": "<b>ANIMAL ADVOCACY WITH AI</b> vorantreiben"
+  },
+  "page.year-in-review.2023.section.collaborations.header": {
+    "message": "Das Jahr 2023 war geprägt von Kooperationen, die sich auf einen der wohl wichtigsten Bausteine der Bewegung konzentrierten: die <b>Anwerbung und Förderung von Talenten und Fähigkeiten</b>."
+  },
+  "page.year-in-review.2023.section.fta.content": {
+    "message": "Gegen Ende des Jahres 2023 haben wir <no-localization>Today For Animals</no-localization> vorgestellt, eine benutzerfreundliche Web-App, die das Engagement für Tiere für alle vereinfacht, sowohl für erfahrene Aktivisten als auch für Neulinge. <no-localization>Today For Animals</no-localization> bietet ein Spektrum von Aktionen, von schnellen täglichen Aufgaben bis hin zu anspruchsvolleren Bemühungen, die darauf abzielen, das Leben von Tieren zu verbessern.<no-localization>{break}{break}</no-localization>Benutzer können sich an \"Mikro-Aktivismus\" beteiligen, wie z. B. Bewertungen für vegane Restaurants abgeben, Rezepte teilen oder Petitionen unterzeichnen. Die Teilnehmer an der App erhalten Anerkennung und steigen in der Rangliste auf, wenn sie Aufgaben erfüllen. Sie können auch schön gestaltete Abzeichen für ihre Profile sammeln und eine tägliche Aktivitätsreihe aufrechterhalten, indem sie sich jeden Tag in der App anmelden. Dieser spielerische Ansatz hält unsere Gemeinschaft bei der Stange und hilft jedem, kontinuierlich zur Tierschutzarbeit beizutragen.<no-localization>{break}{break}</no-localization>Der Start dieses Projekts wurde sehr positiv aufgenommen und führte innerhalb weniger Wochen zu 269 Anmeldungen. Aber das ist noch nicht alles! Unser Team arbeitet ständig an der Verbesserung der App, um die Nutzer neugierig und aktiv zu halten und sie zu motivieren, selbst in den alltäglichsten Dingen etwas zu bewirken.<no-localization>{break}{break}</no-localization><b>Haben Sie heute den Tieren geholfen?</b>"
+  },
+  "page.year-in-review.2023.section.fta.heading": {
+    "message": "<b>SO MACHT TÄGLICHER AKTIVISMUS SPASS</b>"
+  },
+  "page.year-in-review.2023.section.fta.label": {
+    "message": "Kopf nach <no-localization>Today For Animals</no-localization>"
+  },
+  "page.year-in-review.2023.section.granti.content": {
+    "message": "Nachdem wir mehrere Interviews mit wichtigen Geldgebern in diesem Bereich geführt hatten, war uns klar, dass in unserer Bewegung ein Tool für die Vergabe von Zuschüssen und Geldgebern benötigt wurde. Wir gingen dieses Problem direkt an, indem wir ein Tool entwickelten, das eine bessere Verwaltung und Erleichterung von Zuschüssen sowohl für Befürworter als auch für Geldgeber ermöglichen würde. Wir waren begeistert, als wir die ersten Geldgeber auf der Plattform begrüßen durften, und kündigten Ende des Jahres den Start der Plattform an!<no-localization>{break}{break}</no-localization>Zuschussempfänger haben oft Schwierigkeiten, den Überblick über ihre aktuellen und früheren Zuschussanträge zu behalten. Förderer stehen vor ähnlichen Herausforderungen, da es selten möglich ist, alle notwendigen Informationen in einem leicht verständlichen und zugänglichen Format zu erhalten. Wie die Zuschussempfänger haben auch die Förderer viel Verwaltungsarbeit zu bewältigen und nutzen oft mehrere Plattformen, um ihre Anträge zu verwalten. Unser System <no-localization>Granti</no-localization> bringt alle an einen Tisch und vereinfacht so den Förderprozess für alle.<no-localization>{break}{break}</no-localization>Seit seiner Einführung hat <no-localization>Granti</no-localization> eine enorme Wirkung erzielt und dazu beigetragen, Dutzende von Millionen Dollar zu verteilen. <no-localization>Granti</no-localization> macht alles einfacher - von der Bearbeitung von Anträgen über die Aktualisierung von Unterlagen bis hin zur Verwaltung von Finanzen. Es ist zu einem leistungsstarken Werkzeug geworden, und wir beabsichtigen, seine Nutzung weit über das hinaus auszudehnen, was wir uns ursprünglich vorgestellt haben.<no-localization>{break}{break}</no-localization><b>Sind Sie ein Geldgeber oder Fördermittelgeber in diesem Bereich? Suchen Sie nach einer rationellen Möglichkeit zur Verwaltung Ihrer Zuschüsse?</b>"
+  },
+  "page.year-in-review.2023.section.granti.heading": {
+    "message": "<b>ZUSCHUSSVERGABE EINFACH GEMACHT</b>"
+  },
+  "page.year-in-review.2023.section.granti.label": {
+    "message": "Erreichen Sie uns zum Beitritt <no-localization>Granti</no-localization>"
+  },
+  "page.year-in-review.2023.section.header.content": {
+    "message": "Auf <no-localization>2023</no-localization> haben wir unsere Rolle als Kapazitätsbauer gestärkt und der Bewegung die größte Summe an Mitteln in unserer Geschichte erspart. Indem wir allein in diesem Jahr mehr als <no-localization>130</no-localization> Organisationen mit unseren technischen, gestalterischen und beratenden Dienstleistungen unterstützt haben, konnten wir der Bewegung die unglaubliche Summe von <no-localization>$750k</no-localization> sparen. Auch im weiteren Verlauf von <no-localization>2024</no-localization> konzentrieren wir uns darauf, die solide Grundlage, die wir auf <no-localization>2023</no-localization> geschaffen haben, zu nutzen, um die bestehenden Lücken in unserer Bewegung zu schließen und die Tierschutzbewegung stärker als bisher zu machen."
+  },
+  "page.year-in-review.2023.section.header.image.alt-text": {
+    "message": "2023 Jahresrückblick"
+  },
+  "page.year-in-review.2023.section.header.title": {
+    "message": "Neue Werkzeuge und Technologien im Dienste unserer Bewegung"
+  },
+  "page.year-in-review.2023.section.knowledge.aquatic-life-con.content": {
+    "message": "Auf der 4. <no-localization>Annual Aquatic Life Conference</no-localization>, die von <no-localization>Aquatic Life Institute</no-localization> organisiert wurde, sprach unser Geschäftsführer <no-localization>James Morgan</no-localization> über den Einsatz von <no-localization>ChatGPT</no-localization> zum Schutz von Wasserlebewesen. In seinem Vortrag erläuterte <no-localization>James</no-localization> die Definitionen von KI, ihre Möglichkeiten im Tierschutz und die mit der Verwendung von KI verbundenen Risiken und Grenzen. Sie können sich den Vortrag <a>hier</a> ansehen."
+  },
+  "page.year-in-review.2023.section.knowledge.aquatic-life-con.heading": {
+    "message": "Einsatz von AI für Wassertiere: <b>Aquatic Life Konferenz</b>"
+  },
+  "page.year-in-review.2023.section.knowledge.asia-farm.content": {
+    "message": "Ende 2023 nahmen <no-localization>David van Beveren</no-localization>, <no-localization>Ryuji Chua</no-localization> und <no-localization>Seb Alex</no-localization> an der ersten Präsenzveranstaltung <no-localization>Asia Farm Animal Day</no-localization> in Kuala Lumpur teil, die gemeinsam von Asia for <no-localization>Animals Farm Animal Coalition</no-localization> und <no-localization>Animal & Vegan Advocacy Summit</no-localization> organisiert wurde. Wir sprachen mit Organisationen, die sich dem Tierschutz in Asien verschrieben haben, und stellten sicher, dass unsere Dienstleistungen zum Aufbau von Kapazitäten in ihrer Reichweite sind. Darüber hinaus fungierte der Vorstandsdirektor von <no-localization>Ryuji Chua</no-localization> als Hauptredner bei der Eröffnung und gab Tipps für eine effektive Kommunikation!"
+  },
+  "page.year-in-review.2023.section.knowledge.asia-farm.heading": {
+    "message": "Sicherstellung unserer Unterstützung in Asien: <b>Asiatischer Nutztiertag</b>"
+  },
+  "page.year-in-review.2023.section.knowledge.ava-summit.content": {
+    "message": "Wir nahmen auch an der <no-localization>AVA Summit</no-localization> in <no-localization>LA</no-localization> teil, wo <no-localization>David</no-localization> seine Erkenntnisse über das Management von Freiwilligen und die Befähigung von Freiwilligen in der Bewegung mitteilte. Er hob hervor, wie Freiwillige unsere Wirkung verstärken, und sprach über die Bedeutung von Markenbildung, Klarheit und die Festlegung von Erwartungen, um Spitzenfreiwillige zu gewinnen. Die Vorstandsmitglieder <no-localization>Ryuji Chua</no-localization> und <no-localization>Seb Alex</no-localization> hielten Vorträge über Massenkommunikation und Lobbyarbeit im Nahen Osten. Auf dem Gipfeltreffen arbeiteten wir mit <no-localization>Andrea Gunn</no-localization> und <no-localization>David Coman-Hidy</no-localization> von <no-localization>Sharpen Strategy</no-localization> zusammen, um unsere Strategie und unser Betriebsmodell zu verfeinern und uns mit Unsicherheiten und potenziellen Umstellungen auseinanderzusetzen. Außerdem veranstalteten wir gemeinsam mit <no-localization>Animal Advocacy Careers</no-localization> eine Karrieremesse!"
+  },
+  "page.year-in-review.2023.section.knowledge.ava-summit.heading": {
+    "message": "Anerkennung von Freiwilligen als Katalysatoren: <b>AVA-Gipfel in LA</b>"
+  },
+  "page.year-in-review.2023.section.knowledge.erasmus.content": {
+    "message": "Im Frühjahr sprach <no-localization>James Morgan</no-localization> auf <no-localization>Erasmus University</no-localization> in Rotterdam über das Leiden von Wildtieren, dank <no-localization>PISE</no-localization> Rotterdam, einer Studentengruppe, die mit <no-localization>Effective Altruism</no-localization> zusammenarbeitet! Wir sind sehr dankbar für diese Gelegenheit und die aufschlussreichen Fragen, die die Studenten während der Diskussion stellten."
+  },
+  "page.year-in-review.2023.section.knowledge.erasmus.heading": {
+    "message": "Warum das Leiden von Wildtieren wichtig ist: <b>Erasmus-Universität Rotterdam</b>"
+  },
+  "page.year-in-review.2023.section.knowledge.farm.content": {
+    "message": "Im Jahr 2023 hat unser Exekutivdirektor <no-localization>James Morgan</no-localization> in einem Interview mit <no-localization>Farm Animal Rights Movement (FARM)</no-localization> einen ausgewogenen Blick auf den Einsatz von KI in der Advocacy-Arbeit geworfen. Er sprach über die Vorzüge und Fallstricke von KI, ermutigte Advocates, KI-Tools bei ihren täglichen Aufgaben einzusetzen, und hob hervor, wie KI die Effizienz und Effektivität unserer Bemühungen steigern kann. Sie können sich das Interview hier ansehen."
+  },
+  "page.year-in-review.2023.section.knowledge.farm.heading": {
+    "message": "Vorteile und Risiken der KI aufdecken: <b>Interview mit FARM</b>"
+  },
+  "page.year-in-review.2023.section.knowledge.intro.content": {
+    "message": "Unser Jahr war geprägt von Veranstaltungen, bei denen wir in verschiedenen Regionen und Bereichen in diesem Bereich nach Wissen und Wirkung suchten. Wir hielten Vorträge über bewährte Praktiken für das Management von Freiwilligen und über die Grundlagen der Nutzung von KI, um unsere Interessenvertretung voranzubringen. Wir nutzten auch die Gelegenheit, unsere Verbindungen zu stärken und uns weitere Fähigkeiten für die Führung und das Wachstum unserer Organisation anzueignen."
+  },
+  "page.year-in-review.2023.section.knowledge.intro.heading": {
+    "message": "<b>Wissen</b> teilen und gewinnen"
+  },
+  "page.year-in-review.2023.section.knowledge.lead-conference.content": {
+    "message": "Im Sommer 2023 nahmen <no-localization>David</no-localization> und die Vorstandsmitglieder <no-localization>Seb Alex</no-localization> und <no-localization>Ryuji Chua</no-localization> an der Konferenz <no-localization>LEAD</no-localization> teil. Sie nahmen an einem Workshop teil, der sechs Kernbedürfnisse von Menschen in Organisationen aufzeigte. Diese Bedürfnisse passen genau in das Akronym <no-localization>\"BICEPS\"</no-localization>, wie oben abgebildet!"
+  },
+  "page.year-in-review.2023.section.knowledge.lead-conference.heading": {
+    "message": "Gedeihen in einer Organisation: <b>LEAD-Konferenz</b>"
+  },
+  "page.year-in-review.2023.section.knowledge.liberation-conference.content": {
+    "message": "In Berkeley, Kalifornien, sprach unser Vorstandsmitglied <no-localization>Ryuji Chua</no-localization> auf der weltweit größten Basis-Tierrechtskonferenz. Sein Workshop \"How to Talk about Animal Rights: Principles of Effective Communication for Educators &amp; Content Creators\" (Prinzipien effektiver Kommunikation für Pädagogen und Autoren von Inhalten), untersuchte, wie man ansprechende Medien erstellt, die Aufmerksamkeit auf sich zieht und behält und eine alternative Perspektive auf die Welt auf ansprechende und einprägsame Weise vermittelt."
+  },
+  "page.year-in-review.2023.section.knowledge.liberation-conference.heading": {
+    "message": "Der Weg zur effektiven Kommunikation: <b>Konferenz zur Tierbefreiung</b>"
+  },
+  "page.year-in-review.2023.section.knowledge.making-connections.content": {
+    "message": "Gegen Ende des Sommers 2023 nahmen wir an der <no-localization>CARE Conference</no-localization> in Warschau, Polen, teil, wo <no-localization>David</no-localization> mit über 40 Organisationen sprach. <no-localization>Sentient Media</no-localization> Darüber hinaus haben wir unser Wissen im Bereich des digitalen Marketings in einer von <no-localization>Ana Bradley</no-localization> geleiteten Sitzung vertieft, in der <no-localization>VH</no-localization> für unsere Partnerschaft bei der Umsetzung technischer SEO-Änderungen ausgezeichnet wurde."
+  },
+  "page.year-in-review.2023.section.knowledge.making-connections.heading": {
+    "message": "Verbindungen knüpfen: <b>CARE-Konferenz</b>"
+  },
+  "page.year-in-review.2023.section.leadership.content": {
+    "message": "Im Hochsommer dieses Jahres haben wir beschlossen, die Art und Weise, wie wir Kapazitäten aufbauen, durch Veränderungen in unserer Führung zu verfeinern. <no-localization>David van Beveren</no-localization> Der Gründer von <no-localization>Vegan Hacktivists</no-localization> im Jahr 2019 übernahm die Rolle des Gründers und Präsidenten und ist nun für die langfristige Vision und die breitere Wirkung der Organisation verantwortlich.<no-localization>{break}{break}</no-localization>Unter der Leitung von <no-localization>David’s</no-localization> wuchs <no-localization>Vegan Hacktivists</no-localization> erheblich: Aus einem Ein-Mann-Team wurde eine Organisation mit über 50 aktiven Freiwilligen, vier Vollzeitmitarbeitern, acht Stipendiaten und 2.500 Freiwilligen in unserem <no-localization>Playground</no-localization> -Netzwerk. Seit dem Übergang konzentriert sich <no-localization>David</no-localization> auf die Gesamtausrichtung und -strategie, den Aufbau von Partnerschaften und die Vertretung der Organisation bei verschiedenen Veranstaltungen und in verschiedenen Funktionen.<no-localization>{break}{break}</no-localization>Auf der anderen Seite des Austauschs trat <no-localization>James Morgan</no-localization> als unser neuer Exekutivdirektor auf und brachte sein Engagement für die Sache und sein Fachwissen im Bereich Produktmanagement in den Vordergrund unserer Aktivitäten. Seit seinem Beitritt zu <no-localization>VH</no-localization> hat <no-localization>James</no-localization> eine entscheidende Rolle bei der Verbesserung unserer Prozesse und der Unterstützung unseres Wachstums gespielt, wobei er ursprünglich als Freiwilliger begann und sich schnell als unser Betriebsleiter unentbehrlich machte. Er trug dazu bei, den Grundstein für das zu legen, was <no-localization>VH</no-localization> heute ist, und nun arbeiten unsere beiden Führungskräfte weiterhin gemeinsam daran, unsere Mission voranzutreiben und die Bewegung mit innovativen technischen Lösungen zu unterstützen, um den Einsatz für Tiere weltweit zu stärken.<no-localization>{break}{break}</no-localization><b>Sie hören zum ersten Mal von den Neuigkeiten?</b>"
+  },
+  "page.year-in-review.2023.section.leadership.heading": {
+    "message": "Neue Horizonte in <b>OUR LEADERSHIP</b>"
+  },
+  "page.year-in-review.2023.section.leadership.label": {
+    "message": "Lesen Sie die Ankündigung"
+  },
+  "page.year-in-review.2023.section.moving-forward.btn.cta": {
+    "message": "Unterstützen Sie unsere Arbeit"
+  },
+  "page.year-in-review.2023.section.moving-forward.content": {
+    "message": "2023 war für unsere Organisation ein Jahr der Entwicklung und des Wandels. Wir verbesserten unsere Dienstleistungen zum Aufbau von Kapazitäten, indem wir neue Führungsrollen übernahmen und unser Designteam darauf vorbereiteten, eine Schwesterorganisation zu gründen. Unsere neu eingeführten Instrumente fanden schnell Anerkennung und bewiesen ihren Wert, indem sie die Finanzierungsprozesse vereinfachten und wichtige Geldgeber in diesem Bereich mobilisierten. Wir gaben den Startschuss für spannende neue Projekte und legten unsere Prioritäten für die Zukunft fest. Unser Bekanntheitsgrad stieg durch führende Vorträge auf Konferenzen, Auftritte in Dokumentarfilmen und zahlreiche Anfragen zur Zusammenarbeit. Unser Ziel für die Zukunft ist es, das Spektrum der von uns unterstützten Gruppen durch den Aufbau von Kapazitäten zu erweitern, das organisatorische Wachstum voranzutreiben und die von uns entwickelten Instrumente kontinuierlich zu verbessern, um eine größere Wirkung zu erzielen. Wir sind all unseren Unterstützern unendlich dankbar und freuen uns darauf, zu sehen, wohin uns das Jahr 2024 führen wird."
+  },
+  "page.year-in-review.2023.section.moving-forward.heading": {
+    "message": "Vorwärts &amp; Vorwärts"
+  },
+  "page.year-in-review.2023.section.partnership.content": {
+    "message": "<b>Partnerschaften</b> schaffen &amp; <b>Wirkung</b> erzielen"
+  },
+  "page.year-in-review.2023.section.playground.content": {
+    "message": "Nach dem großen Erfolg von <no-localization>Playground</no-localization> seit dem Start im Jahr 2021 haben wir weiter nach Möglichkeiten gesucht, die Plattform zu verbessern. Die Plattform, die mehr als 2.500 vegane Freiwillige umfasst, die zusammen über Tausende von Arbeitsstunden für die Bewegung geleistet haben, hat sich als erste Anlaufstelle für die Kontaktaufnahme mit Organisationen etabliert.<no-localization>{break}{break}</no-localization>Wir konnten beobachten, wie die Community von <no-localization>Playground’s</no-localization> um fast 1.000 neue Freiwillige wuchs, die allein in diesem Jahr 93 verschiedene Anfragen wie Datenanalyse und Marketing bearbeiteten.<no-localization>{break}{break}</no-localization>Im Jahr 2023 beschlossen wir, <no-localization>Playground</no-localization> auf die nächste Stufe zu heben. Wir lernten eine Menge und begannen mit der Umsetzung von Änderungen, um die Benutzerfreundlichkeit zu verbessern. Durch mehr Kontrolle für die Hilfesuchenden und einen viel angenehmeren (und sogar spaßigen!) Prozess für die Erfüllung von Anfragen wird das <no-localization>Playground's</no-localization> Upgrade sowohl die Erfahrung als auch die Wirkung für die Tiere steigern.<no-localization>{break}{break}</no-localization><no-localization>Playground</no-localization> ist vom <no-localization>Vegan Hacktivists</no-localization> Team getrennt und zielt darauf ab, die Kapazität zu erhöhen, mit der wir die Arbeit für die Tiere unterstützen können. Zur Vorbereitung von <no-localization>Playground V2</no-localization> haben wir ein Einführungsvideo über die aktuelle Plattform veröffentlicht.<no-localization>{break}{break}</no-localization> Sie haben<b>das Video noch nicht gesehen?</b>"
+  },
+  "page.year-in-review.2023.section.playground.heading": {
+    "message": "<b>VON STÄRKE ZU STÄRKE</b>"
+  },
+  "page.year-in-review.2023.section.playground.label": {
+    "message": "Hier anschauen"
+  },
+  "page.year-in-review.2023.section.providing-value.we-built.paragraph": {
+    "message": "<b>2023 war das Jahr, in dem wir Projekte zum Abschluss brachten, die schon lange auf ihr Rampenlicht warteten.</b> Wir sprachen Veganer an, die sich in ihrem Alltag für Tiere engagieren wollen, und führten ein Tool ein, das den Prozess der Zuschussvergabe verändert hat, der für Organisationen entscheidend ist, um ihre Arbeit zu unterstützen und voranzubringen."
+  },
+  "page.year-in-review.2023.section.providing-value.we-committed.paragraph": {
+    "message": "<b>Mit den Veränderungen in unserer Führung und den Plänen für neue Programme</b> haben wir bei <no-localization>VH</no-localization> ein neues Kapitel aufgeschlagen. Dies bedeutete, dass wir einen neuen Exekutivdirektor für <no-localization>VH</no-localization> willkommen hießen und uns auf die Entwicklung eines unserer Teams hin zu einem stärkeren Markenauftritt und Fokus vorbereiteten."
+  },
+  "page.year-in-review.2023.section.providing-value.we-ventured.paragraph": {
+    "message": "<b>Wir haben uns auf unsere Stärken bei der Nutzung von Technologien und dem Aufbau von Gemeinschaften gestützt</b>, um Tieren zu helfen, und haben unser Fachwissen bei einer Vielzahl von Veranstaltungen weitergegeben. Von Vorträgen über das Management von Freiwilligen bis hin zu Vorträgen über den Einsatz von KI in der Advocacy-Arbeit - wir haben uns dafür eingesetzt, dass mehr Organisationen dieses Wissen für Veränderungen nutzen können."
+  },
+  "page.year-in-review.2023.section.tech-and-data.content": {
+    "message": "Im August 2023 haben wir mit der Veröffentlichung eines umfassenden Berichts über die Integration von Technologie und Daten in der Tierschutzbewegung einen wichtigen Schritt nach vorn gemacht. Unsere 50-seitige Studie enthüllte wichtige Erkenntnisse darüber, wie Technologie derzeit genutzt wird und welches Potenzial sie für die Förderung unserer Sache hat. Wir haben uns mit verschiedenen Aspekten befasst, unter anderem mit den technischen Kenntnissen der Mitarbeiter, der Nutzung von Websites und Anwendungen, Strategien für soziale Medien, Praktiken der Datenerfassung und Sicherheitsmaßnahmen.<no-localization>{break}{break}</no-localization>Unsere Ergebnisse unterstreichen die Notwendigkeit eines technisch versierteren Ansatzes bei unseren Aktivitäten und unserer Lobbyarbeit. Um diesen Übergang zu unterstützen, haben wir mehrere Empfehlungen formuliert, die sich an Führungskräfte, Aktivisten und Geldgeber richten. Diese Richtlinien sollen einen technologieorientierten und datengesteuerten Ansatz fördern, der unsere Effektivität im Tierschutz erhöht.<no-localization>{break}{break}</no-localization>Durch die Weitergabe dieser Erkenntnisse und Empfehlungen wollen wir einen Wandel hin zu einer besseren Nutzung der Technologie in der gesamten Bewegung anstoßen. Dieser Bericht zeigt nicht nur, wo wir stehen, sondern auch, wohin wir gehen müssen, um sicherzustellen, dass wir alle verfügbaren Instrumente nutzen, um uns effizienter für den Tierschutz einzusetzen.<no-localization>{break}{break}</no-localization> Sie haben<b>die Studie noch nicht gelesen?</b>"
+  },
+  "page.year-in-review.2023.section.tech-and-data.heading": {
+    "message": "Der Start von <b>TECH &amp; DATA IN THE MOVEMENT</b>"
+  },
+  "page.year-in-review.2023.section.tech-and-data.label": {
+    "message": "Sehen Sie sich das hier an"
+  },
+  "page.year-in-review.2023.section.theory-of-change.label": {
+    "message": "Schauen Sie genauer hin"
+  },
+  "page.year-in-review.2023.section.violet-studios.content": {
+    "message": "Im Laufe der Zeit stellten wir fest, dass es in verschiedenen Bereichen Bedarf für den Aufbau von Kapazitäten gab, wobei das Design an vorderster Stelle stand. Unsere Designarbeit weitete sich schnell aus, nahm ein Eigenleben an - und wurde einer eigenen Organisation würdig.<no-localization>{break}{break}</no-localization>Wir begannen mit der Arbeit an dem neuen Programm, das der Bewegung zu mehr Glanz verhelfen sollte, und strebten den großen Start zu einem besonderen Datum an -<no-localization>VH’s</no-localization> 5. Geburtstag. Nach sorgfältigen Vorbereitungen für alles, was mit dem Start einer neuen Organisation einhergeht (Branding, Strategie, Website und soziale Medien - die Liste ließe sich fortsetzen!), war das Team bereit für den Start am 1. Januar.<no-localization>{break}{break}</no-localization>Nun bietet unsere Schwesterorganisation <no-localization>Violet Studios</no-localization> Aktivisten und Organisationen weiterhin kostenlos authentische Designdienstleistungen an. Ob es sich um Branding, Webdesign oder andere wirkungsvolle Bereiche handelt, <no-localization>Violet</no-localization> hilft Aktivisten, Vertrauen aufzubauen, die Wahrnehmung zu beeinflussen und sich von ihrer besten Seite zu zeigen.<no-localization>{break}{break}</no-localization><b>Möchten Sie mehr erfahren?</b>"
+  },
+  "page.year-in-review.2023.section.violet-studios.heading": {
+    "message": "Der Start von <b>Violet Studios</b>"
+  },
   "page.year-in-review.section.header.content": {
     "message": "Wir freuen uns sehr, unseren <no-localization>{year}</no-localization> Jahresrückblick veröffentlichen zu können! Scrollen Sie nach unten und lesen Sie, was wir dank Ihrer großzügigen Unterstützung, unserer Partner und vor allem unserer großartigen Freiwilligen alles erreicht haben."
   },
@@ -2040,7 +2334,7 @@
     "message": "Siehe unsere Auswirkungen"
   },
   "section.grants-cta.visit-year-review.heading": {
-    "message": "Siehe unsere Folgenabschätzung 2022"
+    "message": "Siehe unsere Folgenabschätzung 2023"
   },
   "section.grants-cta.visit-year-review.paragraph": {
     "message": "Lesen Sie unseren jährlichen Wirkungsbericht und sehen Sie, was wir im vergangenen Jahr erreicht haben."

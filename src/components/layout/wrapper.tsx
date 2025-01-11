@@ -1,16 +1,16 @@
+'use client';
+
 import React from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useRouter } from 'next/router';
 import classNames from 'classnames';
 
-import useErrorStore from '../../lib/stores/errorStore';
-import ErrorPage from '../../pages/_error';
 import CookiesCTA from '../cookiesCTA';
 
 import NewsletterPopup from './newsletterPopup';
 import { bitter, ptSans, rajdhani } from './fonts';
+
+import { usePathnameWithoutLocale } from 'lib/translation/usePathnameWithoutLocale';
 
 // http://web-accessibility.carnegiemuseums.org/code/skip-link/
 const JumpToContent: React.FC = () => {
@@ -47,25 +47,16 @@ const PageWrapper: React.FC<React.PropsWithChildren> = ({ children }) => {
 export const MainWrapper: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
-  const error = useErrorStore((state) => state.error);
-  const { asPath } = useRouter();
+  const pathname = usePathnameWithoutLocale();
 
   const hideNewsletter =
-    error || asPath === '/handbook' || asPath.startsWith('/handbook/');
+    pathname === '/handbook' || pathname?.startsWith('/handbook/');
 
   return (
     <main id='main' className='text-center min-h-[40rem]' tabIndex={-1}>
-      <ErrorBoundary
-        fallbackRender={(props) => {
-          return <ErrorPage {...props} />;
-        }}
-      >
-        <>
-          {children}
-          <CookiesCTA />
-          {hideNewsletter || <NewsletterPopup />}
-        </>
-      </ErrorBoundary>
+      {children}
+      <CookiesCTA />
+      {!!hideNewsletter || <NewsletterPopup />}
     </main>
   );
 };

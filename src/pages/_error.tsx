@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 
-import ErrorPage from '../components/layout/errorPage';
+import ErrorPage from '../components/layout/errorPage_pages';
 
 import type { NextPageContext } from 'next';
 

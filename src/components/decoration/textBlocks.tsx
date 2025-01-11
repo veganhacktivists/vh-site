@@ -38,6 +38,25 @@ interface SectionHeaderProps
   smallOnMobile?: boolean;
 }
 
+export function parseBoldText(text: string) {
+  const boldStart = '<b>';
+  const boldEnd = '</b>';
+
+  text = text.trim();
+
+  const startWithBoldFont = text.startsWith(boldStart);
+
+  return {
+    startWithBoldFont,
+    splitTextComponents: text
+      .replace(new RegExp(`${boldEnd}(\\s*)${boldStart}`, 'i'), '$1')
+      .split(new RegExp(`(${boldStart}|${boldEnd})`, 'i'))
+      .map((component) => component.trim())
+      .filter(Boolean)
+      .filter((component) => component !== boldStart && component !== boldEnd),
+  };
+}
+
 // TODO: this file is a mess, I wanna speak to Kate and determine all the headers we might need,
 // in the sorts of custom <H1> components
 export const SectionHeader = ({
@@ -49,18 +68,8 @@ export const SectionHeader = ({
   smallOnMobile = false,
   ...props
 }: SectionHeaderProps) => {
-  const boldStart = '<b>';
-  const boldEnd = '</b>';
-
-  header = header.trim();
-  const startWithBoldFont = header.startsWith(boldStart);
-
-  const headerComponents = header
-    .replace(new RegExp(`${boldEnd}(\\s*)${boldStart}`, 'i'), '$1')
-    .split(new RegExp(`(${boldStart}|${boldEnd})`, 'i'))
-    .map((component) => component.trim())
-    .filter(Boolean)
-    .filter((component) => component !== boldStart && component !== boldEnd);
+  const { startWithBoldFont, splitTextComponents: headerComponents } =
+    parseBoldText(header);
 
   const boldClasses = `${
     smallOnMobile ? 'text-4xl' : 'text-5xl'

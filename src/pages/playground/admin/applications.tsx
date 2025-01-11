@@ -2,6 +2,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { useCallback } from 'react';
 import { ApplicationStatus, RequestStatus } from '@prisma/client';
 import { NextSeo } from 'next-seo';
+import { useIntl } from 'react-intl';
 
 import {
   DarkButton,
@@ -10,7 +11,7 @@ import {
   LogoutButton,
   OutlineButton,
 } from 'components/decoration/buttons';
-import { trpc } from 'lib/client/trpc';
+import { api } from 'trpc/react';
 import PlaygroundRequestCard from 'components/layout/playground/requests/requestCard';
 import ApplicationCard from 'components/layout/playground/applicationCard';
 import Spinner from 'components/decoration/spinner';
@@ -18,12 +19,13 @@ import Spinner from 'components/decoration/spinner';
 import type { NextPage } from 'next';
 
 const AdminPage: NextPage = ({}) => {
-  const utils = trpc.useContext();
+  const intl = useIntl();
+  const utils = api.useUtils();
   const {
     data,
     isSuccess,
     isLoading: isQueryLoading,
-  } = trpc.playground.admin.requestsWithPendingApplications.useQuery();
+  } = api.playground.admin.requestsWithPendingApplications.useQuery();
   const [animatedRef] = useAutoAnimate<HTMLDivElement>();
 
   const invalidateQuery = useCallback(
@@ -31,15 +33,15 @@ const AdminPage: NextPage = ({}) => {
     [utils.playground.admin.requestsWithPendingApplications],
   );
 
-  const { mutate: mutateDelete, isLoading: isDeletionLoading } =
-    trpc.playground.admin.deleteApplication.useMutation({
+  const { mutate: mutateDelete, isPending: isDeletionLoading } =
+    api.playground.admin.deleteApplication.useMutation({
       onSuccess: async () => {
         await invalidateQuery();
       },
     });
 
-  const { mutate, isLoading: isMutationLoading } =
-    trpc.playground.admin.setApplicationStatus.useMutation({
+  const { mutate, isPending: isMutationLoading } =
+    api.playground.admin.setApplicationStatus.useMutation({
       onSuccess: async () => {
         await invalidateQuery();
       },
@@ -61,7 +63,10 @@ const AdminPage: NextPage = ({}) => {
             .filter((status) => status !== RequestStatus.Rejected)
             .map((status) => (
               <OutlineButton
-                href={{ pathname: '/playground/admin', query: { status } }}
+                href={{
+                  pathname: '/playground/admin',
+                  query: { status },
+                }}
                 key={status}
               >
                 {status === RequestStatus.Accepted ? 'Live' : status} requests
@@ -74,7 +79,10 @@ const AdminPage: NextPage = ({}) => {
           >
             See applications
           </OutlineButton>
-          <LogoutButton href='/auth/signout' className='mx-5 w-fit'>
+          <LogoutButton
+            href={`/${intl.locale}/auth/signout`}
+            className='mx-5 w-fit'
+          >
             Logout
           </LogoutButton>
         </div>

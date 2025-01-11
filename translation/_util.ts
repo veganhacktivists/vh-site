@@ -3,16 +3,12 @@ import { resolve } from 'path';
 
 import { z } from 'zod';
 
-const nextConfig = z
-  .object({
-    i18n: z.object({ locales: z.array(z.string()), defaultLocale: z.string() }),
-  })
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  .parse(require('../next.config.js'));
+import { locales } from '../i18nConfig';
+
+import { defaultLocale } from './defaultLocale';
 
 export const filesGlob = 'src/**/*.tsx';
-export const defaultLocale = nextConfig.i18n.defaultLocale;
-export const locales = nextConfig.i18n.locales;
+export { defaultLocale, locales };
 export const defaultTranslationPath = resolveTranslationFilePath(defaultLocale);
 export const defaultCompiledTranslationPath =
   resolveCompiledTranslationFilePath(defaultLocale);
@@ -104,6 +100,7 @@ export function validateTranslationId(id: string) {
 
 export function warnIfIdInvalid(id: string) {
   if (!validateTranslationId(id)) {
+    // eslint-disable-next-line no-console
     console.warn(
       'id must be lower cased in kebab-style and may not contain white spaces, invalid id:',
       id,

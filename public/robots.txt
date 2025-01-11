@@ -1,5 +1,0 @@
-# http://www.robotstxt.org/robotstxt.html
-
-User-agent: *
-# ignore translated pages for now
-Disallow: /de/*

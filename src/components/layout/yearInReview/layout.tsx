@@ -1,18 +1,23 @@
 import React from 'react';
 import classNames from 'classnames';
-import { FormattedMessage, useIntl } from 'react-intl';
 
 import { NavButton } from '../../decoration/buttons';
 import SquareField from '../../decoration/squares';
 import { FirstSubSection } from '../../decoration/textBlocks';
 
+import getServerIntl from 'app/intl';
+
 interface YearButtonProps {
   year: number;
+  locale: string;
 }
 
-const YearButton: React.FC<YearButtonProps> = ({ year }) => {
+const YearButton: React.FC<YearButtonProps> = ({ year, locale }) => {
   return (
-    <NavButton className='w-48 font-bold' href={`/year-in-review/${year}`}>
+    <NavButton
+      className='w-48 font-bold'
+      href={`/${locale}/year-in-review/${year}`}
+    >
       {year}
     </NavButton>
   );
@@ -20,10 +25,12 @@ const YearButton: React.FC<YearButtonProps> = ({ year }) => {
 
 interface YearInReviewButtonProps {
   currentYear: number;
+  locale: string;
 }
 
 const YearInReviewButtons: React.FC<YearInReviewButtonProps> = ({
   currentYear,
+  locale,
 }) => {
   return (
     <div>
@@ -33,7 +40,7 @@ const YearInReviewButtons: React.FC<YearInReviewButtonProps> = ({
         })}
       >
         {[2020, 2021, 2022, 2023].map((year) => (
-          <YearButton key={year} year={year} />
+          <YearButton key={year} locale={locale} year={year} />
         ))}
       </div>
     </div>
@@ -44,6 +51,7 @@ interface YearInReviewHeaderProps {
   year: number;
   hero: React.ReactNode;
   customMainSection?: React.ReactNode;
+  locale: string;
 }
 
 const HERO_DECORATION_SQUARES = [
@@ -60,8 +68,10 @@ export const YearInReviewHeader: React.FC<YearInReviewHeaderProps> = ({
   year,
   hero,
   customMainSection,
+  locale,
 }) => {
-  const intl = useIntl();
+  const intl = getServerIntl(locale);
+
   return (
     <div className='bg-grey-background'>
       {hero}
@@ -80,14 +90,17 @@ export const YearInReviewHeader: React.FC<YearInReviewHeaderProps> = ({
             .replace('{year}', String(year))}
           className='pt-5'
         >
-          <FormattedMessage
-            id='page.year-in-review.section.header.content'
-            defaultMessage="We're so happy to release our <no-localization>{year}</no-localization> Year in Review! Scroll down to read all of our accomplishments thanks to your generous support, our partners, and most of all our amazing volunteers."
-            values={{ year }}
-          />
+          {intl.formatMessage(
+            {
+              id: 'page.year-in-review.section.header.content',
+              defaultMessage:
+                "We're so happy to release our <no-localization>{year}</no-localization> Year in Review! Scroll down to read all of our accomplishments thanks to your generous support, our partners, and most of all our amazing volunteers.",
+            },
+            { year },
+          )}
         </FirstSubSection>
       )}
-      <YearInReviewButtons currentYear={year} />
+      <YearInReviewButtons locale={locale} currentYear={year} />
     </div>
   );
 };

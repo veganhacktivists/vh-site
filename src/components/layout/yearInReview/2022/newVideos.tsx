@@ -1,5 +1,4 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
 
 import SquareField from '../../../decoration/squares';
 import { SectionHeader } from '../../../decoration/textBlocks';
@@ -7,9 +6,14 @@ import YoutubeVideo from '../../../decoration/youtubeVideo';
 import SectionContainer from '../sectionContainer';
 
 import { DarkButton } from 'components/decoration/buttons';
+import getServerIntl from 'app/intl';
 
-const AnimatedVideos: React.FC = () => {
-  const intl = useIntl();
+interface Props {
+  locale: string;
+}
+
+const AnimatedVideos: React.FC<Props> = ({ locale }) => {
+  const intl = getServerIntl(locale);
 
   return (
     <>
@@ -32,10 +36,11 @@ const AnimatedVideos: React.FC = () => {
         }
       >
         <div className='text-xl mx-auto md:w-2/3 xl:w-1/2'>
-          <FormattedMessage
-            id='page.year-in-review.2022.section.new-videos.paragraph'
-            defaultMessage="Check out our latest videos from 2022! We have more videos in the pipeline so keep an eye out and subscribe to our youtube channel if you'd like to be the first to watch."
-          />
+          {intl.formatMessage({
+            id: 'page.year-in-review.2022.section.new-videos.paragraph',
+            defaultMessage:
+              "Check out our latest videos from 2022! We have more videos in the pipeline so keep an eye out and subscribe to our youtube channel if you'd like to be the first to watch.",
+          })}
         </div>
         <div className='pb-10'>
           <div className='flex flex-col md:flex-row mx-auto gap-y-10 gap-x-10 xl:w-2/3 mt-10 mb-10'>
@@ -55,10 +60,10 @@ const AnimatedVideos: React.FC = () => {
         </div>
         <div className='flex justify-center pb-10'>
           <DarkButton href='https://www.youtube.com/@VeganHacktivists'>
-            <FormattedMessage
-              id='page.year-in-review.2022.section.new-videos.btn.cta'
-              defaultMessage='Watch more videos'
-            />
+            {intl.formatMessage({
+              id: 'page.year-in-review.2022.section.new-videos.btn.cta',
+              defaultMessage: 'Watch more videos',
+            })}
           </DarkButton>
         </div>
       </SectionContainer>

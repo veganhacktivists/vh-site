@@ -1,15 +1,16 @@
-import { IntlProvider } from 'react-intl';
+'use client';
 
-import { messages } from './messages';
-import { useRouterLocale } from './useRouterLocale';
+import { IntlProvider } from 'react-intl';
 
 import type { PropsWithChildren } from 'react';
 
-export const TranslationProvider = ({ children }: PropsWithChildren) => {
-  const locale = useRouterLocale();
-
+export const TranslationProvider = ({
+  children,
+  locale,
+  messages,
+}: PropsWithChildren<{ locale: string; messages: Record<string, string> }>) => {
   return (
-    <IntlProvider locale={locale} messages={messages[locale]}>
+    <IntlProvider locale={locale} messages={messages}>
       {children}
     </IntlProvider>
   );

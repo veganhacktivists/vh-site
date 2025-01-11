@@ -1,3 +1,5 @@
+'use server';
+
 import Snoowrap from 'snoowrap';
 
 import { CATEGORY_LABELS } from '../../../prisma/constants';
@@ -8,8 +10,9 @@ import type { RequestWithBudget } from 'lib/services/playground/admin';
 import type { Submission } from 'snoowrap';
 
 declare module 'snoowrap' {
+  // @ts-expect-error errors because of incorrect implementation of the Promise interface
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  class RedditContent<T> {
+  interface RedditContent<T> {
     then: undefined;
     catch: undefined;
     finally: undefined;

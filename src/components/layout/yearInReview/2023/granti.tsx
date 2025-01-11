@@ -1,19 +1,22 @@
-import { FormattedMessage, useIntl } from 'react-intl';
-
-import GrantiLogo from '../../../../../public/images/yearInReview/2023/granti.png';
-import GrantiScreenshot from '../../../../../public/images/yearInReview/2023/granti-screenshot.jpg';
-
 import SquareField from 'components/decoration/squares';
 import { DarkButton } from 'components/decoration/buttons';
 import { SectionHeader } from 'components/decoration/textBlocks';
 import CustomImage from 'components/decoration/customImage';
+import getServerIntl from 'app/intl';
+
+import GrantiScreenshot from '~images/yearInReview/2023/granti-screenshot.jpg';
+import GrantiLogo from '~images/yearInReview/2023/granti.png';
 
 const TOP_DECORATION_SQUARES = [
   { color: 'grey-darker', size: 16, left: 0, top: 0 },
 ];
 
-const Granti: React.FC = () => {
-  const intl = useIntl();
+interface Props {
+  locale: string;
+}
+
+const Granti: React.FC<Props> = ({ locale }) => {
+  const intl = getServerIntl(locale);
 
   const buttonLabel = intl.formatMessage({
     id: 'page.year-in-review.2023.section.granti.label',
@@ -47,14 +50,17 @@ const Granti: React.FC = () => {
                 stackEntries
               />
               <div className='text-lg pt-8 pb-4'>
-                <FormattedMessage
-                  id='page.year-in-review.2023.section.granti.content'
-                  defaultMessage="After conducting several interviews with major funders in the space, it was clear to us that a grantee/funder tool was well-needed in our movement. We tackled this issue head-on by building a tool that would allow better management and facilitation of grants for both advocates and funders alike. We were thrilled to onboard the first funders onto the platform, and publicly announced its launch at the end of the year!<no-localization>{break}{break}</no-localization>Grantees often struggle to keep track of their grant submissions, both current and past. Funders face similar challenges, as it's rare to have all the necessary information in one easy-to-understand and accessible format. Like grantees, funders deal with a lot of administrative work and often use multiple platforms to manage submissions. Our system, <no-localization>Granti</no-localization>, brings everyone together, simplifying the grant process for all.<no-localization>{break}{break}</no-localization>Since its launch, <no-localization>Granti</no-localization> has made a huge impact, helping distribute tens of millions of dollars. <no-localization>Granti</no-localization> makes everything easier—from handling applications to updating records and managing finances. It's become a powerful tool, and we intend to extend its use far beyond what we initially envisioned.<no-localization>{break}{break}</no-localization><b>Are you a funder or grantmaker in the space? Looking for a streamlined way to manage your grants?</b>"
-                  values={{
+                {intl.formatMessage(
+                  {
+                    id: 'page.year-in-review.2023.section.granti.content',
+                    defaultMessage:
+                      "After conducting several interviews with major funders in the space, it was clear to us that a grantee/funder tool was well-needed in our movement. We tackled this issue head-on by building a tool that would allow better management and facilitation of grants for both advocates and funders alike. We were thrilled to onboard the first funders onto the platform, and publicly announced its launch at the end of the year!<no-localization>{break}{break}</no-localization>Grantees often struggle to keep track of their grant submissions, both current and past. Funders face similar challenges, as it's rare to have all the necessary information in one easy-to-understand and accessible format. Like grantees, funders deal with a lot of administrative work and often use multiple platforms to manage submissions. Our system, <no-localization>Granti</no-localization>, brings everyone together, simplifying the grant process for all.<no-localization>{break}{break}</no-localization>Since its launch, <no-localization>Granti</no-localization> has made a huge impact, helping distribute tens of millions of dollars. <no-localization>Granti</no-localization> makes everything easier—from handling applications to updating records and managing finances. It's become a powerful tool, and we intend to extend its use far beyond what we initially envisioned.<no-localization>{break}{break}</no-localization><b>Are you a funder or grantmaker in the space? Looking for a streamlined way to manage your grants?</b>",
+                  },
+                  {
                     b: (chunks) => <b>{chunks}</b>,
                     break: <br />,
-                  }}
-                />
+                  },
+                )}
               </div>
               <div className='flex flex-row justify-between mt-4'>
                 <DarkButton

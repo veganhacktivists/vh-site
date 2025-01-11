@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 
 import { DarkButton } from '../../decoration/buttons';

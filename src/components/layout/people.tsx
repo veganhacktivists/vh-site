@@ -8,7 +8,7 @@ import heroBackground from '../../../public/images/people/VH-cow-hero-nocircles.
 import heroTagline from '../../../public/images/people/VH-team-hero-text.png';
 import Sprite, { duck } from '../decoration/sprite';
 
-import JoinTheTeam from './joinTheTeam';
+import JoinTheTeam from './joinTheTeam_pages';
 
 import type { Layout } from '../../types/persistentLayout';
 
@@ -30,21 +30,23 @@ export interface SocialLink {
 }
 
 const PeopleButtons: React.FC = () => {
+  const locale = useIntl().locale;
+
   return (
     <div className='flex flex-wrap justify-center mt-10 mb-5'>
-      <NavButton href='/people/team'>
+      <NavButton href={`/${locale}/people/team`}>
         <FormattedMessage
           id='page.people.section.navigation.button.label.team'
           defaultMessage='OUR TEAM'
         />
       </NavButton>
-      <NavButton href='/people/volunteers'>
+      <NavButton href={`/${locale}/people/volunteers`}>
         <FormattedMessage
           id='page.people.section.navigation.button.label.volunteers'
           defaultMessage='OUR VOLUNTEERS'
         />
       </NavButton>
-      <NavButton href='/people/advisors'>
+      <NavButton href={`/${locale}/people/advisors`}>
         <FormattedMessage
           id='page.people.section.navigation.button.label.advisors'
           defaultMessage='OUR ADVISORS'

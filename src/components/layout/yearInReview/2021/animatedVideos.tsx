@@ -1,5 +1,4 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
 
 import CustomLink from '../../../decoration/link';
 import SquareField from '../../../decoration/squares';
@@ -7,8 +6,15 @@ import { SectionHeader } from '../../../decoration/textBlocks';
 import YoutubeVideo from '../../../decoration/youtubeVideo';
 import SectionContainer from '../sectionContainer';
 
-const AnimatedVideos: React.FC = () => {
-  const intl = useIntl();
+import getServerIntl from 'app/intl';
+
+interface Props {
+  locale: string;
+}
+
+const AnimatedVideos: React.FC<Props> = ({ locale }) => {
+  const intl = getServerIntl(locale);
+
   return (
     <>
       <SquareField
@@ -29,17 +35,20 @@ const AnimatedVideos: React.FC = () => {
               defaultMessage: 'Our new <b>animated videos</b>',
             })}
           >
-            <FormattedMessage
-              id='page.year-in-review.2021.section.videos.paragraph'
-              defaultMessage="We've partnered with <no-localization><link>Expanded Circle Collective</link></no-localization> in order to produce two animated introductory videos for <no-localization>Activist Hub</no-localization> and <no-localization>Vegan Bootcamp</no-localization>! These videos are fantastic resources for viewers to quickly get familiar with our work. We look forward to collaborating with them in the new year."
-              values={{
+            {intl.formatMessage(
+              {
+                id: 'page.year-in-review.2021.section.videos.paragraph',
+                defaultMessage:
+                  "We've partnered with <no-localization><link>Expanded Circle Collective</link></no-localization> in order to produce two animated introductory videos for <no-localization>Activist Hub</no-localization> and <no-localization>Vegan Bootcamp</no-localization>! These videos are fantastic resources for viewers to quickly get familiar with our work. We look forward to collaborating with them in the new year.",
+              },
+              {
                 link: (chunks) => (
                   <CustomLink href='https://expandedcircle.org/'>
                     {chunks}
                   </CustomLink>
                 ),
-              }}
-            />
+              },
+            )}
           </SectionHeader>
         }
       >

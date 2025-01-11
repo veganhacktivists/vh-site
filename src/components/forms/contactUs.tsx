@@ -2,11 +2,11 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { Controller, useForm } from 'react-hook-form';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { useSearchParams } from 'next/navigation';
 
 import { firstLetterUppercase } from '../../lib/helpers/strings';
-import useErrorStore from '../../lib/stores/errorStore';
 import { DarkButton } from '../decoration/buttons';
 import Spinner from '../decoration/spinner';
 
@@ -33,7 +33,6 @@ interface ContactUsSubmission {
 }
 
 const ContactUsForm: React.FC = () => {
-  const { pageThatErrored, clearErrorData } = useErrorStore();
   const { onMessageChange, suggestions } = useFAQDetect();
 
   const intl = useIntl();
@@ -46,20 +45,13 @@ const ContactUsForm: React.FC = () => {
     formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm<ContactUsSubmission>({
     defaultValues: {
-      service: pageThatErrored ? 'Website' : null,
+      service: null,
     },
   });
   const { reload } = useRouter();
 
-  const defaultErrorMessage = useErrorStore(
-    (state) => state.generateErrorMessage,
-  )();
-
-  // Clear error data on unmount so if they don't submit
-  // the form is clear on return visits.
-  useEffect(() => {
-    return () => clearErrorData();
-  }, [clearErrorData]);
+  const searchParams = useSearchParams();
+  const defaultErrorMessage = searchParams?.get('message') ?? '';
 
   const onSubmit = useCallback(
     async (values: ContactUsSubmission) => {
@@ -189,7 +181,7 @@ const ContactUsForm: React.FC = () => {
             error={errors.message?.message}
             {...register('message')}
             name='message'
-            defaultValue={defaultErrorMessage}
+            defaultValue={atob(defaultErrorMessage)}
             onChange={onMessageChange}
           >
             {inputLabels.message}

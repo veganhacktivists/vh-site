@@ -1,14 +1,12 @@
 import { Html, Head, Main, NextScript } from 'next/document';
 
-import type { NextPageContext } from 'next';
+import { defaultLocale } from '../../translation/defaultLocale';
 
-export const getInitialProps = ({ locale }: NextPageContext) => {
-  return {
-    props: { locale },
-  };
-};
+import { usePathnameLocale } from 'lib/translation/usePathnameLocale';
 
-const Document = ({ locale }: { locale: string }) => {
+const Document = () => {
+  const locale = usePathnameLocale() ?? defaultLocale;
+
   return (
     <Html lang={locale}>
       <Head>

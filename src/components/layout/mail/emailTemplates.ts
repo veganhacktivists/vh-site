@@ -1,3 +1,5 @@
+import 'server-only';
+
 import mjml2html from 'mjml';
 
 import { readableTimeDiff } from 'lib/helpers/date';

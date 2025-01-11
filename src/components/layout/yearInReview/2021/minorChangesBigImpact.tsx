@@ -1,109 +1,106 @@
-import { FormattedMessage, useIntl } from 'react-intl';
-
 import SquareField from '../../../decoration/squares';
 import { SectionHeader } from '../../../decoration/textBlocks';
 import SectionContainer from '../sectionContainer';
+
+import getServerIntl from 'app/intl';
+
+import type { IntlShape } from 'react-intl';
 
 interface Change {
   icon: string;
   text: React.ReactNode;
 }
 
-const changes: Change[] = [
+const getChanges: (intl: IntlShape) => Change[] = (intl) => [
   {
     icon: '🍎',
-    text: (
-      <FormattedMessage
-        id='page.year-in-review.2021.section.big-impact.paragraph.0'
-        defaultMessage='Created guidelines around brand, design, and content'
-      />
-    ),
+    text: intl.formatMessage({
+      id: 'page.year-in-review.2021.section.big-impact.paragraph.0',
+      defaultMessage: 'Created guidelines around brand, design, and content',
+    }),
   },
   {
     icon: '🥝',
-    text: (
-      <FormattedMessage
-        id='page.year-in-review.2021.section.big-impact.paragraph.1'
-        defaultMessage='Incorporated new technologies including <no-localization>Docker, LaravelShift, Vue, Tailwind, React, Svelte,</no-localization> and more'
-      />
-    ),
+    text: intl.formatMessage({
+      id: 'page.year-in-review.2021.section.big-impact.paragraph.1',
+      defaultMessage:
+        'Incorporated new technologies including <no-localization>Docker, LaravelShift, Vue, Tailwind, React, Svelte,</no-localization> and more',
+    }),
   },
   {
     icon: '🌽',
-    text: (
-      <FormattedMessage
-        id='page.year-in-review.2021.section.big-impact.paragraph.2'
-        defaultMessage='Introduced a system to collect regular feedback from our advisory board'
-      />
-    ),
+    text: intl.formatMessage({
+      id: 'page.year-in-review.2021.section.big-impact.paragraph.2',
+      defaultMessage:
+        'Introduced a system to collect regular feedback from our advisory board',
+    }),
   },
   {
     icon: '🥔',
-    text: (
-      <FormattedMessage
-        id='page.year-in-review.2021.section.big-impact.paragraph.3'
-        defaultMessage='Added three new courses to <no-localization>Vegan Bootcamp</no-localization>'
-      />
-    ),
+    text: intl.formatMessage({
+      id: 'page.year-in-review.2021.section.big-impact.paragraph.3',
+      defaultMessage:
+        'Added three new courses to <no-localization>Vegan Bootcamp</no-localization>',
+    }),
   },
   {
     icon: '🌶️',
-    text: (
-      <FormattedMessage
-        id='page.year-in-review.2021.section.big-impact.paragraph.4'
-        defaultMessage='Streamlined our volunteer application process'
-      />
-    ),
+    text: intl.formatMessage({
+      id: 'page.year-in-review.2021.section.big-impact.paragraph.4',
+      defaultMessage: 'Streamlined our volunteer application process',
+    }),
   },
   {
     icon: '🥒',
-    text: (
-      <FormattedMessage
-        id='page.year-in-review.2021.section.big-impact.paragraph.5'
-        defaultMessage='Presented <no-localization>Vegan Linguists</no-localization> at 2021 <no-localization>Animal Advocacy Conference</no-localization> Asia'
-      />
-    ),
+    text: intl.formatMessage({
+      id: 'page.year-in-review.2021.section.big-impact.paragraph.5',
+      defaultMessage:
+        'Presented <no-localization>Vegan Linguists</no-localization> at 2021 <no-localization>Animal Advocacy Conference</no-localization> Asia',
+    }),
   },
   {
     icon: '🍊',
-    text: (
-      <FormattedMessage
-        id='page.year-in-review.2021.section.big-impact.paragraph.6'
-        defaultMessage='Launched a community voting channel on our <no-localization>Discord</no-localization> server'
-      />
-    ),
+    text: intl.formatMessage({
+      id: 'page.year-in-review.2021.section.big-impact.paragraph.6',
+      defaultMessage:
+        'Launched a community voting channel on our <no-localization>Discord</no-localization> server',
+    }),
   },
   {
     icon: '🍋',
-    text: (
-      <FormattedMessage
-        id='page.year-in-review.2021.section.big-impact.paragraph.7'
-        defaultMessage='Leveraged external platforms, such as <no-localization>Reddit</no-localization> and <no-localization>Twitter</no-localization>, to promote our services'
-      />
-    ),
+    text: intl.formatMessage({
+      id: 'page.year-in-review.2021.section.big-impact.paragraph.7',
+      defaultMessage:
+        'Leveraged external platforms, such as <no-localization>Reddit</no-localization> and <no-localization>Twitter</no-localization>, to promote our services',
+    }),
   },
   {
     icon: '🍍',
-    text: (
-      <FormattedMessage
-        id='page.year-in-review.2021.section.big-impact.paragraph.8'
-        defaultMessage='Added localization to projects for more accurate and clearer translations'
-      />
-    ),
+    text: intl.formatMessage({
+      id: 'page.year-in-review.2021.section.big-impact.paragraph.8',
+      defaultMessage:
+        'Added localization to projects for more accurate and clearer translations',
+    }),
   },
   {
     icon: '🍐',
-    text: (
-      <FormattedMessage
-        id='page.year-in-review.2021.section.big-impact.paragraph.9'
-        defaultMessage='Started hosting weekly office hours for our team to chat, work, and play'
-      />
-    ),
+    text: intl.formatMessage({
+      id: 'page.year-in-review.2021.section.big-impact.paragraph.9',
+      defaultMessage:
+        'Started hosting weekly office hours for our team to chat, work, and play',
+    }),
   },
 ];
 
-const MinorChangesBigImpact: React.FC = () => {
-  const intl = useIntl();
+interface Props {
+  locale: string;
+}
+
+const MinorChangesBigImpact: React.FC<Props> = ({ locale }) => {
+  const intl = getServerIntl(locale);
+
+  const changes = getChanges(intl);
+
   return (
     <>
       <SquareField

@@ -1,5 +1,4 @@
 # this is a development compose, so don't ever use this to make deployments!
-version: '3.8'
 services:
   db:
     image: postgres:14

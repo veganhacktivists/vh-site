@@ -5,6 +5,12 @@
   "component.button.share.label": {
     "message": "Share"
   },
+  "component.translatable-contentful-entry-field.translate-button.label": {
+    "message": "Show automatically translated content"
+  },
+  "component.translatable-contentful-entry-field.translate-button.show-original": {
+    "message": "Show content in original language"
+  },
   "dialog.share.headline": {
     "message": "<b>Share</b> this project"
   },
@@ -212,6 +218,9 @@
   "page.blog.next-seo.title": {
     "message": "Blog"
   },
+  "page.blog.section.blog-page-content.author": {
+    "message": "Written by <no-localization>{name}</no-localization>"
+  },
   "page.blog.section.blog-page.btn.read-more": {
     "message": "Read more"
   },
@@ -226,6 +235,9 @@
   },
   "page.blog.section.header.categories": {
     "message": "Categories"
+  },
+  "page.blog.section.header.categories.default-category": {
+    "message": "Other"
   },
   "page.blog.section.header.intro": {
     "message": "Welcome to our official blog. We regularly post news, annnouncements, project updates, interviews, editorials, and more. Stay tuned!"
@@ -283,6 +295,9 @@
   },
   "page.contact.section.get-in-contact.headline": {
     "message": "Get in <b>contact</b>"
+  },
+  "page.error.next-seo.title": {
+    "message": "Whoops!"
   },
   "page.grants.content": {
     "message": "We connect you with funders providing up to <b>$1,000 USD in seed funding</b> for animal rights activism! We seek individual and grassroots groups whose primary purpose is to help reduce suffering for farmed animals."
@@ -650,8 +665,17 @@
   "page.newsletter.next-seo.title": {
     "message": "Our Newsletter"
   },
+  "page.not-found.contact.contact-page-error.cta-email": {
+    "message": "Please contact us at"
+  },
+  "page.not-found.contact.cta-button.label": {
+    "message": "Let us know!"
+  },
+  "page.not-found.contact.cta-label": {
+    "message": "If you believe this is a mistake"
+  },
   "page.not-found.error-message": {
-    "message": "The page you requested (<no-localization>{path}</no-localization>) does not exist"
+    "message": "The page you requested does not exist"
   },
   "page.not-found.next-seo.title": {
     "message": "Page not found"
@@ -795,7 +819,7 @@
     "message": "Volunteer"
   },
   "page.our-work.section.proveg-incubator.content": {
-    "message": "Vegan Hacktivists and Violet Studios is collaborating with ProVeg’s Kickstarting for Good incubator to leverage Artificial Intelligence (AI) for transforming our food system. Together, we are looking for the most impactful approaches and best talent in this area! {break}{break}Join us if you’re ready to bring to life ideas that can significantly enhance the global food ecosystem. Applications for our 2024 cohort are now open until May 26th!"
+    "message": "Vegan Hacktivists and Violet Studios is collaborating with ProVeg’s Kickstarting for Good incubator to leverage Artificial Intelligence (AI) for transforming our food system. Together, we are looking for the most impactful approaches and best talent in this area! <no-localization>{break}{break}</no-localization> Join us if you’re ready to bring to life ideas that can significantly enhance the global food ecosystem. Applications for our 2024 cohort are now open until May 26th!"
   },
   "page.our-work.section.proveg-incubator.cta": {
     "message": "Apply now"
@@ -1238,6 +1262,9 @@
   "page.work.next-seo.title": {
     "message": "Our Work"
   },
+  "page.year-in-review.2020.next-seo.title": {
+    "message": "2020 in Review"
+  },
   "page.year-in-review.2020.section.big-impact-changes.apple.paragraph": {
     "message": "We enabled bot notifications for community events & actions."
   },
@@ -1385,8 +1412,14 @@
   "page.year-in-review.2020.section.we-grew.advisory-team.content": {
     "message": "We're incredibly thankful to now have a team of experienced vegan advisors to lean on such as <no-localization>Seb Alex</no-localization>, <no-localization>Ryuji Chua</no-localization>, <no-localization>Leah Doellinger</no-localization> and <no-localization>Michael Dearborn</no-localization>. Browse more of our advisors, <link>click here!</link>"
   },
+  "page.year-in-review.2020.section.we-grew.advisory-team.header": {
+    "message": "WE NOW HAVE AN <b>ADVISORY TEAM</b> OF VEGAN EXPERTS"
+  },
   "page.year-in-review.2020.section.we-grew.expanded.content": {
     "message": "We expanded from just 3 teams of 28 volunteers to 7 teams of 80 volunteers! We were able to open up more positions including content creators, animators, social, marketing, and advertising!"
+  },
+  "page.year-in-review.2020.section.we-grew.expanded.header": {
+    "message": "WE EXPANDED OUR TEAM FROM <b>28 TO 80 VOLUNTEERS</b>"
   },
   "page.year-in-review.2020.section.we-grew.heading": {
     "message": "We grew a lot as a community"
@@ -1396,6 +1429,9 @@
   },
   "page.year-in-review.2020.section.we-grew.launched.content": {
     "message": "Four of which were unique project ideas of our own! We were also lucky enough to work on projects with <no-localization>Animal Rebellion</no-localization>, <no-localization>Animal Save Movement</no-localization>, <no-localization>Lebanese Vegans</no-localization>, and the <no-localization>Excelsior 4</no-localization>!"
+  },
+  "page.year-in-review.2020.section.we-grew.launched.header": {
+    "message": "WE LAUNCHED <b>EIGHT PROJECTS</b> FOR THE MOVEMENT"
   },
   "page.year-in-review.2020.section.working-with-organizations.animal-rebellion.heading": {
     "message": "<no-localization>Animal Rebellion</no-localization>"
@@ -1433,8 +1469,11 @@
   "page.year-in-review.2021.section.advisory-service.headline": {
     "message": "Our new <b>advisory service</b>"
   },
-  "page.year-in-review.2021.section.advisory-service.paragraph": {
-    "message": "<p>We launched our newest service to connect people with our team of experts who have a wide range of experience and skills. We welcome vegan activists and organizations to count us as a resource for their tech, org structure, strategy, marketing, grant requests, and more.</p> <p>We've been very happy with this launch and we've received over 100+ requests for advice! We have been able to assist organizations such as <no-localization>Sinergia Animal, The Humane League, Vegan Tokyo, Mercy for Animals, PETA, Animal Rights Advocates</no-localization>, among many others.</p>"
+  "page.year-in-review.2021.section.advisory-service.paragraph1": {
+    "message": "We launched our newest service to connect people with our team of experts who have a wide range of experience and skills. We welcome vegan activists and organizations to count us as a resource for their tech, org structure, strategy, marketing, grant requests, and more."
+  },
+  "page.year-in-review.2021.section.advisory-service.paragraph2": {
+    "message": "We've been very happy with this launch and we've received over 100+ requests for advice! We have been able to assist organizations such as Sinergia Animal, The Humane League, Vegan Tokyo, Mercy for Animals, PETA, Animal Rights Advocates, among many others."
   },
   "page.year-in-review.2021.section.big-impact.headline": {
     "message": "Minor changes with a <b>big impact</b>"
@@ -1679,6 +1718,9 @@
   "page.year-in-review.2021.section.videos.paragraph": {
     "message": "We've partnered with <no-localization><link>Expanded Circle Collective</link></no-localization> in order to produce two animated introductory videos for <no-localization>Activist Hub</no-localization> and <no-localization>Vegan Bootcamp</no-localization>! These videos are fantastic resources for viewers to quickly get familiar with our work. We look forward to collaborating with them in the new year."
   },
+  "page.year-in-review.2021.section.we-grew.advisory-team.heading": {
+    "message": "We <b>expanded our advisory team</b> of vegan experts"
+  },
   "page.year-in-review.2021.section.we-grew.advisory-team.paragraph": {
     "message": "<b>We're so thankful to have more advisors to lean on</b> such as <no-localization>Katie</no-localization> from <no-localization>Animal Equality</no-localization>, <no-localization>Chris</no-localization> from <no-localization>APEX Advocacy</no-localization>, <no-localization>Tessa</no-localization> from the <no-localization>Pollination Project</no-localization>, and <no-localization>Casey</no-localization> from <no-localization>Faunalytics</no-localization>. To browse more of our advisors, <link>click here</link>."
   },
@@ -1688,8 +1730,14 @@
   "page.year-in-review.2021.section.we-grew.intro.paragraph": {
     "message": "This year, we refined our goals and built projects that focused primarily on filling existing gaps in our movement. We grew more meaningful partnerships and we greatly improved our branding, design team, and services offered. We're excited to show you what we've done below!"
   },
+  "page.year-in-review.2021.section.we-grew.new-teams.heading": {
+    "message": "We expanded with <b>5 new teams</b> in just 6 months"
+  },
   "page.year-in-review.2021.section.we-grew.new-teams.paragraph": {
     "message": "<b>More teams, more impact!</b> We're so happy to announce the growth of our community with five new amazing teams. Please welcome Team Avocado, Team Mango, Team Watermelon, and Team Sweet Potato."
+  },
+  "page.year-in-review.2021.section.we-grew.projects.heading": {
+    "message": "We launched <b>8 new projects</b> for the movement"
   },
   "page.year-in-review.2021.section.we-grew.projects.paragraph": {
     "message": "<b>Four of which were in-house projects.</b> We were also lucky enough to work on projects with <no-localization>Sehati Animal Sanctuary</no-localization>, <no-localization>Animal Alliance Asia</no-localization>, <no-localization>Vegan Japan Consulting</no-localization>, and many more."
@@ -1814,9 +1862,6 @@
   "page.year-in-review.2022.section.featured-interviews.headline": {
     "message": "Featured <b>interviews</b>"
   },
-  "page.year-in-review.2022.section.featured-interviews.loading-spinner": {
-    "message": "Loading"
-  },
   "page.year-in-review.2022.section.featured-interviews.paragraph": {
     "message": "Earlier in the year, we had the honor of sitting down with diverse leaders in animal protection. We were inspired by their origin stories, words of wisdom, and their openness and candor in sharing their experiences with us — and hope you are too."
   },
@@ -1919,6 +1964,9 @@
   "page.year-in-review.2022.section.playground.paragraph.2": {
     "message": "These volunteers are not just developers or designers, but also include data scientists, videographers, marketers, security experts, researchers, and many more roles."
   },
+  "page.year-in-review.2022.section.providing-value.building-projects.headline": {
+    "message": "Building <b>projects, research and community</b> in 2022"
+  },
   "page.year-in-review.2022.section.providing-value.building-projects.paragraph": {
     "message": "<b>Beyond building technology</b>, we work hard to find and fill gaps in our movement. This not only includes building our projects, but also launching our research study, participating in various international conferences, and investing in the growth of communities."
   },
@@ -1943,8 +1991,14 @@
   "page.year-in-review.2022.section.providing-value.numbers.total-value": {
     "message": "Total value of <span>technology built to date</span> for the animal protection movement"
   },
+  "page.year-in-review.2022.section.providing-value.we-expanded.headline": {
+    "message": "We expanded our network by over <b>1500+ volunteers</b>"
+  },
   "page.year-in-review.2022.section.providing-value.we-expanded.paragraph": {
     "message": "<b>Within our Playground community</b>, we've been able to expand our network of volunteers to 1500+ strong utilizing skills like developers, designers, writers, editors, researchers, marketers, data scientists, and many other roles."
+  },
+  "page.year-in-review.2022.section.providing-value.we-partnered.headline": {
+    "message": "We partnered with <b>10 organizations</b> for animal protection"
   },
   "page.year-in-review.2022.section.providing-value.we-partnered.paragraph": {
     "message": "<b>We are immensely thankful</b> for the opportunity to partner and collaborate with other organizations dedicated to animal protection such as <no-localization>Sentient Media</no-localization>, <no-localization>Open Sanctuary</no-localization>, <no-localization>Animal Advocacy Careers</no-localization>, and <no-localization>Animal Defense Partnerships</no-localization>, and others."
@@ -2129,11 +2183,17 @@
   "page.year-in-review.2023.section.knowledge.ava-summit.heading": {
     "message": "Recognizing Volunteers as Catalysts: <b>AVA Summit in LA</b>"
   },
+  "page.year-in-review.2023.section.knowledge.ava-summit.image.alt": {
+    "message": "VH team at the AVA Summit in LA"
+  },
   "page.year-in-review.2023.section.knowledge.erasmus.content": {
     "message": "In spring, <no-localization>James Morgan</no-localization> spoke about wild animal suffering at <no-localization>Erasmus University</no-localization> in Rotterdam, thanks to <no-localization>PISE</no-localization> Rotterdam, a student group aligned with <no-localization>Effective Altruism</no-localization>! We're incredibly grateful for the opportunity, and the insightful questions the students raised during the discussion."
   },
   "page.year-in-review.2023.section.knowledge.erasmus.heading": {
     "message": "Why Wild Animal Suffering Matters: <b>Erasmus University Rotterdam</b>"
+  },
+  "page.year-in-review.2023.section.knowledge.erasmus.image.alt": {
+    "message": "Photo of James at Erasmus"
   },
   "page.year-in-review.2023.section.knowledge.farm.content": {
     "message": "In 2023, our Executive Director <no-localization>James Morgan</no-localization> took a balanced look at using AI in advocacy work during an interview with the <no-localization>Farm Animal Rights Movement (FARM)</no-localization>. He talked about AI’s merits and pitfalls, encouraged advocates to use AI tools in daily tasks, and highlighted how AI can boost the efficiency and effectiveness of our efforts. You can watch the interview right here."
@@ -2152,6 +2212,9 @@
   },
   "page.year-in-review.2023.section.knowledge.lead-conference.heading": {
     "message": "Thriving in an Organization: <b>LEAD Conference</b>"
+  },
+  "page.year-in-review.2023.section.knowledge.lead-conference.image.alt": {
+    "message": "Photo from the LEAD conference"
   },
   "page.year-in-review.2023.section.knowledge.liberation-conference.content": {
     "message": "In Berkeley, CA, our Board Director <no-localization>Ryuji Chua</no-localization> spoke at the world's largest grassroots animal rights conference. His workshop, 'How to Talk about Animal Rights: Principles of Effective Communication for Educators & Content Creators', explored how to create engaging media, capture and retain attention, and offer an alternative perspective on the world in an engaging and memorable way."

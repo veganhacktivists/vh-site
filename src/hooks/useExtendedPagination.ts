@@ -1,6 +1,6 @@
-import { useRouter } from 'next/router';
 import { usePagination } from 'react-use-pagination';
 import { useCallback } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 import useOnce from './useOnce';
 
@@ -11,26 +11,23 @@ interface ExtendedPaginationProps {
 }
 
 export const useExtendedPagination = (props: ExtendedPaginationProps) => {
-  const router = useRouter();
-  const { page } = router.query;
+  const searchParams = useSearchParams();
   const pagination = usePagination({
     totalItems: props.totalItems,
     initialPageSize: props.initialPageSize,
     initialPage: props.initialPage,
   });
-  useOnce(
-    () => {
-      if (page !== undefined) {
-        let newPage = Number(page);
-        newPage -= 1;
-        newPage = newPage >= 0 ? newPage : 0;
-        if (newPage !== pagination.currentPage) {
-          pagination.setPage(newPage);
-        }
+  useOnce(() => {
+    const page = searchParams?.get('page');
+    if (page !== undefined) {
+      let newPage = Number(page);
+      newPage -= 1;
+      newPage = newPage >= 0 ? newPage : 0;
+      if (newPage !== pagination.currentPage) {
+        pagination.setPage(newPage);
       }
-    },
-    { enabled: router.isReady },
-  );
+    }
+  });
   /*
    * Is needed in order to not rerender on param change
    */

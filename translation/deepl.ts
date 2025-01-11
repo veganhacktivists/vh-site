@@ -1,22 +1,9 @@
-import axios from 'axios';
 import { z } from 'zod';
 
-getEnv();
-
-function getEnv(): [apiUrl: string, apiToken: string] {
-  const apiUrl = process.env.TRANSLATION_REPO_DEEPL_API_URL;
-  const apiToken = process.env.TRANSLATION_REPO_DEEPL_API_TOKEN;
-
-  if (!apiUrl) {
-    throw new Error('DEEPL api url is missing');
-  }
-
-  if (!apiToken) {
-    throw new Error('DEEPL api token is missing');
-  }
-
-  return [apiUrl, apiToken];
-}
+const envSchema = z.object({
+  TRANSLATION_REPO_DEEPL_API_URL: z.string(),
+  TRANSLATION_REPO_DEEPL_API_TOKEN: z.string(),
+});
 
 const translationApiReturnSchema = z.object({
   translations: z
@@ -32,23 +19,29 @@ export async function translate(
   text: string,
   target_lang: string,
 ): Promise<string> {
-  const [apiUrl, apiToken] = getEnv();
+  const {
+    TRANSLATION_REPO_DEEPL_API_URL: apiUrl,
+    TRANSLATION_REPO_DEEPL_API_TOKEN: apiToken,
+  } = envSchema.parse(process.env);
 
-  const res = await axios({
+  const res = await fetch(apiUrl, {
     method: 'POST',
-    url: `${apiUrl}?${new URLSearchParams({
-      text,
+    body: JSON.stringify({
+      text: [text],
       target_lang,
       source_lang: 'EN',
       tag_handling: 'xml',
-      outline_detection: '0',
-      ignore_tags: 'no-localization',
-    }).toString()}`,
+      // why is outline detection disabled
+      outline_detection: false,
+      ignore_tags: ['no-localization'],
+    }),
     headers: {
       Authorization: `DeepL-Auth-Key ${apiToken}`,
+      'Content-Type': 'application/json',
     },
-    responseType: 'json',
   });
 
-  return translationApiReturnSchema.parse(res.data).translations[0].text;
+  const resJSON = await res.json();
+
+  return translationApiReturnSchema.parse(resJSON).translations[0].text;
 }
